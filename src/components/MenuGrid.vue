@@ -1,33 +1,31 @@
 <template>
-  <div class="container">
-    <div class="grid-container">
-      <div class="Articulos">
-        <a href=""><div>ARTICULOS</div></a>
-      </div>
-      <div class="Clientes">
-        <a href=""><div>CLIENTES</div></a>
-      </div>
-      <div class="Proveedores">
-        <a href=""><div>PROVEEDORES</div></a>
-      </div>
-      <div class="Compras">
-        <a href=""><div></div></a>
-      </div>
-      <div class="Ventas">
-        <a href=""><div></div></a>
-      </div>
-      <div class="Gastos">
-        <a href=""><div></div></a>
-      </div>
-      <div class="Inventario">
-        <a href=""><div></div></a>
-      </div>
-      <div class="Contabilidad">
-        <a href=""><div></div></a>
-      </div>
-      <div class="Estadisticas">
-        <a href=""><div></div></a>
-      </div>
+  <div class="grid-container">
+    <div class="Articulos">
+      <a href=""><div>ARTICULOS</div></a>
+    </div>
+    <div class="Clientes">
+      <a href=""><div></div></a>
+    </div>
+    <div class="Proveedores">
+      <a href=""><div>PROVEEDORES</div></a>
+    </div>
+    <div class="Compras">
+      <a href=""><div></div></a>
+    </div>
+    <div class="Ventas">
+      <a href=""><div></div></a>
+    </div>
+    <div class="Gastos">
+      <a href=""><div></div></a>
+    </div>
+    <div class="Inventario">
+      <a href=""><div></div></a>
+    </div>
+    <div class="Contabilidad">
+      <a href=""><div></div></a>
+    </div>
+    <div class="Estadisticas">
+      <a href=""><div></div></a>
     </div>
   </div>
 </template>
@@ -39,17 +37,9 @@ export default {
 </script>
 
 <style lang="scss">
-.container {
-  width: 100vw;
-  height: calc(100vh - 64px);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .grid-container {
-  width: 90%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr;

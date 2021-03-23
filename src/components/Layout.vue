@@ -6,15 +6,34 @@
       </h1>
     </div>
   </header>
+  <div class="container">
+    <div class="container__area">
+      <slot></slot>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "Header",
+  name: "Layout",
 };
 </script>
 
 <style lang="scss">
+.container {
+  width: 100vw;
+  height: calc(100vh - 64px);
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container__area {
+  width: 90%;
+  height: 90%;
+}
+
 .header_loged {
   width: 100vw;
   height: 64px;

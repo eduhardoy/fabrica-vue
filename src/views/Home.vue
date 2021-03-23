@@ -1,16 +1,17 @@
 <template>
-  <Header />
-  <MenuGrid />
+  <Layout>
+    <MenuGrid />
+  </Layout>
 </template>
 
 <script>
-import Header from "@/components/Header.vue";
+import Layout from "@/components/Layout.vue";
 import MenuGrid from "@/components/MenuGrid.vue";
 
 export default {
   name: "Home",
   components: {
-    Header,
+    Layout,
     MenuGrid,
   },
 };
