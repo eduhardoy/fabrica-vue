@@ -5,12 +5,13 @@
         FABRICA DE LUZ
       </h1>
     </div>
-    <md-icon>menu</md-icon>
   </header>
 </template>
 
 <script>
-export default {};
+export default {
+  name: "Header",
+};
 </script>
 
 <style lang="scss">
