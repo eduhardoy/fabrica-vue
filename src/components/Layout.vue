@@ -32,6 +32,9 @@ export default {
 .container__area {
   width: 90%;
   height: 90%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header_loged {

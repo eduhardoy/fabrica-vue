@@ -1,18 +1,18 @@
 <template>
   <Layout>
-    <ArticulosSelect />
+    <ProductosList />
   </Layout>
 </template>
 
 <script>
 import Layout from "@/components/Layout.vue";
-import ArticulosSelect from "@/components/ArticulosSelect.vue";
+import ProductosList from "@/components/ProductosList.vue";
 
 export default {
-  name: "Articulos",
+  name: "Home",
   components: {
     Layout,
-    ArticulosSelect,
+    ProductosList,
   },
 };
 </script>
