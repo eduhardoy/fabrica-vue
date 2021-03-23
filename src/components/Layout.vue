@@ -5,11 +5,6 @@
       <h2>FABRICA DE LUZ</h2>
       <button class="home__button">HOMEICON</button>
     </header>
-    <div class="styled_body">
-      <div class="right__side">
-        <slot name="body" />
-      </div>
-    </div>
     <div class="left__side"></div>
   </div>
 </template>
@@ -40,59 +35,49 @@ export default {
       color: white;
       font-weight: 300;
     }
-    .menu__button {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 64px;
-      width: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      color: white;
-      padding: 12px;
-      overflow: visible;
-      font-size: 1.5rem;
-      text-align: center;
-      svg {
-        font-size: 35px;
-      }
-      .home__button {
-        position: absolute;
-        top: 0;
-        right: 0;
-        height: 64px;
-        width: 80px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: transparent;
-        border: none;
-        outline: none;
-        color: white;
-        padding: 12px;
-        overflow: visible;
-        font-size: 1.5rem;
-        text-align: center;
-        svg {
-          font-size: 35px;
-        }
-      }
-    }
   }
-  .styled__body {
-    display: flex;
-    min-width: 100%;
-    position: relative;
-    .right__side {
-      position: relative;
-      height: calc(100vh - 64px);
-      width: 100%;
-      display: flex;
-    }
+}
+
+.menu__button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 64px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 12px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  svg {
+    font-size: 35px;
+  }
+}
+.home__button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 64px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  padding: 12px;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  svg {
+    font-size: 35px;
   }
 }
 </style>
