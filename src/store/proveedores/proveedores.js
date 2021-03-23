@@ -38,16 +38,24 @@ export default {
 
         },
         putProveedor({ dispatch }, proveedor) {
+            //AL AGREGAR CBU CREAR Y ACTUALIZAR EN PROVEEDOR
+
+            //AL ELIMINAR CBU BORRAR Y ACTUALIZAR EN PROVEEDOR
+
             Axios.post(URL + `/${proveedor.id}`, proveedor)
                 .then(() => dispatch("getProveedores"))
         },
-        deleteProveedor({ dispatch }, proveedor) {
-            proveedor.CUENTA_BANCO.forEach(element => {
-                Axios.delete(URLBANCO + `/${element.id}`)
-                    .then(() => null)
-            });
-            Axios.delete(URL + `/${proveedor.id}`)
-                .then(() => dispatch("getProveedores"))
+        async deleteProveedor({ dispatch }, proveedor) {
+
+            await Promise.all(
+                proveedor.CUENTA_BANCO.map(e => {
+                    Axios.delete(URLBANCO + `/${e.id}`)
+                })
+            ).then(() => {
+                Axios.delete(URL + `/${proveedor.id}`)
+                    .then(() => dispatch("getProveedores"))
+            })
+
         }
     },
     mutations: {
