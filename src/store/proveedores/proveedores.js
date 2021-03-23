@@ -24,19 +24,18 @@ export default {
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setProveedoresLoader", false))
         },
-        async postProveedor( proveedor) {
+        async postProveedor({ dispatch }, proveedor) {
 
-
-            await Promise.all([
-                await proveedor.CBU.forEach(async cbu => {
-                    const result = await (await Axios.post(URLBANCO, { ...cbu })).data
-                    return result.id
+            console.log(proveedor)
+            await Promise.all(
+                proveedor.CBU.map(async cbu => {
+                    return (await Axios.post(URLBANCO, { ...cbu })).data
                 }),
-            ]).then(data => {
-                console.log(data)
+            ).then(data => {
+                Axios.post(URL, { ...proveedor, CUENTA_BANCO: data.map(e => e.id) })
+                    .then(() => dispatch("getProveedores"))
             })
-            // Axios.post(URL, { ...proveedor, CUENTA_BANCO: cuentas })
-            //     .then(() => dispatch("getProveedores"))
+
         },
         putProveedor({ dispatch }, proveedor) {
             Axios.post(URL + `/${proveedor.id}`, proveedor)
