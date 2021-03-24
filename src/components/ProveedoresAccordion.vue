@@ -19,6 +19,44 @@
         <li>Email: Proveedor1@inibot.com</li>
       </ul>
     </details>
+    <details class="accordion__box">
+      <summary>
+        <div class="summary__title">
+          <h3>DSASDADSAD</h3>
+        </div>
+        <div class="summary__buttons">
+          <button><img src="./images/pencil.svg" alt="" />EDITAR</button>
+          <button><img src="./images/trash.svg" alt="" />ELIMINAR</button>
+        </div>
+      </summary>
+      <ul>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+      </ul>
+    </details>
+    <details class="accordion__box">
+      <summary>
+        <div class="summary__title">
+          <h3>DSASDADSAD</h3>
+        </div>
+        <div class="summary__buttons">
+          <button><img src="./images/pencil.svg" alt="" />EDITAR</button>
+          <button><img src="./images/trash.svg" alt="" />ELIMINAR</button>
+        </div>
+      </summary>
+      <ul>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+        <li>Email: Proveedor1@inibot.com</li>
+      </ul>
+    </details>
   </div>
 </template>
 
@@ -57,6 +95,7 @@ details[open] {
   box-shadow: 0px 0px 7px -1px rgba(142, 136, 136, 0.99);
   border-radius: 10px;
   transition: all 10s ease;
+  margin: 20px;
   summary {
     display: flex;
     justify-content: flex-start;
