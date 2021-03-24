@@ -1,17 +1,30 @@
 <template>
   <div class="products">
-    <div class="products_head">
-      <div class="products_head_title">
+    <button class="add__button"></button>
+    <div class="products__head">
+      <div class="products__head__title">
         <h2>PRODUCTOS</h2>
       </div>
-      <div class="products_head_adds">
-        <h2>PRODUCTOS</h2>
+      <div class="products__head__filters">
+        <ul>
+          <li>Filtro</li>
+          <li>Filtro</li>
+          <li>Filtro</li>
+          <li>Filtro</li>
+          <li>Filtro</li>
+          <li>Filtro</li>
+          <li>Filtro</li>
+          <li>Filtro</li>
+          <li>Filtro</li>
+          <li>Filtro</li>
+        </ul>
       </div>
-      <div class="products_head_filters">
-        <h2>PRODUCTOS</h2>
+      <div class="products__head__adds">
+        <button>Añadir Categoria</button>
+        <button>Añadir Sub-categoria</button>
       </div>
     </div>
-    <div class="products_accordion_wrapper"><h2>PRODUCTOS</h2></div>
+    <div class="products__accordion__wrapper"><h2>PRODUCTOS</h2></div>
   </div>
 </template>
 
@@ -30,23 +43,60 @@ export default {
   align-items: center;
   flex-direction: column;
 }
-.products_head {
+.products__head {
   height: 35%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .products_head_title {
+  .products__head__title {
     height: calc(100% / 3);
   }
-  .products_head_adds {
+  .products__head__adds {
     height: calc(100% / 3);
+    width: 70%;
+    button {
+      width: 200px;
+      background-color: #343a40;
+      color: white;
+      text-transform: uppercase;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      font-size: 12px;
+      line-height: 20px;
+      transition: 0.2s;
+      padding: 10px;
+      margin: 10px;
+      box-sizing: border-box;
+      ::hover {
+        background-color: #23272b;
+      }
+      :focus {
+        background-color: #23272b;
+        border: 5px solid #b1b3b6;
+      }
+    }
   }
-  .products_head_filters {
+  .products__head__filters {
     height: calc(100% / 3);
+    ul {
+      width: 50%;
+      display: flex;
+      list-style: none;
+      :hover {
+        border-bottom: black solid 1px;
+      }
+      li {
+        font-size: 20px;
+        padding: 10px;
+        margin: 5px;
+        padding-bottom: 5px;
+      }
+    }
   }
 }
-.products_accordion_wrapper {
+.products__accordion__wrapper {
   height: 65%;
   display: flex;
   justify-content: center;

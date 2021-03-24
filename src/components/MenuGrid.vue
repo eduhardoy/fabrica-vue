@@ -1,5 +1,5 @@
 <template>
-  <div class="grid-container">
+  <div class="grid__container">
     <div class="Articulos">
       <a href=""><div>ARTICULOS</div></a>
     </div>
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss">
-.grid-container {
+.grid__container {
   width: 100%;
   height: 100%;
   display: grid;
