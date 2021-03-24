@@ -1,6 +1,8 @@
 <template>
   <div class="products">
-    <button class="add__button"></button>
+    <button class="add__button">
+      <img src="./images/plus.svg" alt="" />
+    </button>
     <div class="products__head">
       <div class="products__head__title">
         <h2>PRODUCTOS</h2>
@@ -19,12 +21,10 @@
           <li>Filtro</li>
         </ul>
       </div>
-      <div class="products__head__adds">
-        <button>Añadir Categoria</button>
-        <button>Añadir Sub-categoria</button>
-      </div>
     </div>
-    <div class="products__accordion__wrapper"><h2>PRODUCTOS</h2></div>
+    <div class="products__accordion__wrapper">
+      <slot></slot>
+    </div>
   </div>
 </template>
 
@@ -43,63 +43,64 @@ export default {
   align-items: center;
   flex-direction: column;
 }
+
+.add__button {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 10px;
+  top: 80px;
+  border-radius: 50%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  img {
+    width: 100%;
+    height: 100%;
+  }
+}
 .products__head {
   height: 35%;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   .products__head__title {
-    height: calc(100% / 3);
+    height: 40%;
+    color: black;
   }
-  .products__head__adds {
-    height: calc(100% / 3);
-    width: 70%;
-    button {
-      width: 200px;
-      background-color: #343a40;
-      color: white;
-      text-transform: uppercase;
-      border-radius: 20px;
-      border: none;
-      outline: none;
-      font-size: 12px;
-      line-height: 20px;
-      transition: 0.2s;
-      padding: 10px;
-      margin: 10px;
-      box-sizing: border-box;
-      ::hover {
-        background-color: #23272b;
-      }
-      :focus {
-        background-color: #23272b;
-        border: 5px solid #b1b3b6;
-      }
-    }
-  }
+
   .products__head__filters {
-    height: calc(100% / 3);
+    height: 60%;
     ul {
-      width: 50%;
+      width: 100%;
       display: flex;
       list-style: none;
-      :hover {
-        border-bottom: black solid 1px;
-      }
+      justify-content: center;
+      flex-wrap: wrap;
       li {
+        color: black;
         font-size: 20px;
         padding: 10px;
         margin: 5px;
         padding-bottom: 5px;
+        border-bottom: transparent solid 1px;
+        &:hover {
+          border-bottom: black solid 1px;
+        }
       }
     }
   }
 }
 .products__accordion__wrapper {
   height: 65%;
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 </style>
