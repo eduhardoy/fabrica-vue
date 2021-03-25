@@ -6,8 +6,8 @@
 
 <script>
 import Layout from "@/components/Layout.vue";
-import ProductosList from "@/components/ProductosList.vue";
-import ProductosAccordion from "@/components/ProductosAccordion.vue";
+import ProductosList from "@/components/productos/ProductosList.vue";
+import ProductosAccordion from "@/components/productos/ProductosAccordion.vue";
 
 export default {
   name: "Home",
