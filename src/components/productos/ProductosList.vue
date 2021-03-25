@@ -102,6 +102,8 @@ export default {
       list-style: none;
       justify-content: center;
       flex-wrap: wrap;
+      margin: 10px;
+      padding: 10px;
       li {
         color: black;
         font-size: 20px;
