@@ -1,6 +1,6 @@
 <template>
   <div class="proveedores">
-    <button class="add__button">
+    <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
     <div class="proveedores__head">
@@ -12,11 +12,69 @@
       <slot></slot>
     </div>
   </div>
+  <ModalAdd ref="add">
+    <template v-slot:body>
+      <input v-model="newProveedor.NOMBRE" placeholder="NOMBRE" />
+      <input v-model="newProveedor.DIRECCION" placeholder="DIRECCION" />
+      <input v-model="newProveedor.TELEFONO" placeholder="TELEFONO" />
+      <input v-model="newProveedor.EMAIL" placeholder="EMAIL" />
+      <input v-model="newProveedor.CUIT" placeholder="CUIT" />
+
+      <div
+        v-for="item in newProveedor.CUENTA_BANCO"
+        :key="item.value"
+        class="cbu"
+      >
+        <input v-model.lazy="item.CBU" placeholder="CBU" />
+        <input v-model.lazy="item.BANCO" placeholder="BANCO" />
+      </div>
+      <div>
+        <button
+          v-if="newProveedor.CUENTA_BANCO.length > 1"
+          @click="delCBU(newProveedor)"
+        >
+          DEL CBU
+        </button>
+        <button @click="addCBU(newProveedor)">ADD CBU</button>
+      </div>
+    </template>
+    <template v-slot:footer>
+      <button class="cancel_button" @click="$refs.add.closeModal()">
+        CANCELAR
+      </button>
+      <button class="add_button" @click="postProveedor()">AGREGAR</button>
+    </template>
+  </ModalAdd>
 </template>
 
 <script>
+import ModalAdd from "../Modals/ModalAdd.vue";
+
 export default {
   name: "ProveedoresList",
+  components: { ModalAdd },
+  data() {
+    return {
+      newProveedor: {
+        CUENTA_BANCO: [{ CBU: "", BANCO: "" }],
+      },
+    };
+  },
+  methods: {
+    openAddModal: function () {
+      this.$refs.add.openModal();
+    },
+    addCBU: function (variable) {
+      variable.CUENTA_BANCO.push({ value: "" });
+    },
+    delCBU: function (variable) {
+      variable.CUENTA_BANCO.pop();
+    },
+    postProveedor: function () {
+      this.$store.dispatch("postProveedor", this.newProveedor);
+      this.$refs.add.closeModal();
+    },
+  },
 };
 </script>
 
