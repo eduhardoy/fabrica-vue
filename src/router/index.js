@@ -30,6 +30,11 @@ const routes = [
     component: Productos,
   },
   {
+    path: "/test",
+    name: "Test",
+    component: () => require('../views/Test.vue')
+  },
+  {
     path: "/proveedores",
     name: "Proveedores",
     component: Proveedores,

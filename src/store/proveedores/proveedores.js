@@ -28,7 +28,7 @@ export default {
 
             console.log(proveedor)
             await Promise.all(
-                proveedor.CBU.map(async cbu => {
+                proveedor.CUENTA_BANCO.map(async cbu => {
                     return (await Axios.post(URLBANCO, { ...cbu })).data
                 }),
             ).then(data => {
@@ -37,13 +37,43 @@ export default {
             })
 
         },
-        putProveedor({ dispatch }, proveedor) {
-            //AL AGREGAR CBU CREAR Y ACTUALIZAR EN PROVEEDOR
+        async putProveedor({ dispatch }, proveedor) {
+            /**
+             * recorrer CUENTA_BANCO y prguntar
+             * si existe, buscar y editar
+             * si no existe, crear y relacionar
+             * si sobra, buscar y eliminar
+             */
+            console.log('PROVEEDOR', proveedor)
+            const dataInDb = await (await Axios.get(URL + `/${proveedor.id}`)).data
 
-            //AL ELIMINAR CBU BORRAR Y ACTUALIZAR EN PROVEEDOR
+            await Promise.all(
+                [dataInDb.CUENTA_BANCO.filter(e => !proveedor.CUENTA_BANCO.find(({ id }) => e.id == id))],
+            ).then(result => {
+                console.log("SOBRA, BORRAR", result[0])
+                result[0].map(async e =>
+                    await Axios.delete(URLBANCO + `/${e.id}`)
+                )
+            })
 
-            Axios.post(URL + `/${proveedor.id}`, proveedor)
-                .then(() => dispatch("getProveedores"))
+            await Promise.all(
+                proveedor.CUENTA_BANCO.map(async e => {
+                    const existe = e.id ? await (await Axios.get(URLBANCO + `/${e.id}`)).data : null
+
+                    if (existe != null) {
+                        console.log("EXISTE, ACTUALIZAR", e)
+                        return await (await Axios.put(URLBANCO + `/${e.id}`, e)).data
+                    } else {
+                        console.log("NO EXISTE, CREAR", e)
+                        return await (await Axios.post(URLBANCO, e)).data
+                    }
+                })
+            ).then(async result => {
+                console.log("RELACIONAR", result)
+                proveedor["CUENTA_BANCO"] = result.map(e => e.id)
+                await Axios.put(URL + `/${proveedor.id}`, proveedor)
+                dispatch("getProveedores")
+            })
         },
         async deleteProveedor({ dispatch }, proveedor) {
 
