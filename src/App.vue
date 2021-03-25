@@ -6,14 +6,19 @@
 body {
   margin: 0px;
   padding: 0px;
+  background-color: #f2f2f2;
 }
 
 #app {
-  font-family: "Lato", Helvetica, Arial, sans-serif;
+  font-family: "Raleway", sans-serif;
+  color: black;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+}
+
+summary::-webkit-details-marker {
+  display: none;
 }
 
 #nav {
@@ -22,10 +27,5 @@ body {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
 }
 </style>

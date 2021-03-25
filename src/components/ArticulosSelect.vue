@@ -1,10 +1,33 @@
 <template>
-  <div class="articulos_wrapper">
-    <div class="articulos_wrapper_box">
-      <a class="articulos_wrapper_box_element" href="">PRODUCTOS</a>
+  <div class="articulos__wrapper">
+    <div class="articulos__wrapper__box">
+      <router-link
+        to="/productos"
+        class="articulos__wrapper__box__element"
+        href=""
+        >PRODUCTOS</router-link
+      >
     </div>
-    <div class="articulos_wrapper_box">
-      <a class="articulos_wrapper_box_element" href="">PARTES</a>
+    <div class="articulos__wrapper__box">
+      <router-link to="/partes" class="articulos__wrapper__box__element" href=""
+        >PARTES</router-link
+      >
+    </div>
+    <div class="articulos__wrapper__box">
+      <router-link
+        to="/categorias"
+        class="articulos__wrapper__box__element"
+        href=""
+        >CATEGORIAS</router-link
+      >
+    </div>
+    <div class="articulos__wrapper__box">
+      <router-link
+        to="/subcategorias"
+        class="articulos__wrapper__box__element"
+        href=""
+        >SUBCATEGORIAS</router-link
+      >
     </div>
   </div>
 </template>
@@ -16,21 +39,23 @@ export default {
 </script>
 
 <style lang="scss">
-.articulos_wrapper {
+.articulos__wrapper {
   width: 100%;
-  height: 50%;
+  height: 80%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
+  flex-wrap: wrap;
   padding-bottom: 20px;
-  .articulos_wrapper_box {
+  .articulos__wrapper__box {
+    margin: 20px;
     width: 40%;
-    height: 70%;
+    height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    .articulos_wrapper_box_element {
+    .articulos__wrapper__box__element {
       cursor: pointer;
       width: 100%;
       height: 100%;

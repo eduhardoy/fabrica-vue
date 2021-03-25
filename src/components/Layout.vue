@@ -1,7 +1,7 @@
 <template>
-  <header class="header_loged">
-    <div class="header_loged_wrapper">
-      <h1 class="header_loged_wrapper_title">
+  <header class="header__loged">
+    <div class="header__loged_wrapper">
+      <h1 class="header__loged__wrapper__title">
         FABRICA DE LUZ
       </h1>
     </div>
@@ -37,7 +37,7 @@ export default {
   align-items: center;
 }
 
-.header_loged {
+.header__loged {
   width: 100vw;
   height: 64px;
   z-index: 9999;
@@ -46,9 +46,9 @@ export default {
   justify-content: center;
   background-color: #1a1a1a;
   align-items: center;
-  &_wrapper {
+  &__wrapper {
     width: 100%;
-    &_title {
+    &__title {
       color: white;
       font-weight: 300;
       font-family: "Raleway", Courier, monospace;

@@ -1,13 +1,13 @@
 <template>
-  <div class="grid-container">
+  <div class="grid__container">
     <div class="Articulos">
-      <a href=""><div>ARTICULOS</div></a>
+      <router-link to="/articulos"><div>ARTICULOS</div></router-link>
     </div>
     <div class="Clientes">
       <a href=""><div></div></a>
     </div>
     <div class="Proveedores">
-      <a href=""><div>PROVEEDORES</div></a>
+      <router-link to="/proveedores"><div>PROVEEDORES</div></router-link>
     </div>
     <div class="Compras">
       <a href=""><div></div></a>
@@ -37,7 +37,7 @@ export default {
 </script>
 
 <style lang="scss">
-.grid-container {
+.grid__container {
   width: 100%;
   height: 100%;
   display: grid;
