@@ -6,7 +6,7 @@
 
 <script>
 import Layout from "@/components/Layout.vue";
-import MenuGrid from "@/components/MenuGrid.vue";
+import MenuGrid from "@/components/menu/MenuGrid.vue";
 
 export default {
   name: "Home",

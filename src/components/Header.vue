@@ -1,7 +1,5 @@
 <template>
   <header class="header__loged">
-    <button class="home__button"><img src="./images/home.png" alt="" /></button>
-    <button class="menu__button"><img src="./images/menu.png" alt="" /></button>
     <div class="header__loged_wrapper">
       <h1 class="header__loged__wrapper__title">
         FABRICA DE LUZ
@@ -17,47 +15,11 @@
 
 <script>
 export default {
-  name: "Layout",
+  name: "Header",
 };
 </script>
 
 <style lang="scss" scoped>
-.menu__button {
-  width: 64px;
-  height: 64px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  outline: none;
-  background: transparent;
-  img {
-    color: white;
-    height: 50%;
-  }
-}
-
-.home__button {
-  width: 64px;
-  height: 64px;
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  outline: none;
-  background: transparent;
-  img {
-    color: white;
-    height: 50%;
-  }
-}
-
 .container {
   width: 100vw;
   height: calc(100vh - 64px);
