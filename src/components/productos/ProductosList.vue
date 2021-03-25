@@ -42,6 +42,26 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background-color: gray;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #666666;
+  }
 }
 
 .add__button {
@@ -102,5 +122,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow-x: hidden;
 }
 </style>
