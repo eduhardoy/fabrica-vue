@@ -19,6 +19,11 @@ const routes = [
     name: "Productos",
     component: Productos,
   },
+  {
+    path: "/test",
+    name: "Test",
+    component: () => require('../views/Test.vue')
+  }
 ];
 
 const router = createRouter({
