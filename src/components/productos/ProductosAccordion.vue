@@ -18,6 +18,7 @@
         <li>Email: Proveedor1@inibot.com</li>
         <li>Email: Proveedor1@inibot.com</li>
       </ul>
+      <img src="./images/lampara.jpg" alt="" />
     </details>
   </div>
 </template>
@@ -28,7 +29,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @keyframes sweep {
   0% {
     opacity: 0;
@@ -57,11 +58,15 @@ details[open] {
   box-shadow: 0px 0px 7px -1px rgba(142, 136, 136, 0.99);
   border-radius: 10px;
   transition: all 10s ease;
+  img {
+    width: auto;
+    max-height: 400px;
+  }
   summary {
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    height: 60px;
+    height: 64px;
     outline: none;
     .summary__title {
       width: 70%;

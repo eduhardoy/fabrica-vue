@@ -34,7 +34,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .products {
   height: 100%;
   width: 100%;
@@ -42,6 +42,26 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  ::-webkit-scrollbar {
+    width: 0px;
+    background-color: gray;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: white;
+    border-radius: 20px;
+    border: 6px solid transparent;
+    background-clip: content-box;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #666666;
+  }
 }
 
 .add__button {
@@ -82,6 +102,8 @@ export default {
       list-style: none;
       justify-content: center;
       flex-wrap: wrap;
+      margin: 10px;
+      padding: 10px;
       li {
         color: black;
         font-size: 20px;
@@ -102,5 +124,6 @@ export default {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  overflow-x: hidden;
 }
 </style>

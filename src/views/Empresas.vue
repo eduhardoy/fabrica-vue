@@ -1,17 +1,17 @@
 <template>
-  <Layout>
+  <Header>
     <ArticulosSelect />
-  </Layout>
+  </Header>
 </template>
 
 <script>
-import Layout from "@/components/Layout.vue";
+import Header from "@/components/Header.vue";
 import ArticulosSelect from "@/components/articulos/ArticulosSelect.vue";
 
 export default {
   name: "Articulos",
   components: {
-    Layout,
+    Header,
     ArticulosSelect,
   },
 };
