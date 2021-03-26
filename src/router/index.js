@@ -32,7 +32,7 @@ const routes = [
   {
     path: "/test",
     name: "Test",
-    component: () => require('../views/Test.vue')
+    component: () => require("../views/Test.vue"),
   },
   {
     path: "/proveedores",

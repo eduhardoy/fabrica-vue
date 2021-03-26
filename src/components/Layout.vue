@@ -1,6 +1,10 @@
 <template>
   <header class="header__loged">
-    <button class="home__button"><img src="./images/home.png" alt="" /></button>
+    <router-link to="/home">
+      <button class="home__button">
+        <img src="./images/home.png" alt="" />
+      </button>
+    </router-link>
     <button class="menu__button"><img src="./images/menu.png" alt="" /></button>
     <div class="header__loged_wrapper">
       <h1 class="header__loged__wrapper__title">
