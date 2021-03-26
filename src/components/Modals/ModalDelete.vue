@@ -4,6 +4,7 @@
       <div class="modal__backdrop" @click="closeModal()" />
       <div class="modal__dialog">
         <div class="modal__header">
+          <h2>ELIMINAR</h2>
           <button type="button" class="modal__close" @click="closeModal()">
             X
           </button>
@@ -42,92 +43,29 @@ export default {
 
 <style lang="scss" scoped>
 .modal {
-  overflow-x: hidden;
-  overflow-y: auto;
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 998;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &__backdrop {
-    background-color: rgba(0, 0, 0, 0.3);
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 1;
-  }
   &__dialog {
-    background-color: #fff;
-    position: relative;
-    width: 60%;
-    height: 60%;
+    width: 40%;
+    min-width: 350px;
+    min-height: 250px;
+    height: 40%;
+    z-index: 99999;
+    border-radius: 20px;
+    background-color: white;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: space-between;
-    border-radius: 5px;
-    z-index: 2;
+    position: relative;
     @media screen and (max-width: 992px) {
       width: 90%;
     }
   }
-  &__close {
-    width: 50px;
-    height: 50px;
-    font-size: 40px;
-    background-color: #f44336;
-    color: white;
-  }
-  &__header {
-    padding-right: 15px;
-    padding-top: 8px;
-    width: 100%;
-    height: 10%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
-  }
   &__body {
-    width: 80%;
-    overflow: auto;
+    height: 50%;
+    font-size: 25px;
     display: flex;
-    flex-direction: column;
-    background-color: #ededed;
-    border: black 2px solid;
-    align-items: stretch;
-    border-radius: 25px;
-    font-size: 40px;
-  }
-  &__footer {
-    width: 60%;
-    height: 20%;
-    display: flex;
-    justify-content: space-between;
-    .cancel_button {
-      height: 60px;
-      width: 240px;
-      background-color: black;
-      color: white;
-      border: black 2px solid;
-      border-radius: 10px;
-      font-size: 30px;
-    }
-    .delete_button {
-      height: 60px;
-      width: 240px;
-      background-color: #f44336;
-      color: white;
-      border: black 2px solid;
-      border-radius: 10px;
-      font-size: 30px;
-    }
+    justify-content: center;
+    align-items: center;
   }
 }
 .fade-enter-active,

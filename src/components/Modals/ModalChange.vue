@@ -4,6 +4,7 @@
       <div class="modal__backdrop" @click="closeModal()" />
       <div class="modal__dialog">
         <div class="modal__header">
+          <h2>EDITAR</h2>
           <button type="button" class="modal__close" @click="closeModal()">
             X
           </button>

@@ -35,11 +35,11 @@
       <p>Esta seguro que desea eliminar?</p>
     </template>
     <template v-slot:footer>
-      <button class="cancel_button" @click="$refs.del.closeModal()">
+      <button class="black_button" @click="$refs.del.closeModal()">
         CANCELAR
       </button>
       <button
-        class="delete_button"
+        class="cancel_button"
         @click="deleteProveedor(this.selectedProveedor)"
       >
         ELIMINAR
@@ -67,9 +67,9 @@
           v-if="selectedProveedor.CUENTA_BANCO.length > 1"
           @click="delCBU(selectedProveedor)"
         >
-          DEL CBU
+          ELIMINAR CBU
         </button>
-        <button @click="addCBU(selectedProveedor)">ADD CBU</button>
+        <button @click="addCBU(selectedProveedor)">AGREGAR CBU</button>
       </div>
     </template>
     <template v-slot:footer>

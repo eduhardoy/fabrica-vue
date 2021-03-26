@@ -4,6 +4,7 @@
       <div class="modal__backdrop" @click="closeModal()" />
       <div class="modal__dialog">
         <div class="modal__header">
+          <h2>AGREGAR</h2>
           <button type="button" class="modal__close" @click="closeModal()">
             x
           </button>
@@ -42,60 +43,51 @@ export default {
 
 <style lang="scss">
 .modal {
-  overflow-x: hidden;
-  overflow-y: auto;
   position: fixed;
+  z-index: 9999;
   top: 0;
-  right: 0;
-  bottom: 0;
   left: 0;
-  z-index: 999999;
+  width: 100vw;
+  height: 100%;
+  background-color: rgba(40, 40, 40, 0.6);
   display: flex;
   justify-content: center;
   align-items: center;
+  font-family: "Raleway";
   &__backdrop {
-    background-color: rgba(40, 40, 40, 0.6);
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    position: absolute;
     width: 100%;
-    z-index: 1;
+    height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   &__dialog {
-    background-color: #fff;
-    position: relative;
     width: 50%;
     min-width: 350px;
-    height: 70%;
+    min-height: 550px;
+    height: 75%;
+    z-index: 99999;
     border-radius: 20px;
+    background-color: white;
     display: flex;
-    align-items: center;
     flex-direction: column;
-    justify-content: space-between;
-    z-index: 2;
-    @media screen and (max-width: 992px) {
-      width: 90%;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    @media (max-width: 426px) {
+      height: 80%;
+      width: 80%;
     }
   }
   &__close {
-    position: absolute;
-    right: 10px;
-    top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 30px;
-    height: 30px;
     font-size: 20px;
-    color: black;
-    background: transparent;
+    position: absolute;
+    top: 5px;
+    right: 5px;
     border: none;
     outline: none;
+    background-color: transparent;
   }
   &__header {
     padding-right: 15px;
@@ -103,27 +95,45 @@ export default {
     width: 100%;
     height: 10%;
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: center;
   }
   &__body {
+    height: 70%;
     width: 80%;
-    overflow: auto;
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
-    font-size: 40px;
+    flex-wrap: wrap;
+    div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      button {
+        background-color: black;
+        margin: 5px;
+        padding: 10px;
+        outline: none;
+        border-radius: 10px;
+        color: white;
+      }
+    }
     input {
+      border: 1px black solid;
       height: 30px;
       width: 40%;
       margin: 5px;
     }
   }
   &__footer {
-    width: 60%;
-    height: 20%;
+    height: 10%;
+    width: 80%;
+    font-size: 25px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
     .black_button {
       width: 30%;
       margin: 10px;
@@ -149,7 +159,7 @@ export default {
       }
     }
     .cancel_button {
-      width: 40%;
+      width: 30%;
       margin: 10px;
       height: 40px;
       font-weight: 500;
@@ -173,7 +183,7 @@ export default {
       }
     }
     .add_button {
-      width: 40%;
+      width: 30%;
       margin: 10px;
       height: 40px;
       font-weight: 500;
