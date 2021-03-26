@@ -122,9 +122,10 @@ export default {
     }
     input {
       border: 1px black solid;
-      height: 30px;
+      height: 20px;
       width: 40%;
       margin: 5px;
+      padding: 5px;
     }
   }
   &__footer {

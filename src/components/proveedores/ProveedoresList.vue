@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import ModalAdd from "../Modals/ModalAdd.vue";
+import ModalAdd from "../Modals/ModalAdd";
 
 export default {
   name: "ProveedoresList",
@@ -61,16 +61,16 @@ export default {
     };
   },
   methods: {
-    openAddModal: function () {
+    openAddModal: function() {
       this.$refs.add.openModal();
     },
-    addCBU: function (variable) {
+    addCBU: function(variable) {
       variable.CUENTA_BANCO.push({ value: "" });
     },
-    delCBU: function (variable) {
+    delCBU: function(variable) {
       variable.CUENTA_BANCO.pop();
     },
-    postProveedor: function () {
+    postProveedor: function() {
       this.$store.dispatch("postProveedor", this.newProveedor);
       this.$refs.add.closeModal();
     },
