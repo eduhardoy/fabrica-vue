@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const URL = "http://190.106.132.208:3002/proveedores";
+const URL = "http://190.106.132.208:3005/proveedores";
 const URLBANCO = "http://190.106.132.208:3002/cuentas-bancos";
 
 export default {
@@ -28,11 +28,11 @@ export default {
 
             console.log(proveedor)
             await Promise.all(
-                proveedor.CUENTA_BANCO.map(async cbu => {
-                    return (await Axios.post(URLBANCO, { ...cbu })).data
+                proveedor.cuentas.map(async CBU => {
+                    return (await Axios.post(URLBANCO, { ...CBU })).data
                 }),
             ).then(data => {
-                Axios.post(URL, { ...proveedor, CUENTA_BANCO: data.map(e => e.id) })
+                Axios.post(URL, { ...proveedor, cuentas: data.map(e => e.id) })
                     .then(() => dispatch("getProveedores"))
             })
 
@@ -45,10 +45,10 @@ export default {
              * si sobra, buscar y eliminar
              */
             console.log('PROVEEDOR', proveedor)
-            const dataInDb = await (await Axios.get(URL + `/${proveedor.id}`)).data
+            const dataInDb = await (await Axios.get(URL + `/${proveedor._key}`)).data
 
             await Promise.all(
-                [dataInDb.CUENTA_BANCO.filter(e => !proveedor.CUENTA_BANCO.find(({ id }) => e.id == id))],
+                [dataInDb.cuentas.filter(e => !proveedor.cuentas.find(({ id }) => e.id == id))],
             ).then(result => {
                 console.log("SOBRA, BORRAR", result[0])
                 result[0].map(async e =>
@@ -57,7 +57,7 @@ export default {
             })
 
             await Promise.all(
-                proveedor.CUENTA_BANCO.map(async e => {
+                proveedor.cuentas.map(async e => {
                     const existe = e.id ? await (await Axios.get(URLBANCO + `/${e.id}`)).data : null
 
                     if (existe != null) {
@@ -70,19 +70,19 @@ export default {
                 })
             ).then(async result => {
                 console.log("RELACIONAR", result)
-                proveedor["CUENTA_BANCO"] = result.map(e => e.id)
-                await Axios.put(URL + `/${proveedor.id}`, proveedor)
+                proveedor["cuentas"] = result.map(e => e.id)
+                await Axios.put(URL + `/${proveedor._key}`, proveedor)
                 dispatch("getProveedores")
             })
         },
         async deleteProveedor({ dispatch }, proveedor) {
 
             await Promise.all(
-                proveedor.CUENTA_BANCO.map(e => {
+                proveedor.cuentas.map(e => {
                     Axios.delete(URLBANCO + `/${e.id}`)
                 })
             ).then(() => {
-                Axios.delete(URL + `/${proveedor.id}`)
+                Axios.delete(URL + `/${proveedor._key}`)
                     .then(() => dispatch("getProveedores"))
             })
 

@@ -4,33 +4,33 @@
       <img src="./images/plus.svg" alt="" />
     </button>
     <div class="proveedores__head">
-      <div class="proveedores__head__title">
+      <div class="proveedores_head_title">
         <h2>PROVEEDORES</h2>
       </div>
     </div>
-    <div class="proveedores__accordion__wrapper">
+    <div class="proveedores_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
-      <input v-model="newProveedor.NOMBRE" placeholder="NOMBRE" />
-      <input v-model="newProveedor.DIRECCION" placeholder="DIRECCION" />
-      <input v-model="newProveedor.TELEFONO" placeholder="TELEFONO" />
-      <input v-model="newProveedor.EMAIL" placeholder="EMAIL" />
-      <input v-model="newProveedor.CUIT" placeholder="CUIT" />
+      <input v-model="newProveedor.nombre" placeholder="NOMBRE" />
+      <input v-model="newProveedor.direccion" placeholder="DIRECCION" />
+      <input v-model="newProveedor.telefono" placeholder="TELEFONO" />
+      <input v-model="newProveedor.email" placeholder="EMAIL" />
+      <input v-model="newProveedor.cuit" placeholder="CUIT" />
 
       <div
-        v-for="item in newProveedor.CUENTA_BANCO"
+        v-for="item in newProveedor.cuentas"
         :key="item.value"
         class="cbu"
       >
-        <input v-model.lazy="item.CBU" placeholder="CBU" />
-        <input v-model.lazy="item.BANCO" placeholder="BANCO" />
+        <input v-model.lazy="item.cbu" placeholder="CBU" />
+        <input v-model.lazy="item.banco" placeholder="BANCO" />
       </div>
       <div>
         <button
-          v-if="newProveedor.CUENTA_BANCO.length > 1"
+          v-if="newProveedor.cuentas.length > 1"
           @click="delCBU(newProveedor)"
         >
           DEL CBU
@@ -56,7 +56,7 @@ export default {
   data() {
     return {
       newProveedor: {
-        CUENTA_BANCO: [{ CBU: "", BANCO: "" }],
+        cuentas: [{ cbu: "", banco: "" }],
       },
     };
   },
@@ -65,10 +65,10 @@ export default {
       this.$refs.add.openModal();
     },
     addCBU: function (variable) {
-      variable.CUENTA_BANCO.push({ value: "" });
+      variable.cuentas.push({ value: "" });
     },
     delCBU: function (variable) {
-      variable.CUENTA_BANCO.pop();
+      variable.cuentas.pop();
     },
     postProveedor: function () {
       this.$store.dispatch("postProveedor", this.newProveedor);
@@ -133,13 +133,13 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .proveedores__head__title {
+  .proveedores_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.proveedores__accordion__wrapper {
+.proveedores_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;
