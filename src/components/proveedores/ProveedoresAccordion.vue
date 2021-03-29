@@ -76,7 +76,7 @@
       <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="putProveedor(this.selectedProveedor)">
+      <button class="add_button" @click="postProveedor(this.selectedProveedor)">
         MODIFICAR
       </button>
     </template>
@@ -96,38 +96,34 @@ export default {
     };
   },
   computed: {
-    proveedores: function() {
+    proveedores: function () {
       return this.$store.getters.allProveedores;
     },
   },
   methods: {
-    openDelModal: function(proveedor) {
+    openDelModal: function (proveedor) {
       this.selectedProveedor = proveedor;
       this.$refs.del.openModal();
     },
-    openEditModal: function(proveedor) {
+    openEditModal: function (proveedor) {
       this.selectedProveedor = proveedor;
       this.$refs.edit.openModal();
     },
-    addCBU: function(variable) {
+    addCBU: function (variable) {
       variable.cuentas.push({ value: "" });
     },
-    delCBU: function(variable) {
+    delCBU: function (variable) {
       variable.cuentas.pop();
     },
-    getProveedores: function() {
+    getProveedores: function () {
       this.$store.dispatch("getProveedores");
       console.log("Proveedores", this.$store.getters.allProveedores);
     },
-    postProveedor: function() {
-      this.$store.dispatch("postProveedor", this.newProveedor);
-      this.$refs.add.closeModal();
-    },
-    putProveedor: function(proveedor) {
-      this.$store.dispatch("putProveedor", proveedor);
+    postProveedor: function () {
+      this.$store.dispatch("postProveedor", this.selectedProveedor);
       this.$refs.edit.closeModal();
     },
-    deleteProveedor: function(proveedor) {
+    deleteProveedor: function (proveedor) {
       this.$store.dispatch("deleteProveedor", proveedor);
       this.$refs.del.closeModal();
     },
