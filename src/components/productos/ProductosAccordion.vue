@@ -14,7 +14,7 @@
           </button>
         </div>
       </summary>
-      <ul>
+      <ul class="details_list">
         <li>Costo: {{ item.costo }}</li>
         <li>Precio de Venta: {{ item.precioVenta }}</li>
         <li>Stock: {{ item.stock }}</li>
@@ -107,34 +107,34 @@ export default {
     };
   },
   computed: {
-    productos: function () {
+    productos: function() {
       return this.$store.getters.allProductos;
     },
-    proveedores: function () {
+    proveedores: function() {
       return this.$store.getters.allProveedores;
     },
-    subCategorias: function () {
+    subCategorias: function() {
       return this.$store.getters.allSubCategorias;
     },
   },
   methods: {
-    openDelModal: function (producto) {
+    openDelModal: function(producto) {
       Object.assign(this.selectedProducto, producto);
       this.selectedProducto = producto;
       this.$refs.del.openModal();
     },
-    openEditModal: function (producto) {
+    openEditModal: function(producto) {
       Object.assign(this.selectedProducto, producto);
       this.selectedProducto.proveedor = producto.proveedor.nombre;
       this.selectedProducto.subCategoria = producto.subCategoria.nombre;
       this.$refs.edit.openModal();
     },
-    postProducto: function () {
+    postProducto: function() {
       console.log(this.selectedProducto);
       this.$store.dispatch("postProducto", this.selectedProducto);
       this.$refs.edit.closeModal();
     },
-    deleteProducto: function () {
+    deleteProducto: function() {
       this.$store.dispatch("deleteProducto", this.selectedProducto);
       this.$refs.del.closeModal();
     },
@@ -218,13 +218,17 @@ details[open] {
       }
     }
   }
+}
+
+.details_list {
+  list-style: none;
+  text-align: start;
+  padding: 15px;
+  li {
+    padding: 8px;
+  }
   ul {
-    list-style: none;
-    text-align: start;
-    padding: 30px;
-    li {
-      padding: 10px;
-    }
+    padding: 5px;
   }
 }
 </style>

@@ -7,13 +7,6 @@
       <div class="products__head__title">
         <h2>PRODUCTOS</h2>
       </div>
-      <div class="products__head__filters">
-        <ul>
-          <li>Filtro</li>
-          <li>Filtro</li>
-          <li>Filtro</li>
-        </ul>
-      </div>
     </div>
     <div class="products__accordion__wrapper">
       <slot></slot>
@@ -67,18 +60,18 @@ export default {
     };
   },
   computed: {
-    proveedores: function () {
+    proveedores: function() {
       return this.$store.getters.allProveedores;
     },
-    subCategorias: function () {
+    subCategorias: function() {
       return this.$store.getters.allSubCategorias;
     },
   },
   methods: {
-    openAddModal: function () {
+    openAddModal: function() {
       this.$refs.add.openModal();
     },
-    postProducto: function () {
+    postProducto: function() {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.add.closeModal();
     },
@@ -139,43 +132,87 @@ export default {
   }
 }
 .products__head {
-  height: 35%;
+  height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   .products__head__title {
-    height: 40%;
+    height: 100%;
     color: black;
-  }
-
-  .products__head__filters {
-    height: 60%;
-    ul {
+    .proveedores {
+      height: 100%;
       width: 100%;
       display: flex;
-      list-style: none;
       justify-content: center;
-      flex-wrap: wrap;
-      margin: 10px;
-      padding: 10px;
-      li {
-        color: black;
-        font-size: 20px;
-        padding: 10px;
-        margin: 5px;
-        padding-bottom: 5px;
-        border-bottom: transparent solid 1px;
-        &:hover {
-          border-bottom: black solid 1px;
-        }
+      align-items: center;
+      flex-direction: column;
+
+      ::-webkit-scrollbar {
+        width: 0px;
+        background-color: gray;
       }
+
+      ::-webkit-scrollbar-track {
+        background-color: transparent;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background-color: white;
+        border-radius: 20px;
+        border: 6px solid transparent;
+        background-clip: content-box;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background-color: #666666;
+      }
+    }
+
+    .add__button {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      right: 10px;
+      top: 80px;
+      border-radius: 50%;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .proveedores__head {
+      height: 15%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      .proveedores_head_title {
+        height: 100%;
+        color: black;
+      }
+    }
+
+    .proveedores_accordion_wrapper {
+      height: 85%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      overflow-x: hidden;
     }
   }
 }
 .products__accordion__wrapper {
-  height: 65%;
+  height: 85%;
   width: 100%;
   display: flex;
   justify-content: center;

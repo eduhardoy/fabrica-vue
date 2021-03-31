@@ -18,7 +18,7 @@
           </button>
         </div>
       </summary>
-      <ul>
+      <ul class="details_list">
         <li>Direccion: {{ item.direccion }}</li>
         <li>Telefono: {{ item.telefono }}</li>
         <li>Email: {{ item.email }}</li>
@@ -96,34 +96,34 @@ export default {
     };
   },
   computed: {
-    proveedores: function () {
+    proveedores: function() {
       return this.$store.getters.allProveedores;
     },
   },
   methods: {
-    openDelModal: function (proveedor) {
+    openDelModal: function(proveedor) {
       this.selectedProveedor = proveedor;
       this.$refs.del.openModal();
     },
-    openEditModal: function (proveedor) {
+    openEditModal: function(proveedor) {
       this.selectedProveedor = proveedor;
       this.$refs.edit.openModal();
     },
-    addCBU: function (variable) {
+    addCBU: function(variable) {
       variable.cuentas.push({ value: "" });
     },
-    delCBU: function (variable) {
+    delCBU: function(variable) {
       variable.cuentas.pop();
     },
-    getProveedores: function () {
+    getProveedores: function() {
       this.$store.dispatch("getProveedores");
       console.log("Proveedores", this.$store.getters.allProveedores);
     },
-    postProveedor: function () {
+    postProveedor: function() {
       this.$store.dispatch("postProveedor", this.selectedProveedor);
       this.$refs.edit.closeModal();
     },
-    deleteProveedor: function (proveedor) {
+    deleteProveedor: function(proveedor) {
       this.$store.dispatch("deleteProveedor", proveedor);
       this.$refs.del.closeModal();
     },
