@@ -20,14 +20,14 @@
       </summary>
       <ul>
         <li>Nombre: {{ item.nombre }}</li>
-        <li>PRODUCTO: {{ item.producto.nombre }}</li>
+        <li>PRODUCTO: {{ item.producto ? item.producto.nombre : null}}</li>
         <li>Costo: {{ item.costo }}</li>
         <li>Costo Flete: {{ item.costoFlete }}</li>
         <li>Stock: {{ item.stock }}</li>
         <li>Tiempo de produccion: {{ item.tiempoProduccion }}</li>
         <li>Margen: {{ item.margen }}</li>
-        <li>Proveedor: {{ item.proveedor }}</li>
-        <li>Subcategoria: {{ item.subCategoria }}</li>
+        <li>Proveedor: {{ item.proveedor ? item.proveedor.nombre : null }}</li>
+        <li>Subcategoria: {{ item.subCategoria ? item.subCategoria.nombre : null }}</li>
       </ul>
     </details>
   </div>
@@ -50,15 +50,26 @@
   <ModalEdit ref="edit">
     <template v-slot:body>
       <input v-model="selectedParte.nombre" placeholder="NOMBRE" />
-      <input v-model="selectedParte.producto.nombre" placeholder="PRODUCTO"/>
+      <select v-model="selectedParte.producto">
+        <option v-for="item in productos" :key="item._key" v-bind:value="item.nombre">
+          {{item.nombre}} 
+        </option>
+      </select>
       <input v-model="selectedParte.costo" placeholder="COSTO"/>
       <input v-model="selectedParte.costoFlete" placeholder="COSTO FLETE"/>
       <input v-model="selectedParte.stock" placeholder="STOCK"/>
       <input v-model="selectedParte.tiempoProduccion" placeholder="TIEMPO DE PRODUCCION"/>
-      <input v-model="selectedParte.mragen" placeholder="MARGEN"/>
-      <input v-model="selectedParte.proveedor.nombre" placeholder="PROVEEDOR"/>
-      <input v-model="selectedParte.subCategoria.nombre" placeholder="SUBCATEGORIA"/>
-
+      <input v-model="selectedParte.margen" placeholder="MARGEN"/>
+      <select v-model="selectedParte.proveedor">
+        <option v-for="item in proveedores" :key="item._key" v-bind:value="item.nombre">
+          {{item.nombre}}
+        </option>
+      </select>
+      <select v-model="selectedParte.subCategoria">
+        <option v-for="item in subCategorias" :key="item._key" v-bind:value="item.nombre">
+          {{item.nombre}}
+        </option>
+      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.edit.closeModal()">
@@ -90,32 +101,46 @@ export default {
     partes: function() {
       return this.$store.getters.allPartes;
     },
+    productos: function (){
+      return this.$store.getters.allProductos;
+    },
+    proveedores: function () {
+      return this.$store.getters.allProveedores;
+    },
+    subCategorias: function () {
+      return this.$store.getters.allSubCategorias;
+    }
   },
   methods: {
     openDelModal: function(parte) {
+      Object.assign(this.selectedParte, parte);
       this.selectedParte = parte;
       this.$refs.del.openModal();
     },
     openEditModal: function(parte) {
-      this.selectedParte = parte;
+       /* this.selectedParte = parte; */
+      Object.assign(this.selectedParte, parte);
+      this.selectedParte.producto = parte.producto.nombre;
+      this.selectedParte.proveedor = parte.proveedor.nombre;
+      this.selectedParte.subCategoria = parte.subCategoria.nombre;
       this.$refs.edit.openModal();
     },
-    getPartes: function() {
-      this.$store.dispatch("getPartes");
-      console.log("Partes", this.$store.getters.allPartes);
-    },
     postParte: function() {
+      console.log(this.selectedParte);
       this.$store.dispatch("postParte", this.selectedParte);
       this.$refs.edit.closeModal();
     },
-    deleteParte: function(parte) {
-      this.$store.dispatch("deleteParte", parte);
+    deleteParte: function() {
+      this.$store.dispatch("deleteParte", this.selectedParte);
       this.$refs.del.closeModal();
     },
   },
-  mounted() {
-    this.getPartes();
-  },
+  created(){
+    this.$store.dispatch("getPartes");
+    this.$store.dispatch("getProductos");
+    this.$store.dispatch("getProveedores");
+    this.$store.dispatch("getSubCategorias");
+  }
 };
 </script>
 

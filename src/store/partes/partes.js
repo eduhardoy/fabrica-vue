@@ -24,15 +24,8 @@ export default {
                 .finally(() => dispatch("setPartesLoader", false))
         },
         async postParte({ dispatch }, parte) {
-            const {producto, proveedor, subCategoria, ...otherData} = parte
-            let dataToSend = otherData
-            dataToSend["producto"] = producto.nombre
-            dataToSend["proveedor"] = proveedor.nombre
-            dataToSend["subCategoria"] = subCategoria.nombre
-            console.log(dataToSend)
-
             dispatch("setPartesLoader", true)
-            Axios.post(URL, dataToSend)
+            Axios.post(URL, parte)
                 .then(() => dispatch("getPartes"))
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setPartesLoader", false))

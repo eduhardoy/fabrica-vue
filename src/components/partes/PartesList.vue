@@ -15,14 +15,26 @@
   <ModalAdd ref="add">
     <template v-slot:body>
       <input v-model="newParte.nombre" placeholder="NOMBRE" />
-      <input v-model="newParte.producto.nombre" placeholder="PRODUCTO"/>
+      <select v-model="newParte.producto">
+        <option v-for="item in productos" :key="item._key" v-bind:value="item.nombre">
+          {{item.nombre}} 
+        </option>
+      </select>
       <input v-model="newParte.costo" placeholder="COSTO"/>
       <input v-model="newParte.costoFlete" placeholder="COSTO FLETE"/>
       <input v-model="newParte.stock" placeholder="STOCK"/>
       <input v-model="newParte.tiempoProduccion" placeholder="TIEMPO DE PRODUCCION"/>
-      <input v-model="newParte.mragen" placeholder="MARGEN"/>
-      <input v-model="newParte.proveedor.nombre" placeholder="PROVEEDOR"/>
-      <input v-model="newParte.subCategoria.nombre" placeholder="SUBCATEGORIA"/>
+      <input v-model="newParte.margen" placeholder="MARGEN"/>
+      <select v-model="newParte.proveedor">
+        <option v-for="item in proveedores" :key="item._key" v-bind:value="item.nombre">
+          {{item.nombre}}
+        </option>
+      </select>
+      <select v-model="newParte.subCategoria">
+        <option v-for="item in subCategorias" :key="item._key" v-bind:value="item.nombre">
+          {{item.nombre}}
+        </option>
+      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">
@@ -38,16 +50,24 @@ import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
   name: "PartesList",
+  components: { ModalAdd },
    data() {
     return {
-      newParte: {
-        producto: [],
-        proveedor: [],
-        subCategoria : []
-      },
+      newParte: { },
     };
   },
-  components: { ModalAdd },
+  computed:{
+    productos: function(){
+      return this.$store.getters.allProductos;
+    },
+    proveedores: function () {
+      return this.$store.getters.allProveedores;
+    },
+    subCategorias: function () {
+      return this.$store.getters.allSubCategorias;
+    },
+  },
+  
   methods: {
     openAddModal: function () {
       this.$refs.add.openModal();
@@ -56,6 +76,11 @@ export default {
       this.$store.dispatch("postParte", this.newParte);
       this.$refs.add.closeModal();
     },
+  },
+  created(){
+    this.$store.dispatch("getProductos");
+    this.$store.dispatch("getProveedores");
+    this.$store.dispatch("getSubCategorias");
   },
 };
 </script>
