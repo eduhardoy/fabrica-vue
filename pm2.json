@@ -1,0 +1,8 @@
+{
+    "apps": [
+        {
+            "name": "fabrica-vue",
+            "script": "serve -s -l 4001 dist"
+        }
+    ]
+}
