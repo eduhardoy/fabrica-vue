@@ -1,27 +1,31 @@
 <template>
-  <div class="subcategorias">
+  <div class="subCategorias">
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
-    <div class="subcategorias__head">
-      <div class="subcategorias_head_title">
+    <div class="subCategorias__head">
+      <div class="subCategorias_head_title">
         <h2>SUBCATEGORIAS</h2>
       </div>
     </div>
-    <div class="subcategorias_accordion_wrapper">
+    <div class="subCategorias_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
-      <input v-model="newSubcategoria.nombre" placeholder="NOMBRE" />
-      <input v-model="newSubcategoria.categoria.nombre" placeholder="CATEGORIA" />
+      <input v-model="newSubCategoria.nombre" placeholder="NOMBRE" />
+      <select v-model="newSubCategoria.categoria">
+        <option v-for="item in categorias" :key="item._key">
+          {{ item.nombre }}
+        </option>
+      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postSubcategoria()">AGREGAR</button>
+      <button class="add_button" @click="postSubCategoria()">AGREGAR</button>
     </template>
   </ModalAdd>
 </template>
@@ -30,29 +34,37 @@
 import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
-  name: "SubcategoriasList",
+  name: "SubCategoriasList",
+  components: { ModalAdd },
    data() {
     return {
-      newSubcategoria: {
-        categoria: [],
+      newSubCategoria: {
+        /* categoria: [], */
       },
     };
   },
-  components: { ModalAdd },
+  computed: {
+    categorias: function() {
+      return this.$store.getters.allCategorias;
+    },
+  },
   methods: {
     openAddModal: function () {
       this.$refs.add.openModal();
     },
-    postSubcategoria: function () {
-      this.$store.dispatch("postSubcategoria", this.newSubcategoria);
+    postSubCategoria: function () {
+      this.$store.dispatch("postSubCategoria", this.newSubCategoria);
       this.$refs.add.closeModal();
     },
+  },
+  created(){
+    this.$store.dispatch("getCategorias");
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.subcategorias {
+.subCategorias {
   height: 100%;
   width: 100%;
   display: flex;
@@ -99,20 +111,20 @@ export default {
     height: 100%;
   }
 }
-.subcategorias__head {
+.subCategorias__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .subcategorias_head_title {
+  .subCategorias_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.subcategorias_accordion_wrapper {
+.subCategorias_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;
