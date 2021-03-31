@@ -36,8 +36,15 @@
           {{ item.nombre }}
         </option>
       </select>
-      <!-- ACTUALIZAR A SELECT PARA SUBCATEGORIA -->
-      <input v-model="newProducto.subCategoria" placeholder="SUB CATEGORIA" /> 
+      <select v-model="newProducto.subCategoria">
+        <option
+          v-for="item in subCategorias"
+          :key="item._key"
+          v-bind:value="item.nombre"
+        >
+          {{ item.nombre }}
+        </option>
+      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">
@@ -63,6 +70,9 @@ export default {
     proveedores: function () {
       return this.$store.getters.allProveedores;
     },
+    subCategorias: function () {
+      return this.$store.getters.allSubCategorias;
+    },
   },
   methods: {
     openAddModal: function () {
@@ -75,6 +85,7 @@ export default {
   },
   created() {
     this.$store.dispatch("getProveedores");
+    this.$store.dispatch("getSubCategorias");
   },
 };
 </script>
