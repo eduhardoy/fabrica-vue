@@ -1,27 +1,70 @@
 <template>
-  <div class="subcategorias">
-    <button class="add__button">
+  <div class="subCategorias">
+    <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
-    <div class="subcategorias__head">
-      <div class="subcategorias__head__title">
+    <div class="subCategorias__head">
+      <div class="subCategorias_head_title">
         <h2>SUBCATEGORIAS</h2>
       </div>
     </div>
-    <div class="subcategorias__accordion__wrapper">
+    <div class="subCategorias_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
+  <ModalAdd ref="add">
+    <template v-slot:body>
+      <input v-model="newSubCategoria.nombre" placeholder="NOMBRE" />
+      <select v-model="newSubCategoria.categoria">
+        <option v-for="item in categorias" :key="item._key">
+          {{ item.nombre }}
+        </option>
+      </select>
+    </template>
+    <template v-slot:footer>
+      <button class="cancel_button" @click="$refs.add.closeModal()">
+        CANCELAR
+      </button>
+      <button class="add_button" @click="postSubCategoria()">AGREGAR</button>
+    </template>
+  </ModalAdd>
 </template>
 
 <script>
+import ModalAdd from "../Modals/ModalAdd.vue";
+
 export default {
   name: "SubCategoriasList",
+  components: { ModalAdd },
+   data() {
+    return {
+      newSubCategoria: {
+        /* categoria: [], */
+      },
+    };
+  },
+  computed: {
+    categorias: function() {
+      return this.$store.getters.allCategorias;
+    },
+  },
+  methods: {
+    openAddModal: function () {
+      this.$refs.add.openModal();
+    },
+    postSubCategoria: function () {
+      this.$store.dispatch("postSubCategoria", this.newSubCategoria);
+      this.$refs.add.closeModal();
+    },
+  },
+  created(){
+    this.$store.dispatch("getCategorias");
+  },
 };
 </script>
 
-<style lang="scss">
-.subcategorias {
+<style lang="scss" scoped>
+.subCategorias {
   height: 100%;
   width: 100%;
   display: flex;
@@ -68,20 +111,20 @@ export default {
     height: 100%;
   }
 }
-.subcategorias__head {
+.subCategorias__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .subcategorias__head__title {
+  .subCategorias_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.subcategorias__accordion__wrapper {
+.subCategorias_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;

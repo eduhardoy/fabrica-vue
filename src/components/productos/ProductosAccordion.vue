@@ -1,31 +1,149 @@
 <template>
   <div class="accordion__container">
-    <details class="accordion__box">
+    <details class="accordion__box" v-for="item in productos" :key="item._key">
       <summary>
         <div class="summary__title">
-          <h3>DSASDADSAD</h3>
+          <h3>{{ item.nombre }}</h3>
         </div>
         <div class="summary__buttons">
-          <button><img src="./images/pencil.svg" alt="" />EDITAR</button>
-          <button><img src="./images/trash.svg" alt="" />ELIMINAR</button>
+          <button @click="openEditModal(item)">
+            <img src="./images/pencil.svg" alt="" />EDITAR
+          </button>
+          <button @click="openDelModal(item)">
+            <img src="./images/trash.svg" alt="" />ELIMINAR
+          </button>
         </div>
       </summary>
       <ul>
-        <li>Email: Proveedor1@inibot.com</li>
-        <li>Email: Proveedor1@inibot.com</li>
-        <li>Email: Proveedor1@inibot.com</li>
-        <li>Email: Proveedor1@inibot.com</li>
-        <li>Email: Proveedor1@inibot.com</li>
-        <li>Email: Proveedor1@inibot.com</li>
+        <li>Costo: {{ item.costo }}</li>
+        <li>Precio de Venta: {{ item.precioVenta }}</li>
+        <li>Stock: {{ item.stock }}</li>
+        <li>Tiempo de Produccion: {{ item.tiempoProduccion }}</li>
+        <li>Costo de Felte: {{ item.costoFlete }}</li>
+        <li>Margen: {{ item.margen }}</li>
+        <li>Proveedor: {{ item.proveedor ? item.proveedor.nombre : null }}</li>
+        <li>
+          Categoria:
+          {{ item.subCategoria ? item.subCategoria.categoria : null }}
+        </li>
+        <li>
+          SubCategoria:
+          {{ item.subCategoria ? item.subCategoria.nombre : null }}
+        </li>
       </ul>
       <img src="./images/lampara.jpg" alt="" />
     </details>
   </div>
+  <ModalDelete ref="del">
+    <template v-slot:body>
+      <p>Esta seguro que desea eliminar?</p>
+    </template>
+    <template v-slot:footer>
+      <button class="black_button" @click="$refs.del.closeModal()">
+        CANCELAR
+      </button>
+      <button class="cancel_button" @click="deleteProducto">ELIMINAR</button>
+    </template>
+  </ModalDelete>
+  <ModalEdit ref="edit">
+    <template v-slot:body>
+      <input v-model="selectedProducto.nombre" placeholder="NOMBRE" />
+      <input v-model="selectedProducto.costo" placeholder="COSTO" />
+      <input
+        v-model="selectedProducto.precioVenta"
+        placeholder="PRECIO DE VENTA"
+      />
+      <input v-model="selectedProducto.stock" placeholder="STOCK" />
+      <input
+        v-model="selectedProducto.tiempoProduccion"
+        placeholder="TIEMPO DE PRODUCCION"
+      />
+      <input
+        v-model="selectedProducto.costoFlete"
+        placeholder="COSTO DE FLETE"
+      />
+      <input
+        v-model="selectedProducto.margen"
+        placeholder="MARGEN DE GANANCIA"
+      />
+      <select v-model="selectedProducto.proveedor">
+        <option
+          v-for="item in proveedores"
+          :key="item._key"
+          v-bind:value="item.nombre"
+        >
+          {{ item.nombre }}
+        </option>
+      </select>
+      <select v-model="selectedProducto.subCategoria">
+        <option
+          v-for="item in subCategorias"
+          :key="item._key"
+          v-bind:value="item.nombre"
+        >
+          {{ item.nombre }}
+        </option>
+      </select>
+    </template>
+    <template v-slot:footer>
+      <button class="cancel_button" @click="$refs.edit.closeModal()">
+        CANCELAR
+      </button>
+      <button class="add_button" @click="postProducto()">MODIFICAR</button>
+    </template>
+  </ModalEdit>
 </template>
 
 <script>
+import ModalDelete from "../Modals/ModalDelete.vue";
+import ModalEdit from "../Modals/ModalChange.vue";
+
 export default {
   name: "ProductosAccordion",
+  components: { ModalDelete, ModalEdit },
+  data() {
+    return {
+      selectedProducto: {},
+    };
+  },
+  computed: {
+    productos: function () {
+      return this.$store.getters.allProductos;
+    },
+    proveedores: function () {
+      return this.$store.getters.allProveedores;
+    },
+    subCategorias: function () {
+      return this.$store.getters.allSubCategorias;
+    },
+  },
+  methods: {
+    openDelModal: function (producto) {
+      Object.assign(this.selectedProducto, producto);
+      this.selectedProducto = producto;
+      this.$refs.del.openModal();
+    },
+    openEditModal: function (producto) {
+      Object.assign(this.selectedProducto, producto);
+      this.selectedProducto.proveedor = producto.proveedor.nombre;
+      this.selectedProducto.subCategoria = producto.subCategoria.nombre;
+      this.$refs.edit.openModal();
+    },
+    postProducto: function () {
+      console.log(this.selectedProducto);
+      this.$store.dispatch("postProducto", this.selectedProducto);
+      this.$refs.edit.closeModal();
+    },
+    deleteProducto: function () {
+      this.$store.dispatch("deleteProducto", this.selectedProducto);
+      this.$refs.del.closeModal();
+    },
+  },
+  created() {
+    this.$store.dispatch("getProductos");
+    this.$store.dispatch("getProveedores");
+    this.$store.dispatch("getSubCategorias");
+  },
 };
 </script>
 

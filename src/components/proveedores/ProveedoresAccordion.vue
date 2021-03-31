@@ -3,11 +3,11 @@
     <details
       class="accordion__box"
       v-for="item in proveedores"
-      v-bind:key="item.id"
+      v-bind:key="item._key"
     >
       <summary>
         <div class="summary__title">
-          <h3>{{ item.NOMBRE }}</h3>
+          <h3>{{ item.nombre }}</h3>
         </div>
         <div class="summary__buttons">
           <button @click="openEditModal(item)">
@@ -19,13 +19,13 @@
         </div>
       </summary>
       <ul>
-        <li>Direccion: {{ item.DIRECCION }}</li>
-        <li>Telefono: {{ item.TELEFONO }}</li>
-        <li>Email: {{ item.EMAIL }}</li>
-        <li>CUIT: {{ item.CUIT }}</li>
-        <ul v-for="item2 in item.CUENTA_BANCO" v-bind:key="item2.id">
-          <li>CBU: {{ item2.CBU }}</li>
-          <li>BANCO: {{ item2.BANCO }}</li>
+        <li>Direccion: {{ item.direccion }}</li>
+        <li>Telefono: {{ item.telefono }}</li>
+        <li>Email: {{ item.email }}</li>
+        <li>CUIT: {{ item.cuit }}</li>
+        <ul v-for="item2 in item.cuentas" v-bind:key="item2.id">
+          <li>CBU: {{ item2.cbu }}</li>
+          <li>BANCO: {{ item2.banco }}</li>
         </ul>
       </ul>
     </details>
@@ -48,23 +48,23 @@
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
-      <input v-model="selectedProveedor.NOMBRE" placeholder="NOMBRE" />
-      <input v-model="selectedProveedor.DIRECCION" placeholder="DIRECCION" />
-      <input v-model="selectedProveedor.TELEFONO" placeholder="TELEFONO" />
-      <input v-model="selectedProveedor.EMAIL" placeholder="EMAIL" />
-      <input v-model="selectedProveedor.CUIT" placeholder="CUIT" />
+      <input v-model="selectedProveedor.nombre" placeholder="NOMBRE" />
+      <input v-model="selectedProveedor.direccion" placeholder="DIRECCION" />
+      <input v-model="selectedProveedor.telefono" placeholder="TELEFONO" />
+      <input v-model="selectedProveedor.email" placeholder="EMAIL" />
+      <input v-model="selectedProveedor.cuit" placeholder="CUIT" />
 
       <div
-        v-for="item in selectedProveedor.CUENTA_BANCO"
-        :key="item.CBU"
+        v-for="item in selectedProveedor.cuentas"
+        :key="item.cbu"
         class="cbu"
       >
-        <input v-model.lazy="item.CBU" placeholder="CBU" />
-        <input v-model.lazy="item.BANCO" placeholder="BANCO" />
+        <input v-model.lazy="item.cbu" placeholder="CBU" />
+        <input v-model.lazy="item.banco" placeholder="BANCO" />
       </div>
       <div>
         <button
-          v-if="selectedProveedor.CUENTA_BANCO.length > 1"
+          v-if="selectedProveedor.cuentas.length > 1"
           @click="delCBU(selectedProveedor)"
         >
           ELIMINAR CBU
@@ -73,10 +73,10 @@
       </div>
     </template>
     <template v-slot:footer>
-      <button class="cancel_button" @click="$refs.change.closeModal()">
+      <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="putProveedor(this.selectedProveedor)">
+      <button class="add_button" @click="postProveedor(this.selectedProveedor)">
         MODIFICAR
       </button>
     </template>
@@ -96,38 +96,34 @@ export default {
     };
   },
   computed: {
-    proveedores: function() {
+    proveedores: function () {
       return this.$store.getters.allProveedores;
     },
   },
   methods: {
-    openDelModal: function(proveedor) {
+    openDelModal: function (proveedor) {
       this.selectedProveedor = proveedor;
       this.$refs.del.openModal();
     },
-    openEditModal: function(proveedor) {
+    openEditModal: function (proveedor) {
       this.selectedProveedor = proveedor;
       this.$refs.edit.openModal();
     },
-    addCBU: function(variable) {
-      variable.CUENTA_BANCO.push({ value: "" });
+    addCBU: function (variable) {
+      variable.cuentas.push({ value: "" });
     },
-    delCBU: function(variable) {
-      variable.CUENTA_BANCO.pop();
+    delCBU: function (variable) {
+      variable.cuentas.pop();
     },
-    getProveedores: function() {
+    getProveedores: function () {
       this.$store.dispatch("getProveedores");
       console.log("Proveedores", this.$store.getters.allProveedores);
     },
-    postProveedor: function() {
-      this.$store.dispatch("postProveedor", this.newProveedor);
-      this.$refs.add.closeModal();
-    },
-    putProveedor: function(proveedor) {
-      this.$store.dispatch("putProveedor", proveedor);
+    postProveedor: function () {
+      this.$store.dispatch("postProveedor", this.selectedProveedor);
       this.$refs.edit.closeModal();
     },
-    deleteProveedor: function(proveedor) {
+    deleteProveedor: function (proveedor) {
       this.$store.dispatch("deleteProveedor", proveedor);
       this.$refs.del.closeModal();
     },

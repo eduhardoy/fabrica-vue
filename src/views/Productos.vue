@@ -1,6 +1,8 @@
 <template>
   <Layout>
-    <ProductosList> <ProductosAccordion /></ProductosList>
+    <ProductosList> 
+      <ProductosAccordion />
+    </ProductosList>
   </Layout>
 </template>
 

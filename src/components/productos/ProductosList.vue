@@ -1,6 +1,6 @@
 <template>
   <div class="products">
-    <button class="add__button">
+    <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
     <div class="products__head">
@@ -12,13 +12,6 @@
           <li>Filtro</li>
           <li>Filtro</li>
           <li>Filtro</li>
-          <li>Filtro</li>
-          <li>Filtro</li>
-          <li>Filtro</li>
-          <li>Filtro</li>
-          <li>Filtro</li>
-          <li>Filtro</li>
-          <li>Filtro</li>
         </ul>
       </div>
     </div>
@@ -26,11 +19,63 @@
       <slot></slot>
     </div>
   </div>
+  <ModalAdd ref="add">
+    <template v-slot:body>
+      <input v-model="newProducto.nombre" placeholder="NOMBRE" />
+      <input v-model="newProducto.costo" placeholder="COSTO" />
+      <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" />
+      <input v-model="newProducto.stock" placeholder="STOCK" />
+      <input
+        v-model="newProducto.tiempoProduccion"
+        placeholder="TIEMPO DE PRODUCCION"
+      />
+      <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
+      <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
+      <select v-model="newProducto.proveedor">
+        <option v-for="item in proveedores" :key="item._key">
+          {{ item.nombre }}
+        </option>
+      </select>
+      <!-- ACTUALIZAR A SELECT PARA SUBCATEGORIA -->
+      <input v-model="newProducto.subCategoria" placeholder="SUB CATEGORIA" /> 
+    </template>
+    <template v-slot:footer>
+      <button class="cancel_button" @click="$refs.add.closeModal()">
+        CANCELAR
+      </button>
+      <button class="add_button" @click="postProducto()">AGREGAR</button>
+    </template>
+  </ModalAdd>
 </template>
 
 <script>
+import ModalAdd from "../Modals/ModalAdd.vue";
+
 export default {
   name: "ProductosList",
+  components: { ModalAdd },
+  data() {
+    return {
+      newProducto: {},
+    };
+  },
+  computed: {
+    proveedores: function () {
+      return this.$store.getters.allProveedores;
+    },
+  },
+  methods: {
+    openAddModal: function () {
+      this.$refs.add.openModal();
+    },
+    postProducto: function () {
+      this.$store.dispatch("postProducto", this.newProducto);
+      this.$refs.add.closeModal();
+    },
+  },
+  created() {
+    this.$store.dispatch("getProveedores");
+  },
 };
 </script>
 

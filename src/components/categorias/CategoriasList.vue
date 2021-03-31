@@ -1,22 +1,51 @@
 <template>
   <div class="categorias">
-    <button class="add__button">
+    <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
     <div class="categorias__head">
-      <div class="categorias__head__title">
+      <div class="categorias_head_title">
         <h2>CATEGORIAS</h2>
       </div>
     </div>
-    <div class="categorias__accordion__wrapper">
+    <div class="categorias_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
+  <ModalAdd ref="add">
+    <template v-slot:body>
+      <input v-model="newCategoria.nombre" placeholder="NOMBRE" />
+      <input v-model="newCategoria.descripcion" placeholder="DESCRIPCION" />
+    </template>
+    <template v-slot:footer>
+      <button class="cancel_button" @click="$refs.add.closeModal()">
+        CANCELAR
+      </button>
+      <button class="add_button" @click="postCategoria()">AGREGAR</button>
+    </template>
+  </ModalAdd>
 </template>
 
 <script>
+import ModalAdd from "../Modals/ModalAdd.vue";
+
 export default {
   name: "CategoriasList",
+  data(){
+    return{
+      newCategoria:{}
+    }
+  },
+  components: { ModalAdd },
+  methods: {
+    openAddModal: function () {
+      this.$refs.add.openModal();
+    },
+    postCategoria: function () {
+      this.$store.dispatch("postCategoria", this.newCategoria);
+      this.$refs.add.closeModal();
+    },
+  },
 };
 </script>
 
@@ -75,13 +104,13 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .categorias__head__title {
+  .categorias_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.categorias__accordion__wrapper {
+.categorias_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;

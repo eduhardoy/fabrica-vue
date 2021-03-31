@@ -1,7 +1,6 @@
 import Axios from "axios";
 
-const URL = "http://190.106.132.208:3002/proveedores";
-const URLBANCO = "http://190.106.132.208:3002/cuentas-bancos";
+const URL = "http://190.106.132.208:3005/proveedores";
 
 export default {
     state: {
@@ -25,67 +24,18 @@ export default {
                 .finally(() => dispatch("setProveedoresLoader", false))
         },
         async postProveedor({ dispatch }, proveedor) {
-
-            console.log(proveedor)
-            await Promise.all(
-                proveedor.CUENTA_BANCO.map(async cbu => {
-                    return (await Axios.post(URLBANCO, { ...cbu })).data
-                }),
-            ).then(data => {
-                Axios.post(URL, { ...proveedor, CUENTA_BANCO: data.map(e => e.id) })
-                    .then(() => dispatch("getProveedores"))
-            })
-
-        },
-        async putProveedor({ dispatch }, proveedor) {
-            /**
-             * recorrer CUENTA_BANCO y prguntar
-             * si existe, buscar y editar
-             * si no existe, crear y relacionar
-             * si sobra, buscar y eliminar
-             */
-            console.log('PROVEEDOR', proveedor)
-            const dataInDb = await (await Axios.get(URL + `/${proveedor.id}`)).data
-
-            await Promise.all(
-                [dataInDb.CUENTA_BANCO.filter(e => !proveedor.CUENTA_BANCO.find(({ id }) => e.id == id))],
-            ).then(result => {
-                console.log("SOBRA, BORRAR", result[0])
-                result[0].map(async e =>
-                    await Axios.delete(URLBANCO + `/${e.id}`)
-                )
-            })
-
-            await Promise.all(
-                proveedor.CUENTA_BANCO.map(async e => {
-                    const existe = e.id ? await (await Axios.get(URLBANCO + `/${e.id}`)).data : null
-
-                    if (existe != null) {
-                        console.log("EXISTE, ACTUALIZAR", e)
-                        return await (await Axios.put(URLBANCO + `/${e.id}`, e)).data
-                    } else {
-                        console.log("NO EXISTE, CREAR", e)
-                        return await (await Axios.post(URLBANCO, e)).data
-                    }
-                })
-            ).then(async result => {
-                console.log("RELACIONAR", result)
-                proveedor["CUENTA_BANCO"] = result.map(e => e.id)
-                await Axios.put(URL + `/${proveedor.id}`, proveedor)
-                dispatch("getProveedores")
-            })
+            dispatch("setProveedoresLoader", true)
+            Axios.post(URL, proveedor)
+                .then(() => dispatch("getProveedores"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setProveedoresLoader", false))
         },
         async deleteProveedor({ dispatch }, proveedor) {
-
-            await Promise.all(
-                proveedor.CUENTA_BANCO.map(e => {
-                    Axios.delete(URLBANCO + `/${e.id}`)
-                })
-            ).then(() => {
-                Axios.delete(URL + `/${proveedor.id}`)
-                    .then(() => dispatch("getProveedores"))
-            })
-
+            dispatch("setProveedoresLoader", true)
+            Axios.delete(URL + `/${proveedor._key}`)
+                .then(() => dispatch("getProveedores"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setProveedoresLoader", true))
         }
     },
     mutations: {
