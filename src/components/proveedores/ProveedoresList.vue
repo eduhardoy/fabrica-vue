@@ -20,11 +20,7 @@
       <input v-model="newProveedor.email" placeholder="EMAIL" />
       <input v-model="newProveedor.cuit" placeholder="CUIT" />
 
-      <div
-        v-for="item in newProveedor.cuentas"
-        :key="item.value"
-        class="cbu"
-      >
+      <div v-for="item in newProveedor.cuentas" :key="item.value" class="cbu">
         <input v-model.lazy="item.cbu" placeholder="CBU" />
         <input v-model.lazy="item.banco" placeholder="BANCO" />
       </div>
@@ -48,7 +44,7 @@
 </template>
 
 <script>
-import ModalAdd from "../Modals/ModalAdd.vue";
+import ModalAdd from "../Modals/ModalAdd";
 
 export default {
   name: "ProveedoresList",
@@ -61,16 +57,16 @@ export default {
     };
   },
   methods: {
-    openAddModal: function () {
+    openAddModal: function() {
       this.$refs.add.openModal();
     },
-    addCBU: function (variable) {
+    addCBU: function(variable) {
       variable.cuentas.push({ value: "" });
     },
-    delCBU: function (variable) {
+    delCBU: function(variable) {
       variable.cuentas.pop();
     },
-    postProveedor: function () {
+    postProveedor: function() {
       this.$store.dispatch("postProveedor", this.newProveedor);
       this.$refs.add.closeModal();
     },
