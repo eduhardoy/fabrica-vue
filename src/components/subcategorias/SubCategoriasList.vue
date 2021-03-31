@@ -1,26 +1,57 @@
 <template>
   <div class="subcategorias">
-    <button class="add__button">
+    <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
     <div class="subcategorias__head">
-      <div class="subcategorias__head__title">
+      <div class="subcategorias_head_title">
         <h2>SUBCATEGORIAS</h2>
       </div>
     </div>
-    <div class="subcategorias__accordion__wrapper">
+    <div class="subcategorias_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
+  <ModalAdd ref="add">
+    <template v-slot:body>
+      <input v-model="newSubcategoria.nombre" placeholder="NOMBRE" />
+      <input v-model="newSubcategoria.categoria.nombre" placeholder="CATEGORIA" />
+    </template>
+    <template v-slot:footer>
+      <button class="cancel_button" @click="$refs.add.closeModal()">
+        CANCELAR
+      </button>
+      <button class="add_button" @click="postSubcategoria()">AGREGAR</button>
+    </template>
+  </ModalAdd>
 </template>
 
 <script>
+import ModalAdd from "../Modals/ModalAdd.vue";
+
 export default {
-  name: "SubCategoriasList",
+  name: "SubcategoriasList",
+   data() {
+    return {
+      newSubcategoria: {
+        categoria: [],
+      },
+    };
+  },
+  components: { ModalAdd },
+  methods: {
+    openAddModal: function () {
+      this.$refs.add.openModal();
+    },
+    postSubcategoria: function () {
+      this.$store.dispatch("postSubcategoria", this.newSubcategoria);
+      this.$refs.add.closeModal();
+    },
+  },
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .subcategorias {
   height: 100%;
   width: 100%;
@@ -75,13 +106,13 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .subcategorias__head__title {
+  .subcategorias_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.subcategorias__accordion__wrapper {
+.subcategorias_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;
