@@ -30,8 +30,13 @@
           SubCategoria:
           {{ item.subCategoria ? item.subCategoria.nombre : null }}
         </li>
+        <ul>
+          Partes
+          <li v-for="parte in item.partes" :key="parte._key">
+            {{ parte.nombre }}
+          </li>
+        </ul>
       </ul>
-      <img src="./images/lampara.jpg" alt="" />
     </details>
   </div>
   <ModalDelete ref="del">
@@ -81,7 +86,7 @@
           :key="item._key"
           v-bind:value="item.nombre"
         >
-          {{ item.nombre }}
+          {{ item.categoria.nombre }} - {{ item.nombre }}
         </option>
       </select>
     </template>

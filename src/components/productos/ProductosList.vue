@@ -42,7 +42,7 @@
           :key="item._key"
           v-bind:value="item.nombre"
         >
-          {{ item.nombre }}
+          {{ item.categoria.nombre }} - {{ item.nombre }}
         </option>
       </select>
     </template>
