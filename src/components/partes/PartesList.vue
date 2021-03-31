@@ -1,22 +1,62 @@
 <template>
   <div class="partes">
-    <button class="add__button">
+    <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
     <div class="partes__head">
-      <div class="partes__head__title">
+      <div class="partes_head_title">
         <h2>PARTES</h2>
       </div>
     </div>
-    <div class="partes__accordion__wrapper">
+    <div class="partes_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
+  <ModalAdd ref="add">
+    <template v-slot:body>
+      <input v-model="newParte.nombre" placeholder="NOMBRE" />
+      <input v-model="newParte.producto.nombre" placeholder="PRODUCTO"/>
+      <input v-model="newParte.costo" placeholder="COSTO"/>
+      <input v-model="newParte.costoFlete" placeholder="COSTO FLETE"/>
+      <input v-model="newParte.stock" placeholder="STOCK"/>
+      <input v-model="newParte.tiempoProduccion" placeholder="TIEMPO DE PRODUCCION"/>
+      <input v-model="newParte.mragen" placeholder="MARGEN"/>
+      <input v-model="newParte.proveedor.nombre" placeholder="PROVEEDOR"/>
+      <input v-model="newParte.subCategoria.nombre" placeholder="SUBCATEGORIA"/>
+    </template>
+    <template v-slot:footer>
+      <button class="cancel_button" @click="$refs.add.closeModal()">
+        CANCELAR
+      </button>
+      <button class="add_button" @click="postParte()">AGREGAR</button>
+    </template>
+  </ModalAdd>
 </template>
 
 <script>
+import ModalAdd from "../Modals/ModalAdd.vue";
+
 export default {
   name: "PartesList",
+   data() {
+    return {
+      newParte: {
+        producto: [],
+        proveedor: [],
+        subCategoria : []
+      },
+    };
+  },
+  components: { ModalAdd },
+  methods: {
+    openAddModal: function () {
+      this.$refs.add.openModal();
+    },
+    postParte: function () {
+      this.$store.dispatch("postParte", this.newParte);
+      this.$refs.add.closeModal();
+    },
+  },
 };
 </script>
 
@@ -75,13 +115,13 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .partes__head__title {
+  .partes_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.partes__accordion__wrapper {
+.partes_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;

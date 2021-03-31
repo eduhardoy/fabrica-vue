@@ -21,15 +21,15 @@ export default {
             Axios.get(URL)
                 .then(result => commit("SET_SUBCATEGORIAS", result.data))
                 .catch(err => console.log(err))
-                .finally(() => dispatch("setSubcategoriasLoader", false))
+                .finally(() => dispatch("setSubCategoriasLoader", false))
         },
         async postSubCategoria({ dispatch }, subcategoria) {
 
             dispatch("setSubCategoriasLoader", true)
             Axios.post(URL, subcategoria)
-                .then(() => dispatch("getSubcategorias"))
+                .then(() => dispatch("getSubCategorias"))
                 .catch(err => console.log(err))
-                .finally(() => dispatch("setSubcategoriasLoader", false))
+                .finally(() => dispatch("setSubCategoriasLoader", false))
         },
         async deleteSubCategoria({ dispatch }, subcategoria) {
             dispatch("setSubCategoriasLoader", true)

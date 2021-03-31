@@ -2,7 +2,7 @@
   <div class="accordion__container">
     <details
       class="accordion__box"
-      v-for="item in subcategorias"
+      v-for="item in subCategorias"
       v-bind:key="item._key"
     >
       <summary>
@@ -33,7 +33,7 @@
       </button>
       <button
         class="cancel_button"
-        @click="deleteSubcategoria(this.selectedSubcategoria)"
+        @click="deleteSubCategoria(this.selectedSubCategoria)"
       >
         ELIMINAR
       </button>
@@ -41,9 +41,9 @@
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
-      <input v-model="selectedSubcategoria.nombre" placeholder="NOMBRE" />
+      <input v-model="selectedSubCategoria.nombre" placeholder="NOMBRE" />
 
-      <select v-model="selectedSubcategoria.categoria">
+      <select v-model="selectedSubCategoria.categoria">
         <option v-for="item in categorias" :key="item._key" v-bind:value="item.nombre">
           {{ item.nombre }}
         </option>
@@ -56,7 +56,7 @@
       </button>
       <button
         class="add_button"
-        @click="postSubcategoria(this.selectedSubcategoria)"
+        @click="postSubCategoria(this.selectedSubCategoria)"
       >
         MODIFICAR
       </button>
@@ -69,37 +69,37 @@ import ModalDelete from "../Modals/ModalDelete.vue";
 import ModalEdit from "../Modals/ModalChange.vue";
 
 export default {
-  name: "SubcategoriasAccordion",
+  name: "SubCategoriasAccordion",
   components: { ModalDelete, ModalEdit },
   data() {
     return {
-      selectedSubcategoria: {},
+      selectedSubCategoria: {},
     };
   },
   computed: {
-    subcategorias: function() {
-      return this.$store.getters.allSubcategorias;
+    subCategorias: function() {
+      return this.$store.getters.allSubCategorias;
     },
     categorias: function () { 
       return this.$store.getters.allCategorias;
     },
   },
   methods: {
-    openDelModal: function(subcategoria) {
-      this.selectedSubcategoria = subcategoria;
+    openDelModal: function(subCategoria) {
+      this.selectedSubCategoria = subCategoria;
       this.$refs.del.openModal();
     },
-    openEditModal: function(subcategoria) {
-      subcategoria.categoria = subcategoria.categoria.nombre
-      this.selectedSubcategoria = subcategoria;
+    openEditModal: function(subCategoria) {
+      Object.assign(this.selectedSubCategoria,subCategoria)
+      this.selectedSubCategoria.categoria = subCategoria.categoria.nombre
       this.$refs.edit.openModal();
     },
-    postSubcategoria: function() {
-      this.$store.dispatch("postSubcategoria", this.selectedSubcategoria);
+    postSubCategoria: function() {
+      this.$store.dispatch("postSubCategoria", this.selectedSubCategoria);
       this.$refs.edit.closeModal();
     },
-    deleteSubcategoria: function(subcategoria) {
-      this.$store.dispatch("deleteSubcategoria", subcategoria);
+    deleteSubCategoria: function(subCategoria) {
+      this.$store.dispatch("deleteSubCategoria", subCategoria);
       this.$refs.del.closeModal();
     },
     getCategorias: function() {
@@ -109,7 +109,7 @@ export default {
   },
  
   created() {
-    this.$store.dispatch("getSubcategorias");
+    this.$store.dispatch("getSubCategorias");
     this.$store.dispatch("getCategorias");
   },
 
