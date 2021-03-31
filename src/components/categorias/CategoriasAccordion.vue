@@ -18,7 +18,7 @@
           </button>
         </div>
       </summary>
-      <ul>
+      <ul class="details_list">
         <li>Descripcion: {{ item.descripcion }}</li>
       </ul>
     </details>
@@ -42,7 +42,10 @@
   <ModalEdit ref="edit">
     <template v-slot:body>
       <input v-model="selectedCategoria.nombre" placeholder="NOMBRE" />
-      <input v-model="selectedCategoria.descripcion" placeholder="DESCRIPCION" />
+      <input
+        v-model="selectedCategoria.descripcion"
+        placeholder="DESCRIPCION"
+      />
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.edit.closeModal()">
@@ -68,28 +71,28 @@ export default {
     };
   },
   computed: {
-    categorias: function () {
+    categorias: function() {
       return this.$store.getters.allCategorias;
     },
   },
   methods: {
-    openDelModal: function (categoria) {
+    openDelModal: function(categoria) {
       this.selectedCategoria = categoria;
       this.$refs.del.openModal();
     },
-    openEditModal: function (categoria) {
+    openEditModal: function(categoria) {
       this.selectedCategoria = categoria;
       this.$refs.edit.openModal();
     },
-    getCategorias: function () {
+    getCategorias: function() {
       this.$store.dispatch("getCategorias");
       console.log("Categorias", this.$store.getters.allCategorias);
     },
-    postCategoria: function () {
+    postCategoria: function() {
       this.$store.dispatch("postCategoria", this.selectedCategoria);
       this.$refs.edit.closeModal();
     },
-    deleteCategoria: function (categoria) {
+    deleteCategoria: function(categoria) {
       this.$store.dispatch("deleteCategoria", categoria);
       this.$refs.del.closeModal();
     },

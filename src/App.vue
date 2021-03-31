@@ -96,12 +96,18 @@ details[open] {
       }
     }
   }
-  ul {
+  .details_list {
     list-style: none;
     text-align: start;
-    padding: 30px;
+    padding: 15px;
     li {
-      padding: 10px;
+      padding: 8px;
+    }
+    ul {
+      list-style: none;
+      text-align: start;
+      padding: 0;
+      padding-top: 15px;
     }
   }
 }

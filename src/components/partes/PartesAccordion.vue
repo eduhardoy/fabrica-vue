@@ -18,7 +18,7 @@
           </button>
         </div>
       </summary>
-      <ul>
+      <ul class="details_list">
         <li>Nombre: {{ item.nombre }}</li>
         <li>PRODUCTO: {{ item.producto ? item.producto.nombre : null }}</li>
         <li>Costo: {{ item.costo }}</li>

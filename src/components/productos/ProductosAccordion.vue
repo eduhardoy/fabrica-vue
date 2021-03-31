@@ -31,7 +31,7 @@
           {{ item.subCategoria ? item.subCategoria.nombre : null }}
         </li>
         <ul>
-          Partes
+          <strong>PARTES</strong>
           <li v-for="parte in item.partes" :key="parte._key">
             {{ parte.nombre }}
           </li>
@@ -229,11 +229,22 @@ details[open] {
   list-style: none;
   text-align: start;
   padding: 15px;
+  strong {
+    font-weight: 700;
+  }
   li {
     padding: 8px;
   }
   ul {
-    padding: 5px;
+    list-style: none;
+    text-align: start;
+    padding: 10px;
+    padding-top: 25px;
+    li {
+      padding: 0px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
   }
 }
 </style>

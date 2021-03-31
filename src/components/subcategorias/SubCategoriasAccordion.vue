@@ -18,7 +18,7 @@
           </button>
         </div>
       </summary>
-      <ul>
+      <ul class="details_list">
         <li>categoria: {{ item.categoria.nombre }}</li>
       </ul>
     </details>
@@ -44,11 +44,14 @@
       <input v-model="selectedSubCategoria.nombre" placeholder="NOMBRE" />
 
       <select v-model="selectedSubCategoria.categoria">
-        <option v-for="item in categorias" :key="item._key" v-bind:value="item.nombre">
+        <option
+          v-for="item in categorias"
+          :key="item._key"
+          v-bind:value="item.nombre"
+        >
           {{ item.nombre }}
         </option>
       </select>
-
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.edit.closeModal()">
@@ -80,7 +83,7 @@ export default {
     subCategorias: function() {
       return this.$store.getters.allSubCategorias;
     },
-    categorias: function () { 
+    categorias: function() {
       return this.$store.getters.allCategorias;
     },
   },
@@ -90,8 +93,8 @@ export default {
       this.$refs.del.openModal();
     },
     openEditModal: function(subCategoria) {
-      Object.assign(this.selectedSubCategoria,subCategoria)
-      this.selectedSubCategoria.categoria = subCategoria.categoria.nombre
+      Object.assign(this.selectedSubCategoria, subCategoria);
+      this.selectedSubCategoria.categoria = subCategoria.categoria.nombre;
       this.$refs.edit.openModal();
     },
     postSubCategoria: function() {
@@ -107,13 +110,11 @@ export default {
       console.log("Categorias", this.$store.getters.allCategorias);
     },
   },
- 
+
   created() {
     this.$store.dispatch("getSubCategorias");
     this.$store.dispatch("getCategorias");
   },
-
-  
 };
 </script>
 
