@@ -4,44 +4,44 @@ const URL = "http://190.106.132.208:3005/sub-categorias";
 
 export default {
     state: {
-        subcategorias: [],
+        subCategorias: [],
         loading: false,
         updateSubcategoria: {},
         selectedSubcategoria: {}
     },
     getters: {
-        allSubcategorias: state => state.subcategorias
+        allSubCategorias: state => state.subCategorias
     },
     actions: {
-        setSubcategoriasLoader({ commit }, loader) {
+        setSubCategoriasLoader({ commit }, loader) {
             commit("SET_SUBCATEGORIAS_LOADER", loader)
         },
-        getSubcategorias({ commit, dispatch }) {
-            dispatch("setSubcategoriasLoader", true)
+        getSubCategorias({ commit, dispatch }) {
+            dispatch("setSubCategoriasLoader", true)
             Axios.get(URL)
                 .then(result => commit("SET_SUBCATEGORIAS", result.data))
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setSubcategoriasLoader", false))
         },
-        async postSubcategoria({ dispatch }, subcategoria) {
-            
-            dispatch("setSubcategoriasLoader", true)
+        async postSubCategoria({ dispatch }, subcategoria) {
+
+            dispatch("setSubCategoriasLoader", true)
             Axios.post(URL, subcategoria)
                 .then(() => dispatch("getSubcategorias"))
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setSubcategoriasLoader", false))
         },
-        async deleteSubcategoria({ dispatch }, subcategoria) {
-            dispatch("setSubcategoriasLoader", true)
+        async deleteSubCategoria({ dispatch }, subcategoria) {
+            dispatch("setSubCategoriasLoader", true)
             Axios.delete(URL + `/${subcategoria._key}`)
-                .then(() => dispatch("getSubcategorias"))
+                .then(() => dispatch("getSubCategorias"))
                 .catch(err => console.log(err))
-                .finally(() => dispatch("setSubcategoriasLoader", true))
+                .finally(() => dispatch("setSubCategoriasLoader", true))
         }
     },
     mutations: {
-        SET_SUBCATEGORIAS(state, subcategorias) {
-            state.subcategorias = subcategorias;
+        SET_SUBCATEGORIAS(state, subCategorias) {
+            state.subCategorias = subCategorias;
         },
         SET_SUBCATEGORIAS_LOADER(state, loader) {
             state.loader = loader;

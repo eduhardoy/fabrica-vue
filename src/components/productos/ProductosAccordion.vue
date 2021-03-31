@@ -42,12 +42,7 @@
       <button class="black_button" @click="$refs.del.closeModal()">
         CANCELAR
       </button>
-      <button
-        class="cancel_button"
-        @click="deleteProducto"
-      >
-        ELIMINAR
-      </button>
+      <button class="cancel_button" @click="deleteProducto">ELIMINAR</button>
     </template>
   </ModalDelete>
   <ModalEdit ref="edit">
@@ -80,19 +75,21 @@
           {{ item.nombre }}
         </option>
       </select>
-      <!-- ACTUALIZAR A SELECT PARA SUBCATEGORIA -->
-      <input
-        v-model="selectedProducto.subCategoria"
-        placeholder="SUB CATEGORIA"
-      />
+      <select v-model="selectedProducto.subCategoria">
+        <option
+          v-for="item in subCategorias"
+          :key="item._key"
+          v-bind:value="item.nombre"
+        >
+          {{ item.nombre }}
+        </option>
+      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postProducto()">
-        MODIFICAR
-      </button>
+      <button class="add_button" @click="postProducto()">MODIFICAR</button>
     </template>
   </ModalEdit>
 </template>
@@ -116,6 +113,9 @@ export default {
     proveedores: function () {
       return this.$store.getters.allProveedores;
     },
+    subCategorias: function () {
+      return this.$store.getters.allSubCategorias;
+    },
   },
   methods: {
     openDelModal: function (producto) {
@@ -130,7 +130,7 @@ export default {
       this.$refs.edit.openModal();
     },
     postProducto: function () {
-      console.log(this.selectedProducto)
+      console.log(this.selectedProducto);
       this.$store.dispatch("postProducto", this.selectedProducto);
       this.$refs.edit.closeModal();
     },
@@ -142,6 +142,7 @@ export default {
   created() {
     this.$store.dispatch("getProductos");
     this.$store.dispatch("getProveedores");
+    this.$store.dispatch("getSubCategorias");
   },
 };
 </script>
