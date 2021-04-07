@@ -1,48 +1,48 @@
 import Axios from "axios";
 
-const URL = "http://190.106.132.208:3005/partes";
+const URL = "http://190.106.132.208:3005/clientes";
 
 export default {
     state: {
-        partes: [],
+        clientes: [],
         loading: false,
-        updateParte: {},
-        selectedParte: {}
+        updateCliente: {},
+        selectedCliente: {}
     },
     getters: {
-        allPartes: state => state.partes
+        allClientes: state => state.clientes
     },
     actions: {
-        setPartesLoader({ commit }, loader) {
-            commit("SET_PARTES_LOADER", loader)
+        setClientesLoader({ commit }, loader) {
+            commit("SET_CLIENTES_LOADER", loader)
         },
-        getPartes({ commit, dispatch }) {
-            dispatch("setPartesLoader", true)
+        getClientes({ commit, dispatch }) {
+            dispatch("setClientesLoader", true)
             Axios.get(URL)
-                .then(result => commit("SET_PARTES", result.data))
+                .then(result => commit("SET_CLIENTES", result.data))
                 .catch(err => console.log(err))
-                .finally(() => dispatch("setPartesLoader", false))
+                .finally(() => dispatch("setClientesLoader", false))
         },
-        async postParte({ dispatch }, parte) {
-            dispatch("setPartesLoader", true)
-            Axios.post(URL, parte)
-                .then(() => dispatch("getPartes"))
+        async postCliente({ dispatch }, cliente) {
+            dispatch("setClientesLoader", true)
+            Axios.post(URL, cliente)
+                .then(() => dispatch("getClientes"))
                 .catch(err => console.log(err))
-                .finally(() => dispatch("setPartesLoader", false))
+                .finally(() => dispatch("setClientesLoader", false))
         },
-        async deleteParte({ dispatch }, parte) {
-            dispatch("setPartesLoader", true)
-            Axios.delete(URL + `/${parte._key}`)
-                .then(() => dispatch("getPartes"))
+        async deleteCliente({ dispatch }, cliente) {
+            dispatch("setClientesLoader", true)
+            Axios.delete(URL + `/${cliente._key}`)
+                .then(() => dispatch("getClientes"))
                 .catch(err => console.log(err))
-                .finally(() => dispatch("setPartesLoader", true))
+                .finally(() => dispatch("setClientesLoader", true))
         }
     },
     mutations: {
-        SET_PARTES(state, partes) {
-            state.partes = partes;
+        SET_CLIENTES(state, clientes) {
+            state.clientes = clientes;
         },
-        SET_PARTES_LOADER(state, loader) {
+        SET_CLIENTES_LOADER(state, loader) {
             state.loader = loader;
         }
     },

@@ -8,6 +8,7 @@ import Proveedores from "../views/Proveedores.vue";
 import Categorias from "../views/Categorias.vue";
 import SubCategorias from "../views/SubCategorias.vue";
 import Clientes from "../views/Clientes.vue";
+import Compras from "../views/Compras.vue";
 
 const routes = [
   {
@@ -59,6 +60,11 @@ const routes = [
     path: "/clientes",
     name: "Clientes",
     component: Clientes,
+  },
+  {
+    path: "/compras",
+    name: "Compras",
+    component: Compras,
   },
 ];
 

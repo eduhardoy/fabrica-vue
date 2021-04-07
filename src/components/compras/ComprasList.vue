@@ -5,7 +5,7 @@
     </button>
     <div class="partes__head">
       <div class="partes_head_title">
-        <h2>CLIENTES  *está trayendo partes*</h2>
+        <h2>COMPRAS  *está trayendo partes*</h2>
       </div>
     </div>
     <div class="partes_accordion_wrapper">

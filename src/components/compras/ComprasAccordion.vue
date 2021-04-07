@@ -20,14 +20,10 @@
       </summary>
       <ul class="details_list">
          <!-- 
-             Nombre:
-             DNI:
-             Direccion:
-             Telefono:
-             Email:
-             Cuenta Estado:
-             Compras:
-             Presupuesto
+             Proveedor:
+             Articulo:
+             Orden Compra:
+             Comprobante:
           -->
         <li>Nombre: {{ item.nombre }}</li>
         <li>PRODUCTO: {{ item.producto ? item.producto.nombre : null }}</li>

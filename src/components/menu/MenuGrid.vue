@@ -10,7 +10,7 @@
       <router-link to="/proveedores"><div>PROVEEDORES</div></router-link>
     </div>
     <div class="Compras">
-      <a href=""><div></div></a>
+      <router-link to="/compras"><div>COMPRAS</div></router-link>
     </div>
     <div class="Ventas">
       <a href=""><div></div></a>
