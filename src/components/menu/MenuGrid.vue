@@ -4,7 +4,7 @@
       <router-link to="/articulos"><div>ARTICULOS</div></router-link>
     </div>
     <div class="Clientes">
-      <a href=""><div></div></a>
+      <router-link to="/clientes"><div>CLIENTES</div></router-link>
     </div>
     <div class="Proveedores">
       <router-link to="/proveedores"><div>PROVEEDORES</div></router-link>

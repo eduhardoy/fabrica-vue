@@ -7,6 +7,7 @@ import Partes from "../views/Partes.vue";
 import Proveedores from "../views/Proveedores.vue";
 import Categorias from "../views/Categorias.vue";
 import SubCategorias from "../views/SubCategorias.vue";
+import Clientes from "../views/Clientes.vue";
 
 const routes = [
   {
@@ -53,6 +54,11 @@ const routes = [
     path: "/partes",
     name: "Partes",
     component: Partes,
+  },
+  {
+    path: "/clientes",
+    name: "Clientes",
+    component: Clientes,
   },
 ];
 
