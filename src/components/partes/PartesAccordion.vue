@@ -27,10 +27,6 @@
         <li>Tiempo de produccion: {{ item.tiempoProduccion }}</li>
         <li>Margen: {{ item.margen }}</li>
         <li>Proveedor: {{ item.proveedor ? item.proveedor.nombre : null }}</li>
-        <li>
-          Subcategoria:
-          {{ item.subCategoria ? item.subCategoria.nombre : null }}
-        </li>
       </ul>
     </details>
   </div>
@@ -76,15 +72,6 @@
           {{ item.nombre }}
         </option>
       </select>
-      <select v-model="selectedParte.subCategoria">
-        <option
-          v-for="item in subCategorias"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.categoria.nombre }} - {{ item.nombre }}
-        </option>
-      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.edit.closeModal()">
@@ -119,9 +106,6 @@ export default {
     proveedores: function () {
       return this.$store.getters.allProveedores;
     },
-    subCategorias: function () {
-      return this.$store.getters.allSubCategorias;
-    },
   },
   methods: {
     openDelModal: function (parte) {
@@ -134,7 +118,6 @@ export default {
       Object.assign(this.selectedParte, parte);
       this.selectedParte.producto = parte.producto.nombre;
       this.selectedParte.proveedor = parte.proveedor.nombre;
-      this.selectedParte.subCategoria = parte.subCategoria.nombre;
       this.$refs.edit.openModal();
     },
     postParte: function () {
@@ -151,7 +134,6 @@ export default {
     this.$store.dispatch("getPartes");
     this.$store.dispatch("getProductos");
     this.$store.dispatch("getProveedores");
-    this.$store.dispatch("getSubCategorias");
   },
 };
 </script>

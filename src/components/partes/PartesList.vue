@@ -41,15 +41,6 @@
           {{ item.nombre }}
         </option>
       </select>
-      <select v-model="newParte.subCategoria">
-        <option
-          v-for="item in subCategorias"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.categoria.nombre }} - {{ item.nombre }}
-        </option>
-      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">
@@ -78,9 +69,6 @@ export default {
     proveedores: function () {
       return this.$store.getters.allProveedores;
     },
-    subCategorias: function () {
-      return this.$store.getters.allSubCategorias;
-    },
   },
 
   methods: {
@@ -95,7 +83,6 @@ export default {
   created() {
     this.$store.dispatch("getProductos");
     this.$store.dispatch("getProveedores");
-    this.$store.dispatch("getSubCategorias");
   },
 };
 </script>
