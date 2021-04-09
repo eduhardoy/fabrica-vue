@@ -1,53 +1,50 @@
 <template>
-  <div class="partes">
+  <div class="clientes">
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
-    <div class="partes__head">
-      <div class="partes_head_title">
-        <h2>CLIENTES  *está trayendo partes*</h2>
+    <div class="clientes__head">
+      <div class="clientes_head_title">
+        <h2>CLIENTES  *falta el back*</h2>
       </div>
     </div>
-    <div class="partes_accordion_wrapper">
+    <div class="clientes_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
-      <input v-model="newParte.nombre" placeholder="NOMBRE" />
-      <select v-model="newParte.producto">
+      <input v-model="newCliente.nombre" placeholder="NOMBRE" />
+      <input v-model="newCliente.dni" placeholder="DNI" />
+      <input v-model="newCliente.cuit" placeholder="CUIT" />
+      <input v-model="newCliente.direccion" placeholder="DIRECCION" />
+      <input v-model="newCliente.telefono" placeholder="TELEFONO"/>
+      <input v-model="newCliente.email" placeholder="EMAIL" />
+      <select v-model="newCliente.cuentaEstado">
         <option
-          v-for="item in productos"
+          v-for="item in cuentasEstados"
           :key="item._key"
           v-bind:value="item.nombre"
         >
           {{ item.nombre }}
         </option>
       </select>
-      <input v-model="newParte.costo" placeholder="COSTO" />
-      <input v-model="newParte.costoFlete" placeholder="COSTO FLETE" />
-      <input v-model="newParte.stock" placeholder="STOCK" />
-      <input
-        v-model="newParte.tiempoProduccion"
-        placeholder="TIEMPO DE PRODUCCION"
-      />
-      <input v-model="newParte.margen" placeholder="MARGEN" />
-      <select v-model="newParte.proveedor">
+      <select v-model="newCliente.compras">
         <option
-          v-for="item in proveedores"
+          v-for="item in compras"
           :key="item._key"
           v-bind:value="item.nombre"
         >
           {{ item.nombre }}
         </option>
       </select>
-      <select v-model="newParte.subCategoria">
+      <select v-model="newCliente.presupuestos">
         <option
-          v-for="item in subCategorias"
+          v-for="item in presupuestos"
           :key="item._key"
           v-bind:value="item.nombre"
         >
-          {{ item.categoria.nombre }} - {{ item.nombre }}
+          {{ item.nombre }}
         </option>
       </select>
     </template>
@@ -55,7 +52,7 @@
       <button class="cancel_button" @click="$refs.add.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postParte()">AGREGAR</button>
+      <button class="add_button" @click="postCliente()">AGREGAR</button>
     </template>
   </ModalAdd>
 </template>
@@ -64,22 +61,22 @@
 import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
-  name: "PartesList",
+  name: "ClientesList",
   components: { ModalAdd },
   data() {
     return {
-      newParte: {},
+      newCliente: {},
     };
   },
   computed: {
-    productos: function () {
-      return this.$store.getters.allProductos;
+    cuentasEstados: function () {
+      return this.$store.getters.allCuentasEstados;
     },
-    proveedores: function () {
-      return this.$store.getters.allProveedores;
+    compras: function () {
+      return this.$store.getters.allCompras;
     },
-    subCategorias: function () {
-      return this.$store.getters.allSubCategorias;
+    presupuestos: function () {
+      return this.$store.getters.allPresupuestos;
     },
   },
 
@@ -87,21 +84,21 @@ export default {
     openAddModal: function () {
       this.$refs.add.openModal();
     },
-    postParte: function () {
-      this.$store.dispatch("postParte", this.newParte);
+    postCliente: function () {
+      this.$store.dispatch("postCliente", this.newCliente);
       this.$refs.add.closeModal();
     },
   },
   created() {
-    this.$store.dispatch("getProductos");
-    this.$store.dispatch("getProveedores");
-    this.$store.dispatch("getSubCategorias");
+    this.$store.dispatch("getCuentasEstados");
+    this.$store.dispatch("getCompras");
+    this.$store.dispatch("getPresupuestos");
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.partes {
+.clientes {
   height: 100%;
   width: 100%;
   display: flex;
@@ -148,20 +145,20 @@ export default {
     height: 100%;
   }
 }
-.partes__head {
+.clientes__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .partes_head_title {
+  .clientes_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.partes_accordion_wrapper {
+.clientes_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;

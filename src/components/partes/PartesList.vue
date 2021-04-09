@@ -15,7 +15,7 @@
   <ModalAdd ref="add">
     <template v-slot:body>
       <input v-model="newParte.nombre" placeholder="NOMBRE" />
-      <select v-model="newParte.producto">
+      <select v-model="newParte.producto" placeholder="producto">
         <option
           v-for="item in productos"
           :key="item._key"

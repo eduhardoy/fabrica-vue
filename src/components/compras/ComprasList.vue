@@ -1,38 +1,20 @@
 <template>
-  <div class="partes">
+  <div class="compras">
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
-    <div class="partes__head">
-      <div class="partes_head_title">
-        <h2>COMPRAS  *está trayendo partes*</h2>
+    <div class="compras__head">
+      <div class="compras_head_title">
+        <h2>COMPRAS  *falta back*</h2>
       </div>
     </div>
-    <div class="partes_accordion_wrapper">
+    <div class="compras_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
-      <input v-model="newParte.nombre" placeholder="NOMBRE" />
-      <select v-model="newParte.producto">
-        <option
-          v-for="item in productos"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select>
-      <input v-model="newParte.costo" placeholder="COSTO" />
-      <input v-model="newParte.costoFlete" placeholder="COSTO FLETE" />
-      <input v-model="newParte.stock" placeholder="STOCK" />
-      <input
-        v-model="newParte.tiempoProduccion"
-        placeholder="TIEMPO DE PRODUCCION"
-      />
-      <input v-model="newParte.margen" placeholder="MARGEN" />
-      <select v-model="newParte.proveedor">
+      <select v-model="selectedCompra.proveedor">
         <option
           v-for="item in proveedores"
           :key="item._key"
@@ -41,13 +23,13 @@
           {{ item.nombre }}
         </option>
       </select>
-      <select v-model="newParte.subCategoria">
+      <select v-model="selectedCompra.producto">
         <option
-          v-for="item in subCategorias"
+          v-for="item in productos"
           :key="item._key"
           v-bind:value="item.nombre"
         >
-          {{ item.categoria.nombre }} - {{ item.nombre }}
+          {{ item.nombre }}
         </option>
       </select>
     </template>
@@ -55,7 +37,7 @@
       <button class="cancel_button" @click="$refs.add.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postParte()">AGREGAR</button>
+      <button class="add_button" @click="postCompra()">AGREGAR</button>
     </template>
   </ModalAdd>
 </template>
@@ -64,11 +46,11 @@
 import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
-  name: "PartesList",
+  name: "ComprasList",
   components: { ModalAdd },
   data() {
     return {
-      newParte: {},
+      newCompra: {},
     };
   },
   computed: {
@@ -78,8 +60,11 @@ export default {
     proveedores: function () {
       return this.$store.getters.allProveedores;
     },
-    subCategorias: function () {
-      return this.$store.getters.allSubCategorias;
+    ordenesCompras: function () {
+      return this.$store.getters.allOrdenesCompras;
+    },
+    comprobantes: function () {
+      return this.$store.getters.allComprobantes;
     },
   },
 
@@ -87,21 +72,22 @@ export default {
     openAddModal: function () {
       this.$refs.add.openModal();
     },
-    postParte: function () {
-      this.$store.dispatch("postParte", this.newParte);
+    postCompra: function () {
+      this.$store.dispatch("postCompra", this.newCompra);
       this.$refs.add.closeModal();
     },
   },
   created() {
     this.$store.dispatch("getProductos");
     this.$store.dispatch("getProveedores");
-    this.$store.dispatch("getSubCategorias");
+    this.$store.dispatch("getOrdenesCompras");
+    this.$store.dispatch("getComprobantes");
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.partes {
+.compras {
   height: 100%;
   width: 100%;
   display: flex;
@@ -148,20 +134,20 @@ export default {
     height: 100%;
   }
 }
-.partes__head {
+.compras__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .partes_head_title {
+  .compras_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.partes_accordion_wrapper {
+.compras_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;
