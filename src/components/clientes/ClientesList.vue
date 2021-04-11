@@ -5,7 +5,7 @@
     </button>
     <div class="clientes__head">
       <div class="clientes_head_title">
-        <h2>CLIENTES  *falta el back*</h2>
+        <h2>CLIENTES</h2>
       </div>
     </div>
     <div class="clientes_accordion_wrapper">
@@ -20,33 +20,6 @@
       <input v-model="newCliente.direccion" placeholder="DIRECCION" />
       <input v-model="newCliente.telefono" placeholder="TELEFONO"/>
       <input v-model="newCliente.email" placeholder="EMAIL" />
-      <select v-model="newCliente.cuentaEstado">
-        <option
-          v-for="item in cuentasEstados"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select>
-      <select v-model="newCliente.compras">
-        <option
-          v-for="item in compras"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select>
-      <select v-model="newCliente.presupuestos">
-        <option
-          v-for="item in presupuestos"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">
@@ -68,18 +41,7 @@ export default {
       newCliente: {},
     };
   },
-  computed: {
-    cuentasEstados: function () {
-      return this.$store.getters.allCuentasEstados;
-    },
-    compras: function () {
-      return this.$store.getters.allCompras;
-    },
-    presupuestos: function () {
-      return this.$store.getters.allPresupuestos;
-    },
-  },
-
+  
   methods: {
     openAddModal: function () {
       this.$refs.add.openModal();
@@ -88,11 +50,6 @@ export default {
       this.$store.dispatch("postCliente", this.newCliente);
       this.$refs.add.closeModal();
     },
-  },
-  created() {
-    this.$store.dispatch("getCuentasEstados");
-    this.$store.dispatch("getCompras");
-    this.$store.dispatch("getPresupuestos");
   },
 };
 </script>

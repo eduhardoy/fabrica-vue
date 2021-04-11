@@ -25,9 +25,6 @@
         <li>Direccion: {{ item.direccion }}</li>
         <li>Telefono: {{ item.telefono }}</li>
         <li>Email: {{ item.email }}</li>
-        <li>Cuenta Estado: {{ item.cuentaEstado }}</li>
-        <li>Compras: {{ item.compras }}</li>
-        <li>Presupuesto: {{ item.presupuestos }}</li>
       </ul>
     </details>
   </div>
@@ -52,33 +49,6 @@
       <input v-model="selectedCliente.direccion" placeholder="DIRECCION" />
       <input v-model="selectedCliente.telefono" placeholder="TELEFONO"/>
       <input v-model="selectedCliente.email" placeholder="EMAIL" />
-      <select v-model="selectedCliente.cuentaEstado">
-        <option
-          v-for="item in cuentasEstados"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          <!-- {{ item.nombre }} -->
-        </option>
-      </select>
-      <select v-model="selectedCliente.compras">
-        <option
-          v-for="item in compras"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          <!-- {{ item.nombre }} -->
-        </option>
-      </select>
-      <select v-model="selectedCliente.presupuestos">
-        <option
-          v-for="item in presupuestos"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          <!-- {{ item.nombre }} -->
-        </option>
-      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.edit.closeModal()">
@@ -107,15 +77,6 @@ export default {
     clientes: function () {
       return this.$store.getters.allClientes;
     },
-    cuentasEstados: function () {
-      return this.$store.getters.allCuentasEstados;
-    },
-    compras: function () {
-      return this.$store.getters.allCompras;
-    },
-    presupuestos: function () {
-      return this.$store.getters.allPresupuestos;
-    },
   },
   methods: {
     openDelModal: function (cliente) {
@@ -124,11 +85,7 @@ export default {
       this.$refs.del.openModal();
     },
     openEditModal: function (cliente) {
-      /* this.selectedCliente = cliente; */
       Object.assign(this.selectedCliente, cliente);
-      this.selectedCliente.cuentaEstado = cliente.cuentaEstado.nombre;
-      this.selectedCliente.compras = cliente.compras.nombre;
-      this.selectedCliente.presupuestos = cliente.presupuestos.nombre;
       this.$refs.edit.openModal();
     },
     postCliente: function () {
@@ -143,9 +100,6 @@ export default {
   },
   created() {
     this.$store.dispatch("getClientes");
-    this.$store.dispatch("getCuentasEstados");
-    this.$store.dispatch("getCompras");
-    this.$store.dispatch("getPresupuestos");
   },
 };
 </script>
