@@ -19,12 +19,12 @@
         </div>
       </summary>
       <ul class="details_list">
-        <li>Nombre: {{ item.nombre }}</li>
-        <li>DNI: {{ item.dni }}</li>
-        <li>CUIT: {{ item.cuit }}</li>
-        <li>Direccion: {{ item.direccion }}</li>
-        <li>Telefono: {{ item.telefono }}</li>
-        <li>Email: {{ item.email }}</li>
+        <li><strong>Nombre: </strong>{{ item.nombre }}</li>
+        <li><strong>DNI: </strong>{{ item.dni }}</li>
+        <li><strong>CUIT: </strong>{{ item.cuit }}</li>
+        <li><strong>Direccion: </strong>{{ item.direccion }}</li>
+        <li><strong>Telefono: </strong>{{ item.telefono }}</li>
+        <li><strong>Email: </strong>{{ item.email }}</li>
       </ul>
     </details>
   </div>
@@ -36,7 +36,10 @@
       <button class="black_button" @click="$refs.del.closeModal()">
         CANCELAR
       </button>
-      <button class="cancel_button" @click="deleteCliente(this.selectedCliente)">
+      <button
+        class="cancel_button"
+        @click="deleteCliente(this.selectedCliente)"
+      >
         ELIMINAR
       </button>
     </template>
@@ -47,7 +50,7 @@
       <input v-model="selectedCliente.dni" placeholder="DNI" />
       <input v-model="selectedCliente.cuit" placeholder="CUIT" />
       <input v-model="selectedCliente.direccion" placeholder="DIRECCION" />
-      <input v-model="selectedCliente.telefono" placeholder="TELEFONO"/>
+      <input v-model="selectedCliente.telefono" placeholder="TELEFONO" />
       <input v-model="selectedCliente.email" placeholder="EMAIL" />
     </template>
     <template v-slot:footer>
@@ -74,26 +77,26 @@ export default {
     };
   },
   computed: {
-    clientes: function () {
+    clientes: function() {
       return this.$store.getters.allClientes;
     },
   },
   methods: {
-    openDelModal: function (cliente) {
+    openDelModal: function(cliente) {
       Object.assign(this.selectedCliente, cliente);
       this.selectedCliente = cliente;
       this.$refs.del.openModal();
     },
-    openEditModal: function (cliente) {
+    openEditModal: function(cliente) {
       Object.assign(this.selectedCliente, cliente);
       this.$refs.edit.openModal();
     },
-    postCliente: function () {
+    postCliente: function() {
       console.log(this.selectedCliente);
       this.$store.dispatch("postCliente", this.selectedCliente);
       this.$refs.edit.closeModal();
     },
-    deleteCliente: function () {
+    deleteCliente: function() {
       this.$store.dispatch("deleteCliente", this.selectedCliente);
       this.$refs.del.closeModal();
     },

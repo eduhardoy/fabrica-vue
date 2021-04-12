@@ -15,20 +15,27 @@
         </div>
       </summary>
       <ul class="details_list">
-        <li>Costo: {{ item.costo }}</li>
-        <li>Precio de Venta: {{ item.precioVenta }}</li>
-        <li>Stock: {{ item.stock }}</li>
-        <li>Tiempo de Produccion: {{ item.tiempoProduccion }}</li>
-        <li>Costo de Felte: {{ item.costoFlete }}</li>
-        <li>Margen: {{ item.margen }}</li>
-        <li>Proveedor: {{ item.proveedor ? item.proveedor.nombre : null }}</li>
+        <li><strong>Costo: </strong>{{ item.costo }}</li>
+        <li><strong>Precio de Venta: </strong>{{ item.precioVenta }}</li>
+        <li><strong>Stock: </strong>{{ item.stock }}</li>
         <li>
-          Categoria:
-          {{ item.subCategoria ? item.subCategoria.categoria : null }}
+          <strong>Tiempo de Produccion: </strong>{{ item.tiempoProduccion }}
+        </li>
+        <li><strong>Costo de Felte: </strong>{{ item.costoFlete }}</li>
+        <li><strong>Margen: </strong>{{ item.margen }}</li>
+        <li>
+          <strong>Proveedor: </strong
+          >{{ item.proveedor ? item.proveedor.nombre : null }}
         </li>
         <li>
-          SubCategoria:
-          {{ item.subCategoria ? item.subCategoria.nombre : null }}
+          <strong>
+            Categoria: </strong
+          >{{ item.subCategoria ? item.subCategoria.categoria : null }}
+        </li>
+        <li>
+          <strong>
+            SubCategoria: </strong
+          >{{ item.subCategoria ? item.subCategoria.nombre : null }}
         </li>
         <ul>
           <strong>PARTES</strong>
