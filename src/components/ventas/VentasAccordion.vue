@@ -2,7 +2,7 @@
   <div class="accordion__container">
     <details
       class="accordion__box"
-      v-for="item in partes"
+      v-for="item in ventas"
       v-bind:key="item._key"
     >
       <summary>
@@ -19,21 +19,18 @@
         </div>
       </summary>
       <ul class="details_list">
-         <!-- 
-             Sin definir
-          -->
-        <li>Nombre: {{ item.nombre }}</li>
-        <li>PRODUCTO: {{ item.producto ? item.producto.nombre : null }}</li>
+        <li>PRESUPUESTO: {{ item.presupuesto }}</li>
+        <li>CLIENTE: {{ item.cliente ? item.cliente.nombre : null }}</li>
+        <ul>
+          <strong>PRODUCTOS</strong>
+          <li v-for="producto in item.productos" :key="producto._key">
+            {{ producto.nombre }}
+          </li>
+        </ul>
+        <!-- 
         <li>Costo: {{ item.costo }}</li>
         <li>Costo Flete: {{ item.costoFlete }}</li>
-        <li>Stock: {{ item.stock }}</li>
-        <li>Tiempo de produccion: {{ item.tiempoProduccion }}</li>
-        <li>Margen: {{ item.margen }}</li>
-        <li>Proveedor: {{ item.proveedor ? item.proveedor.nombre : null }}</li>
-        <li>
-          Subcategoria:
-          {{ item.subCategoria ? item.subCategoria.nombre : null }}
-        </li>
+         -->
       </ul>
     </details>
   </div>
@@ -45,15 +42,25 @@
       <button class="black_button" @click="$refs.del.closeModal()">
         CANCELAR
       </button>
-      <button class="cancel_button" @click="deleteParte(this.selectedParte)">
+      <button class="cancel_button" @click="deleteVenta(this.selectedVenta)">
         ELIMINAR
       </button>
     </template>
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
-      <input v-model="selectedParte.nombre" placeholder="NOMBRE" />
-      <select v-model="selectedParte.producto">
+       <input v-model="newVenta.presupuesto" placeholder="PRESUPUESTO"/>
+      <input v-model="newVenta.cliente" placeholder="CLIENTE"/>
+      <!-- <select v-model="newVenta.cliente">
+        <option
+          v-for="item in clientes"
+          :key="item._key"
+          v-bind:value="item.nombre"
+        >
+          {{ item.nombre }}
+        </option>
+      </select> -->
+      <select v-model="newVenta.producto">
         <option
           v-for="item in productos"
           :key="item._key"
@@ -62,38 +69,16 @@
           {{ item.nombre }}
         </option>
       </select>
-      <input v-model="selectedParte.costo" placeholder="COSTO" />
-      <input v-model="selectedParte.costoFlete" placeholder="COSTO FLETE" />
-      <input v-model="selectedParte.stock" placeholder="STOCK" />
-      <input
-        v-model="selectedParte.tiempoProduccion"
-        placeholder="TIEMPO DE PRODUCCION"
-      />
-      <input v-model="selectedParte.margen" placeholder="MARGEN" />
-      <select v-model="selectedParte.proveedor">
-        <option
-          v-for="item in proveedores"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select>
-      <select v-model="selectedParte.subCategoria">
-        <option
-          v-for="item in subCategorias"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.categoria.nombre }} - {{ item.nombre }}
-        </option>
-      </select>
+      <div>
+        <button> Eliminar Articulo </button>
+        <button @click="addArticulo()"> Agregar Articulo </button>
+      </div>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postParte(this.selectedParte)">
+      <button class="add_button" @click="postVenta(this.selectedVenta)">
         MODIFICAR
       </button>
     </template>
@@ -105,56 +90,56 @@ import ModalDelete from "../Modals/ModalDelete.vue";
 import ModalEdit from "../Modals/ModalChange.vue";
 
 export default {
-  name: "PartesAccordion",
+  name: "VentasAccordion",
   components: { ModalDelete, ModalEdit },
   data() {
     return {
-      selectedParte: {},
+      selectedVenta: {},
     };
   },
   computed: {
-    partes: function () {
-      return this.$store.getters.allPartes;
+    ventas: function () {
+      return this.$store.getters.allVentas;
+    },
+    presupuestos: function () {
+      return this.$store.getters.allPresupuestos;
+    },
+    clientes: function () {
+      return this.$store.getters.allClientes;
     },
     productos: function () {
       return this.$store.getters.allProductos;
     },
-    proveedores: function () {
-      return this.$store.getters.allProveedores;
-    },
-    subCategorias: function () {
-      return this.$store.getters.allSubCategorias;
-    },
   },
   methods: {
-    openDelModal: function (parte) {
-      Object.assign(this.selectedParte, parte);
-      this.selectedParte = parte;
+    openDelModal: function (venta) {
+      Object.assign(this.selectedVenta, venta);
+      this.selectedVenta = venta;
       this.$refs.del.openModal();
     },
-    openEditModal: function (parte) {
-      /* this.selectedParte = parte; */
-      Object.assign(this.selectedParte, parte);
-      this.selectedParte.producto = parte.producto.nombre;
-      this.selectedParte.proveedor = parte.proveedor.nombre;
-      this.selectedParte.subCategoria = parte.subCategoria.nombre;
+    openEditModal: function (venta) {
+      /* this.selectedVenta = venta; */
+      Object.assign(this.selectedVenta, venta);
+      /* this.selectedVenta.producto = venta.producto.nombre;
+      this.selectedVenta.presupuesto = venta.presupuesto.nombre;
+      this.selectedVenta.cliente= venta.cliente.nombre; */
       this.$refs.edit.openModal();
     },
-    postParte: function () {
-      console.log(this.selectedParte);
-      this.$store.dispatch("postParte", this.selectedParte);
+    postVenta: function () {
+      console.log(this.selectedVenta);
+      this.$store.dispatch("postVenta", this.selectedVenta);
       this.$refs.edit.closeModal();
     },
-    deleteParte: function () {
-      this.$store.dispatch("deleteParte", this.selectedParte);
+    deleteVenta: function () {
+      this.$store.dispatch("deleteVenta", this.selectedVenta);
       this.$refs.del.closeModal();
     },
   },
   created() {
-    this.$store.dispatch("getPartes");
+    this.$store.dispatch("getVentas");
     this.$store.dispatch("getProductos");
-    this.$store.dispatch("getProveedores");
-    this.$store.dispatch("getSubCategorias");
+    this.$store.dispatch("getClientes");
+    this.$store.dispatch("getPresupuestos");
   },
 };
 </script>
