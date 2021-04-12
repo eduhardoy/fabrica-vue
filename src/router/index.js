@@ -10,6 +10,7 @@ import SubCategorias from "../views/SubCategorias.vue";
 import Clientes from "../views/Clientes.vue";
 import Compras from "../views/Compras.vue";
 import Ventas from "../views/Ventas.vue";
+import Presupuesto from "../views/Presupuesto.vue";
 
 const routes = [
   {
@@ -71,6 +72,11 @@ const routes = [
     path: "/ventas",
     name: "Ventas",
     component: Ventas,
+  },
+  {
+    path: "/presupuesto",
+    name: "Presupuesto",
+    component: Presupuesto,
   },
 ];
 

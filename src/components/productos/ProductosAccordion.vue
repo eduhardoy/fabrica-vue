@@ -15,34 +15,37 @@
         </div>
       </summary>
       <ul class="details_list">
-        <li><strong>Costo: </strong>{{ item.costo }}</li>
-        <li><strong>Precio de Venta: </strong>{{ item.precioVenta }}</li>
-        <li><strong>Stock: </strong>{{ item.stock }}</li>
-        <li>
-          <strong>Tiempo de Produccion: </strong>{{ item.tiempoProduccion }}
-        </li>
-        <li><strong>Costo de Felte: </strong>{{ item.costoFlete }}</li>
-        <li><strong>Margen: </strong>{{ item.margen }}</li>
-        <li>
-          <strong>Proveedor: </strong
-          >{{ item.proveedor ? item.proveedor.nombre : null }}
-        </li>
-        <li>
-          <strong>
-            Categoria: </strong
-          >{{ item.subCategoria ? item.subCategoria.categoria : null }}
-        </li>
-        <li>
-          <strong>
-            SubCategoria: </strong
-          >{{ item.subCategoria ? item.subCategoria.nombre : null }}
-        </li>
-        <ul>
-          <strong>PARTES</strong>
-          <li v-for="parte in item.partes" :key="parte._key">
-            {{ parte.nombre }}
+        <div>
+          <li><strong>Costo: </strong>{{ item.costo }}</li>
+          <li><strong>Precio de Venta: </strong>{{ item.precioVenta }}</li>
+          <li><strong>Stock: </strong>{{ item.stock }}</li>
+          <li>
+            <strong>Tiempo de Produccion: </strong>{{ item.tiempoProduccion }}
           </li>
-        </ul>
+          <li><strong>Costo de Felte: </strong>{{ item.costoFlete }}</li>
+          <li><strong>Margen: </strong>{{ item.margen }}</li>
+          <li>
+            <strong>Proveedor: </strong
+            >{{ item.proveedor ? item.proveedor.nombre : null }}
+          </li>
+          <li>
+            <strong> Categoria: </strong
+            >{{ item.subCategoria ? item.subCategoria.categoria : null }}
+          </li>
+          <li>
+            <strong> SubCategoria: </strong
+            >{{ item.subCategoria ? item.subCategoria.nombre : null }}
+          </li>
+          <ul>
+            <strong>PARTES</strong>
+            <li v-for="parte in item.partes" :key="parte._key">
+              {{ parte.nombre }}
+            </li>
+          </ul>
+        </div>
+        <div>
+          <img src="./images/lampara.jpg" alt="" />
+        </div>
       </ul>
     </details>
   </div>
@@ -236,11 +239,18 @@ details[open] {
   list-style: none;
   text-align: start;
   padding: 15px;
+  display: flex;
+  div {
+    width: 50%;
+    li {
+      padding: 8px;
+    }
+    img {
+      width: 50%;
+    }
+  }
   strong {
     font-weight: 700;
-  }
-  li {
-    padding: 8px;
   }
   ul {
     list-style: none;
