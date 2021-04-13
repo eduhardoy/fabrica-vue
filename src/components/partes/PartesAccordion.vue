@@ -19,14 +19,22 @@
         </div>
       </summary>
       <ul class="details_list">
-        <li>Nombre: {{ item.nombre }}</li>
-        <li>PRODUCTO: {{ item.producto ? item.producto.nombre : null }}</li>
-        <li>Costo: {{ item.costo }}</li>
-        <li>Costo Flete: {{ item.costoFlete }}</li>
-        <li>Stock: {{ item.stock }}</li>
-        <li>Tiempo de produccion: {{ item.tiempoProduccion }}</li>
-        <li>Margen: {{ item.margen }}</li>
-        <li>Proveedor: {{ item.proveedor ? item.proveedor.nombre : null }}</li>
+        <li><strong>Nombre: </strong>{{ item.nombre }}</li>
+        <li>
+          <strong>PRODUCTO: </strong
+          >{{ item.producto ? item.producto.nombre : null }}
+        </li>
+        <li><strong>Costo: </strong>{{ item.costo }}</li>
+        <li><strong>Costo Flete: </strong>{{ item.costoFlete }}</li>
+        <li><strong>Stock: </strong>{{ item.stock }}</li>
+        <li>
+          <strong>Tiempo de produccion: </strong>{{ item.tiempoProduccion }}
+        </li>
+        <li><strong>Margen: </strong>{{ item.margen }}</li>
+        <li>
+          <strong>Proveedor: </strong
+          >{{ item.proveedor ? item.proveedor.nombre : null }}
+        </li>
       </ul>
     </details>
   </div>
@@ -97,35 +105,35 @@ export default {
     };
   },
   computed: {
-    partes: function () {
+    partes: function() {
       return this.$store.getters.allPartes;
     },
-    productos: function () {
+    productos: function() {
       return this.$store.getters.allProductos;
     },
-    proveedores: function () {
+    proveedores: function() {
       return this.$store.getters.allProveedores;
     },
   },
   methods: {
-    openDelModal: function (parte) {
+    openDelModal: function(parte) {
       Object.assign(this.selectedParte, parte);
       this.selectedParte = parte;
       this.$refs.del.openModal();
     },
-    openEditModal: function (parte) {
+    openEditModal: function(parte) {
       /* this.selectedParte = parte; */
       Object.assign(this.selectedParte, parte);
       this.selectedParte.producto = parte.producto.nombre;
       this.selectedParte.proveedor = parte.proveedor.nombre;
       this.$refs.edit.openModal();
     },
-    postParte: function () {
+    postParte: function() {
       console.log(this.selectedParte);
       this.$store.dispatch("postParte", this.selectedParte);
       this.$refs.edit.closeModal();
     },
-    deleteParte: function () {
+    deleteParte: function() {
       this.$store.dispatch("deleteParte", this.selectedParte);
       this.$refs.del.closeModal();
     },

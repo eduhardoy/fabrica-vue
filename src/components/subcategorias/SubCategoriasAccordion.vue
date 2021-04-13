@@ -19,7 +19,7 @@
         </div>
       </summary>
       <ul class="details_list">
-        <li>categoria: {{ item.categoria.nombre }}</li>
+        <li><strong>Categoria: </strong>{{ item.categoria.nombre }}</li>
       </ul>
     </details>
   </div>

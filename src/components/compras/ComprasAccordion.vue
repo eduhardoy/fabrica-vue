@@ -19,16 +19,22 @@
         </div>
       </summary>
       <ul class="details_list">
-         <!-- 
+        <!-- 
              Proveedor:
              Articulo:
              Orden Compra:
              Comprobante:
           -->
-        <li>Proveedor: {{ item.proveedor ? item.proveedor.nombre : null }}</li>
-        <li>Articulo: {{  item.producto ? item.producto.nombre : null  }}</li>
-        <li>Orden de compra: {{ item.ordenCompra }}</li>
-        <li>Comprobante: {{ item.comprobante }}</li>
+        <li>
+          <strong>Proveedor: </strong
+          >{{ item.proveedor ? item.proveedor.nombre : null }}
+        </li>
+        <li>
+          <strong>Articulo: </strong
+          >{{ item.producto ? item.producto.nombre : null }}
+        </li>
+        <li><strong>Orden de compra: </strong>{{ item.ordenCompra }}</li>
+        <li><strong>Comprobante: </strong>{{ item.comprobante }}</li>
       </ul>
     </details>
   </div>
@@ -90,26 +96,26 @@ export default {
     };
   },
   computed: {
-    compras: function () {
+    compras: function() {
       return this.$store.getters.allCompras;
     },
-    productos: function () {
+    productos: function() {
       return this.$store.getters.allProductos;
     },
-    proveedores: function () {
+    proveedores: function() {
       return this.$store.getters.allProveedores;
     },
-    subCategorias: function () {
+    subCategorias: function() {
       return this.$store.getters.allSubCategorias;
     },
   },
   methods: {
-    openDelModal: function (compra) {
+    openDelModal: function(compra) {
       Object.assign(this.selectedCompra, compra);
       this.selectedCompra = compra;
       this.$refs.del.openModal();
     },
-    openEditModal: function (compra) {
+    openEditModal: function(compra) {
       /* this.selectedCompra = compra; */
       Object.assign(this.selectedCompra, compra);
       this.selectedCompra.producto = compra.producto.nombre;
@@ -118,12 +124,12 @@ export default {
       this.selectedCompra.comprobante = compra.comprobante.nombre;
       this.$refs.edit.openModal();
     },
-    postCompra: function () {
+    postCompra: function() {
       console.log(this.selectedCompra);
       this.$store.dispatch("postCompra", this.selectedCompra);
       this.$refs.edit.closeModal();
     },
-    deleteCompra: function () {
+    deleteCompra: function() {
       this.$store.dispatch("deleteCompra", this.selectedCompra);
       this.$refs.del.closeModal();
     },

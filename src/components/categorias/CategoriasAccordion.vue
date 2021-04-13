@@ -19,7 +19,7 @@
         </div>
       </summary>
       <ul class="details_list">
-        <li>Descripcion: {{ item.descripcion }}</li>
+        <li><strong>Descripcion: </strong> {{ item.descripcion }}</li>
       </ul>
     </details>
   </div>

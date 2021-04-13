@@ -19,13 +19,13 @@
         </div>
       </summary>
       <ul class="details_list">
-        <li>Direccion: {{ item.direccion }}</li>
-        <li>Telefono: {{ item.telefono }}</li>
-        <li>Email: {{ item.email }}</li>
-        <li>CUIT: {{ item.cuit }}</li>
+        <li><strong>Direccion: </strong>{{ item.direccion }}</li>
+        <li><strong>Telefono: </strong>{{ item.telefono }}</li>
+        <li><strong>Email: </strong>{{ item.email }}</li>
+        <li><strong>CUIT: </strong>{{ item.cuit }}</li>
         <ul v-for="item2 in item.cuentas" v-bind:key="item2.id">
-          <li>CBU: {{ item2.cbu }}</li>
-          <li>BANCO: {{ item2.banco }}</li>
+          <li><strong>CBU: </strong>{{ item2.cbu }}</li>
+          <li><strong>BANCO: </strong>{{ item2.banco }}</li>
         </ul>
       </ul>
     </details>
