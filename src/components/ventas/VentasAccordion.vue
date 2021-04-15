@@ -18,10 +18,10 @@
         </div>
       </summary>
       <ul class="details_list">
-        <li>PRESUPUESTO: {{ item.presupuesto }}</li>
+        <li>ESTADO: {{ item.estado }}</li>
         <li>CLIENTE: {{ item.cliente ? item.cliente.nombre : null }}</li>
         <ul>
-          <strong>PRODUCTOS</strong>
+          <strong>PRODUCTOS:</strong>
           <li v-for="producto in item.productos" :key="producto._key">
             {{ producto.nombre }}
           </li>
@@ -43,51 +43,14 @@
       </button>
     </template>
   </ModalDelete>
-  <ModalEdit ref="edit">
-    <template v-slot:body>
-       <input v-model="newVenta.presupuesto" placeholder="PRESUPUESTO"/>
-      <input v-model="newVenta.cliente" placeholder="CLIENTE"/>
-      <!-- <select v-model="newVenta.cliente">
-        <option
-          v-for="item in clientes"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select> -->
-      <select v-model="newVenta.producto">
-        <option
-          v-for="item in productos"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select>
-      <div>
-        <button> Eliminar Articulo </button>
-        <button @click="addArticulo()"> Agregar Articulo </button>
-      </div>
-    </template>
-    <template v-slot:footer>
-      <button class="cancel_button" @click="$refs.edit.closeModal()">
-        CANCELAR
-      </button>
-      <button class="add_button" @click="postVenta(this.selectedVenta)">
-        MODIFICAR
-      </button>
-    </template>
-  </ModalEdit>
 </template>
 
 <script>
 import ModalDelete from "../Modals/ModalDelete.vue";
-import ModalEdit from "../Modals/ModalChange.vue";
 
 export default {
   name: "VentasAccordion",
-  components: { ModalDelete, ModalEdit },
+  components: { ModalDelete },
   data() {
     return {
       selectedVenta: {},
@@ -96,9 +59,6 @@ export default {
   computed: {
     ventas: function () {
       return this.$store.getters.allVentas;
-    },
-    presupuestos: function () {
-      return this.$store.getters.allPresupuestos;
     },
     clientes: function () {
       return this.$store.getters.allClientes;
@@ -113,19 +73,7 @@ export default {
       this.selectedVenta = venta;
       this.$refs.del.openModal();
     },
-    openEditModal: function (venta) {
-      /* this.selectedVenta = venta; */
-      Object.assign(this.selectedVenta, venta);
-      /* this.selectedVenta.producto = venta.producto.nombre;
-      this.selectedVenta.presupuesto = venta.presupuesto.nombre;
-      this.selectedVenta.cliente= venta.cliente.nombre; */
-      this.$refs.edit.openModal();
-    },
-    postVenta: function () {
-      console.log(this.selectedVenta);
-      this.$store.dispatch("postVenta", this.selectedVenta);
-      this.$refs.edit.closeModal();
-    },
+    
     deleteVenta: function () {
       this.$store.dispatch("deleteVenta", this.selectedVenta);
       this.$refs.del.closeModal();
@@ -135,7 +83,6 @@ export default {
     this.$store.dispatch("getVentas");
     this.$store.dispatch("getProductos");
     this.$store.dispatch("getClientes");
-    this.$store.dispatch("getPresupuestos");
   },
 };
 </script>

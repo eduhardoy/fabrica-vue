@@ -6,41 +6,49 @@
       </div>
     </div>
     <div class="venta_wrapper">
-      <select>
+      <select hidden>
         <option>presupuesto</option>
       </select>
       <div class="cliente">
-        <select>
-          <option>cliente</option>
-        </select>
+        <select v-model="newVenta.cliente">
+        <option v-for="item in clientes" :key="item._key" v-bind:value="item">
+          {{ item.nombre }}
+        </option>
+      </select>
         <button class="add__button" @click="openAddModal">
           <img src="./images/plus.svg" alt="" />
         </button>
       </div>
       <div class="productos">
-        <select size="10" multiple>
-          <option>producto1</option>
-          <option>producto2</option>
-          <option>producto3</option>
-          <option>producto4</option>
-          <option>producto5</option>
-          <option>producto6</option>
-          <option>producto7</option>
-          <option>producto8</option>
-          <option>producto9</option>
-          <option>producto10</option>
-          <option>producto11</option>
-          <option>producto12</option>
-          <option>producto13</option>
-          <option>producto14</option>
-          <option>producto15</option>
-          <option>producto16</option>
+        <select size="10" v-model="newVenta.productos" multiple>
+          <option v-for="item in productos" :key="item._key" v-bind:value="item">
+            {{item.nombre}}
+          </option>
         </select>
-        <button class="add__button" @click="openAddModal">
+        <button class="add__button">
           <img src="./images/plus.svg" alt="" />
         </button>
       </div>
-      <button>GENERAR VENTA</button>
+      <!-- <div class="productoss">
+          <select>
+            <option v-for="item in productos" :key="item._key" v-bind:value="item">
+              {{item.nombre}}
+            </option>
+          </select>
+          <div class="productoss__buttons">
+            <button class="add__button">
+              <img src="./images/plus.svg" alt="" />
+            </button>
+            <button class="del__button">
+              <img src="./images/plus.svg" alt="" />
+            </button>
+          </div> 
+      </div> -->
+      <select v-model="newVenta.estado">
+          <option value="pendiente">Pendiente</option>
+          <option value="finalizado">Finalizado</option>
+        </select>
+      <button @click="postVenta()">GENERAR VENTA</button>
     </div>
   </div>
   <ModalAdd ref="add"> 
@@ -102,7 +110,6 @@ export default {
   created() {
     this.$store.dispatch("getProductos");
     this.$store.dispatch("getClientes");
-    this.$store.dispatch("getPresupuestos");
   },
 };
 </script>
@@ -207,6 +214,55 @@ export default {
           height: 100%;
         }
       }
+    }
+
+    .productoss{
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      select {
+        border: 1px black solid;
+        width: 40%;
+        margin: 5px;
+        padding: 5px;
+        margin-left:60px;
+      }  
+      .productoss__buttons{
+.del__button {
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        background: rgb(128, 242, 128) ; 
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .add__button {
+        width: 17px;
+        height: 17px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        background: rgb(255, 57, 57);
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      }
+      
     }  
 
     button{

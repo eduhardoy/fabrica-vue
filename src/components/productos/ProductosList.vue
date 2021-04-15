@@ -24,8 +24,11 @@
       />
       <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
       <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
+      <input v-model="newProducto.medidas.alto" placeholder="ALTO"/>
+      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO"/>
+      <input v-model="newProducto.medidas.largo" placeholder="LARGO"/>
       <select v-model="newProducto.proveedor">
-        <option v-for="item in proveedores" :key="item._key">
+        <option v-for="item in proveedores" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
@@ -33,9 +36,14 @@
         <option
           v-for="item in subCategorias"
           :key="item._key"
-          v-bind:value="item.nombre"
+          v-bind:value="item"
         >
           {{ item.categoria.nombre }} - {{ item.nombre }}
+        </option>
+      </select>
+      <select size="5" v-model="newProducto.partes"  multiple >
+        <option v-for="item in partes" :key="item._key" v-bind:value="item">
+          {{ item.nombre }}
         </option>
       </select>
     </template>
@@ -56,7 +64,9 @@ export default {
   components: { ModalAdd },
   data() {
     return {
-      newProducto: {},
+      newProducto: {
+        medidas: {}
+      },
     };
   },
   computed: {
@@ -65,6 +75,9 @@ export default {
     },
     subCategorias: function() {
       return this.$store.getters.allSubCategorias;
+    },
+    partes: function() {
+      return this.$store.getters.allPartes;
     },
   },
   methods: {
@@ -79,6 +92,7 @@ export default {
   created() {
     this.$store.dispatch("getProveedores");
     this.$store.dispatch("getSubCategorias");
+    this.$store.dispatch("getPartes");
   },
 };
 </script>
