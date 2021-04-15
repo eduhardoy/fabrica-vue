@@ -66,7 +66,7 @@ export default {
     width: 50%;
     min-width: 350px;
     min-height: 550px;
-    height: 75%;
+    height: 90%;
     z-index: 99999;
     border-radius: 20px;
     background-color: white;
