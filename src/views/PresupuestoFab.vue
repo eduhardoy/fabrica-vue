@@ -137,78 +137,6 @@
           <div class="a4__items__unitario">$30.000</div>
           <div class="a4__items__importe">$300.000</div>
         </div>
-        <div class="a4__items__wrapper">
-          <div class="a4__items__item">D1</div>
-          <div class="a4__items__imagen">
-            <img src="./images/lampara.jpg" alt="" />
-          </div>
-          <div class="a4__items__descripcion">
-            <ul>
-              <li><strong>LAMPARA</strong></li>
-              <br />
-              <li><strong>Tipo:</strong> Exterior</li>
-              <li><strong>Descripcion:</strong> Frente sellado con resina</li>
-              <li><strong>Medida:</strong>25 x 25 x 25</li>
-            </ul>
-          </div>
-          <div class="a4__items__cantidad">10</div>
-          <div class="a4__items__unitario">$30.000</div>
-          <div class="a4__items__importe">$300.000</div>
-        </div>
-        <div class="a4__items__wrapper">
-          <div class="a4__items__item">D1</div>
-          <div class="a4__items__imagen">
-            <img src="./images/lampara.jpg" alt="" />
-          </div>
-          <div class="a4__items__descripcion">
-            <ul>
-              <li><strong>LAMPARA</strong></li>
-              <br />
-              <li><strong>Tipo:</strong> Exterior</li>
-              <li><strong>Descripcion:</strong> Frente sellado con resina</li>
-              <li><strong>Medida:</strong>25 x 25 x 25</li>
-            </ul>
-          </div>
-          <div class="a4__items__cantidad">10</div>
-          <div class="a4__items__unitario">$30.000</div>
-          <div class="a4__items__importe">$300.000</div>
-        </div>
-        <div class="a4__items__wrapper">
-          <div class="a4__items__item">D1</div>
-          <div class="a4__items__imagen">
-            <img src="./images/lampara.jpg" alt="" />
-          </div>
-          <div class="a4__items__descripcion">
-            <ul>
-              <li><strong>LAMPARA</strong></li>
-              <br />
-              <li><strong>Tipo:</strong> Exterior</li>
-              <li><strong>Descripcion:</strong> Frente sellado con resina</li>
-              <li><strong>Medida:</strong>25 x 25 x 25</li>
-            </ul>
-          </div>
-          <div class="a4__items__cantidad">10</div>
-          <div class="a4__items__unitario">$30.000</div>
-          <div class="a4__items__importe">$300.000</div>
-        </div>
-        <div class="a4__items__wrapper">
-          <div class="a4__items__item">D1</div>
-          <div class="a4__items__imagen">
-            <img src="./images/lampara.jpg" alt="" />
-          </div>
-          <div class="a4__items__descripcion">
-            <ul>
-              <li><strong>LAMPARA</strong></li>
-              <br />
-              <li><strong>Tipo:</strong> Exterior</li>
-              <li><strong>Descripcion:</strong> Frente sellado con resina</li>
-              <li><strong>Medida:</strong>25 x 25 x 25</li>
-            </ul>
-          </div>
-          <div class="a4__items__cantidad">10</div>
-          <div class="a4__items__unitario">$30.000</div>
-          <div class="a4__items__importe">$300.000</div>
-        </div>
         <div class="a4__footer">
           <div class="a4__subtotal">
             <div>SUBTOTAL</div>
@@ -378,8 +306,10 @@ export default {
       align-items: center;
       margin: 5px;
       padding-top: 10px;
+      height: 225px;
       img {
-        height: 225px;
+        max-width: 80%;
+        max-height: 225px;
       }
     }
     .a4__items__cantidad {
