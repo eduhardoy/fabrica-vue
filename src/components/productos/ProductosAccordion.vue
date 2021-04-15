@@ -43,7 +43,7 @@
             </li>
           </ul>
         </div>
-        <div>
+        <div class="details_list_image">
           <img src="./images/lampara.jpg" alt="" />
         </div>
       </ul>
@@ -75,6 +75,24 @@
       <input v-model="selectedProducto.medidas.alto" placeholder="ALTO"/>
       <input v-model="selectedProducto.medidas.ancho" placeholder="ANCHO"/>
       <input v-model="selectedProducto.medidas.largo" placeholder="LARGO"/>
+      <input
+        v-model="selectedProducto.costoFlete"
+        placeholder="COSTO DE FLETE"
+      />
+      <input
+        v-model="selectedProducto.margen"
+        placeholder="MARGEN DE GANANCIA"
+      />
+      <input
+        class="image__input"
+        type="file"
+        accept="image/png, image/jpeg, image/jpg"
+        v-on:change="handleFile"
+        id="imgfile"
+      />
+      <label class="image__input__label" for="imgfile"
+        >Seleccionar Imagen</label
+      >
       <select v-model="selectedProducto.proveedor">
         <option v-for="item in proveedores" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
@@ -131,6 +149,10 @@ export default {
     },
   },
   methods: {
+    handleFile: function(e) {
+      this.selectedProducto.imagen = e.target.files[0];
+      console.log(this.selectedProducto);
+    },
     openDelModal: function(producto) {
       Object.assign(this.selectedProducto, producto);
       this.selectedProducto = producto;
@@ -239,6 +261,11 @@ details[open] {
   text-align: start;
   padding: 15px;
   display: flex;
+  .details_list_image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   div {
     width: 50%;
     li {
@@ -262,5 +289,19 @@ details[open] {
       padding-bottom: 8px;
     }
   }
+}
+
+.image__input {
+  border: none;
+  display: none;
+}
+
+.image__input__label {
+  background-color: #f1f1f1;
+  border: black solid 1px;
+  height: 20px;
+  width: 40%;
+  margin: 5px;
+  padding: 5px;
 }
 </style>
