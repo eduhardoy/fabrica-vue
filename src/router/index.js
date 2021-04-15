@@ -11,7 +11,7 @@ import Clientes from "../views/Clientes.vue";
 import Compras from "../views/Compras.vue";
 import Ventas from "../views/Ventas.vue";
 import Venta from "../views/Venta.vue";
-import Presupuesto from "../views/Presupuesto.vue";
+import PresupuestoFab from "../views/PresupuestoFab.vue";
 
 const routes = [
   {
@@ -80,9 +80,9 @@ const routes = [
     component: Venta,
   },
   {
-    path: "/presupuesto",
-    name: "Presupuesto",
-    component: Presupuesto,
+    path: "/presupuestof",
+    name: "PresupuestoFab",
+    component: PresupuestoFab,
   },
 ];
 
