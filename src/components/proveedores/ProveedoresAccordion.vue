@@ -23,7 +23,7 @@
         <li><strong>Telefono: </strong>{{ item.telefono }}</li>
         <li><strong>Email: </strong>{{ item.email }}</li>
         <li><strong>CUIT: </strong>{{ item.cuit }}</li>
-        <ul v-for="item2 in item.cuentas" v-bind:key="item2.id">
+        <ul v-for="item2 in item.cuentasBanco" v-bind:key="item2.id">
           <li><strong>CBU: </strong>{{ item2.cbu }}</li>
           <li><strong>BANCO: </strong>{{ item2.banco }}</li>
         </ul>
@@ -55,7 +55,7 @@
       <input v-model="selectedProveedor.cuit" placeholder="CUIT" />
 
       <div
-        v-for="item in selectedProveedor.cuentas"
+        v-for="item in selectedProveedor.cuentasBanco"
         :key="item.cbu"
         class="cbu"
       >
@@ -64,7 +64,7 @@
       </div>
       <div>
         <button
-          v-if="selectedProveedor.cuentas.length > 1"
+          v-if="selectedProveedor.cuentasBanco.length > 1"
           @click="delCBU(selectedProveedor)"
         >
           ELIMINAR CBU
@@ -110,10 +110,10 @@ export default {
       this.$refs.edit.openModal();
     },
     addCBU: function(variable) {
-      variable.cuentas.push({ value: "" });
+      variable.cuentasBanco.push({ value: "" });
     },
     delCBU: function(variable) {
-      variable.cuentas.pop();
+      variable.cuentasBanco.pop();
     },
     getProveedores: function() {
       this.$store.dispatch("getProveedores");

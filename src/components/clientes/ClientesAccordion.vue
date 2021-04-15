@@ -20,11 +20,22 @@
       </summary>
       <ul class="details_list">
         <li><strong>Nombre: </strong>{{ item.nombre }}</li>
-        <li><strong>DNI: </strong>{{ item.dni }}</li>
-        <li><strong>CUIT: </strong>{{ item.cuit }}</li>
+        <li><strong>DNI o CUIT: </strong>{{ item.cuitOrDni }}</li>
         <li><strong>Direccion: </strong>{{ item.direccion }}</li>
         <li><strong>Telefono: </strong>{{ item.telefono }}</li>
         <li><strong>Email: </strong>{{ item.email }}</li>
+        <ul>
+            <strong>COMPRAS:</strong>
+            <li v-for="compra in item.compras" :key="compra._key">
+              {{ compra.presupuesto }}<!-- que campo?? -->
+            </li>
+        </ul>
+        <ul>
+            <strong>PRESUPUESTOS:</strong>
+            <li v-for="presupuesto in item.presupuesto" :key="presupuesto._key">
+              {{ presupuesto.fechaVencimiento }}<!-- que campo?? -->
+            </li>
+        </ul>
       </ul>
     </details>
   </div>
@@ -47,8 +58,7 @@
   <ModalEdit ref="edit">
     <template v-slot:body>
       <input v-model="selectedCliente.nombre" placeholder="NOMBRE" />
-      <input v-model="selectedCliente.dni" placeholder="DNI" />
-      <input v-model="selectedCliente.cuit" placeholder="CUIT" />
+      <input v-model="selectedCliente.cuitOrDni" placeholder="DNI o CUIT" />
       <input v-model="selectedCliente.direccion" placeholder="DIRECCION" />
       <input v-model="selectedCliente.telefono" placeholder="TELEFONO" />
       <input v-model="selectedCliente.email" placeholder="EMAIL" />

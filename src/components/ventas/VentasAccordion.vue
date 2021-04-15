@@ -1,7 +1,6 @@
 <template>
   <div class="accordion__container">
-    <details
-      class="accordion__box"
+    <details class="accordion__box"
       v-for="item in ventas"
       v-bind:key="item._key"
     >
@@ -27,10 +26,7 @@
             {{ producto.nombre }}
           </li>
         </ul>
-        <!-- 
-        <li>Costo: {{ item.costo }}</li>
-        <li>Costo Flete: {{ item.costoFlete }}</li>
-         -->
+        
       </ul>
     </details>
   </div>

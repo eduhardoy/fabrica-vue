@@ -19,22 +19,19 @@
         </div>
       </summary>
       <ul class="details_list">
-        <!-- 
-             Proveedor:
-             Articulo:
-             Orden Compra:
-             Comprobante:
-          -->
-        <li>
+        
+        <!-- <li>
           <strong>Proveedor: </strong
           >{{ item.proveedor ? item.proveedor.nombre : null }}
         </li>
         <li>
           <strong>Articulo: </strong
           >{{ item.producto ? item.producto.nombre : null }}
-        </li>
-        <li><strong>Orden de compra: </strong>{{ item.ordenCompra }}</li>
-        <li><strong>Comprobante: </strong>{{ item.comprobante }}</li>
+        </li> -->
+        <li><strong>Monto: </strong>{{ item.monto }}</li>
+        <li><strong>Descripcion: </strong>{{ item.descripcion }}</li>
+        <li><strong>Motivo: </strong>{{ item.motivo }}</li>
+        <li><strong>Vendedor: </strong>{{ item.vendedor }}</li>
       </ul>
     </details>
   </div>
@@ -53,7 +50,7 @@
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
-      <select v-model="selectedCompra.proveedor">
+      <!-- <select v-model="selectedCompra.proveedor">
         <option
           v-for="item in proveedores"
           :key="item._key"
@@ -70,7 +67,11 @@
         >
           {{ item.nombre }}
         </option>
-      </select>
+      </select> -->
+      <input v-model="selectedCompra.monto" placeholder="MONTO" />
+      <input v-model="selectedCompra.descripcion" placeholder="DESCRIPCION" />
+      <input v-model="selectedCompra.motivo" placeholder="MOTIVO" />
+      <input v-model="selectedCompra.vendedor" placeholder="VENDEDOR" />
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.edit.closeModal()">

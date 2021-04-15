@@ -115,10 +115,6 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: rgb(240, 240, 240);
-  border: solid black 1px;
-  border-radius: 20px;
-  box-shadow: 0 0 14px 0 #7a7a7a;
   
   .venta__head {
     height: 15%;

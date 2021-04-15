@@ -1,6 +1,6 @@
 import Axios from "axios";
 
-const URL = "http://190.106.132.208:3005/sub-categorias";
+const URL = "http://198.58.123.120:3005/subCategorias";
 
 export default {
     state: {

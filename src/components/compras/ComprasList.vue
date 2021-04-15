@@ -5,7 +5,7 @@
     </button>
     <div class="compras__head">
       <div class="compras_head_title">
-        <h2>COMPRAS  *falta back*</h2>
+        <h2>COMPRAS</h2>
       </div>
     </div>
     <div class="compras_accordion_wrapper">
@@ -14,7 +14,7 @@
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
-      <select v-model="selectedCompra.proveedor">
+      <!-- <select v-model="selectedCompra.proveedor">
         <option
           v-for="item in proveedores"
           :key="item._key"
@@ -31,7 +31,11 @@
         >
           {{ item.nombre }}
         </option>
-      </select>
+      </select> -->
+      <input v-model="selectedCompra.monto" placeholder="MONTO" />
+      <input v-model="selectedCompra.descripcion" placeholder="DESCRIPCION" />
+      <input v-model="selectedCompra.motivo" placeholder="MOTIVO" />
+      <input v-model="selectedCompra.vendedor" placeholder="VENDEDOR" />
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">

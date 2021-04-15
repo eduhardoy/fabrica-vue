@@ -22,7 +22,7 @@
           <li>
             <strong>Tiempo de Produccion: </strong>{{ item.tiempoProduccion }}
           </li>
-          <li><strong>Costo de Felte: </strong>{{ item.costoFlete }}</li>
+          <li><strong>Costo de Flete: </strong>{{ item.costoFlete }}</li>
           <li><strong>Margen: </strong>{{ item.margen }}</li>
           <li>
             <strong>Proveedor: </strong

@@ -15,8 +15,7 @@
   <ModalAdd ref="add">
     <template v-slot:body>
       <input v-model="newCliente.nombre" placeholder="NOMBRE" />
-      <input v-model="newCliente.dni" placeholder="DNI" />
-      <input v-model="newCliente.cuit" placeholder="CUIT" />
+      <input v-model="newCliente.cuitOrDni" placeholder="DNI o CUIT" />
       <input v-model="newCliente.direccion" placeholder="DIRECCION" />
       <input v-model="newCliente.telefono" placeholder="TELEFONO"/>
       <input v-model="newCliente.email" placeholder="EMAIL" />

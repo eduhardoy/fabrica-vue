@@ -1,8 +1,8 @@
 <template>
   <div class="ventas">
-    <button class="add__button" @click="openAddModal">
+    <!-- <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
-    </button>
+    </button> --> <!-- SACAR ESTE MODAL -->
     <div class="ventas__head">
       <div class="ventas_head_title">
         <h2>VENTAS</h2>
@@ -12,7 +12,7 @@
       <slot></slot>
     </div>
   </div>
-  <ModalAdd ref="add">
+  <ModalAdd ref="add"> <!-- SACAR ESTE MODAL -->
     <template v-slot:body>
       <input v-model="newVenta.presupuesto" placeholder="PRESUPUESTO"/>
       <input v-model="newVenta.cliente" placeholder="CLIENTE"/>
