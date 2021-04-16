@@ -1,22 +1,26 @@
 <template>
   <div class="accordion__container">
-    <details class="accordion__box"
+    <details
+      class="accordion__box"
       v-for="item in ventas"
       v-bind:key="item._key"
     >
       <summary>
         <div class="summary__title">
-          <h3>{{ item.nombre }}</h3>
+          <h3>NOMBRE:{{ item.nombre }}</h3>
         </div>
         <div class="summary__buttons">
-          <button @click="openEditModal(item)">
-            <img src="./images/pencil.svg" alt="" />EDITAR
-          </button>
           <button @click="openDelModal(item)">
             <img src="./images/trash.svg" alt="" />ELIMINAR
           </button>
         </div>
       </summary>
+      <div class="venta__wrapper__button">
+        <button>VER FACTURA</button>
+        <button>VER FACTURA 2</button>
+        <button>VER PRESUPUESTO</button>
+        <button>FINALIZAR VENTA</button>
+      </div>
       <ul class="details_list">
         <li>ESTADO: {{ item.estado }}</li>
         <li>CLIENTE: {{ item.cliente ? item.cliente.nombre : null }}</li>
@@ -26,7 +30,6 @@
             {{ producto.nombre }}
           </li>
         </ul>
-        
       </ul>
     </details>
   </div>
@@ -57,24 +60,24 @@ export default {
     };
   },
   computed: {
-    ventas: function () {
+    ventas: function() {
       return this.$store.getters.allVentas;
     },
-    clientes: function () {
+    clientes: function() {
       return this.$store.getters.allClientes;
     },
-    productos: function () {
+    productos: function() {
       return this.$store.getters.allProductos;
     },
   },
   methods: {
-    openDelModal: function (venta) {
+    openDelModal: function(venta) {
       Object.assign(this.selectedVenta, venta);
       this.selectedVenta = venta;
       this.$refs.del.openModal();
     },
-    
-    deleteVenta: function () {
+
+    deleteVenta: function() {
       this.$store.dispatch("deleteVenta", this.selectedVenta);
       this.$refs.del.closeModal();
     },
@@ -87,4 +90,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.venta__wrapper__button {
+  display: flex;
+  justify-content: center;
+  button {
+    padding: 10px 10px;
+    margin: 10px;
+    color: white;
+    outline: none;
+    border: none;
+    background-color: black;
+    border-radius: 8px;
+  }
+}
+</style>
