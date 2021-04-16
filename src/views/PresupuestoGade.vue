@@ -1,7 +1,7 @@
 <template>
   <div class="a4__container">
     <div class="a4">
-      <ComprobanteFabHeader />
+      <ComprobanteGadeHeader />
       <div class="a4__clients__wrapper">
         <div class="a4__client">
           <h3>EDUARDO HARDOY</h3>
@@ -168,7 +168,7 @@
               </p>
             </div>
           </div>
-          <div class="a4__vendedor"><div>VERONICA MILANO</div></div>
+          <div class="a4__vendedor"><div>VENDEDOR</div></div>
         </div>
       </div>
     </div>
@@ -176,12 +176,12 @@
 </template>
 
 <script>
-import ComprobanteFabHeader from "../components/comprobantes/ComprobanteFabHeader";
+import ComprobanteGadeHeader from "../components/comprobantes/ComprobanteGadeHeader";
 
 export default {
-  name: "PresupuestoFab",
+  name: "PresupuestoGade",
   components: {
-    ComprobanteFabHeader,
+    ComprobanteGadeHeader,
   },
 };
 </script>

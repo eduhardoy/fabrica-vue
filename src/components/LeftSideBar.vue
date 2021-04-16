@@ -10,7 +10,7 @@
       <img src="./images/presupuesto.png" alt="" />
       <p>PRESUPUESTO</p>
     </router-link>
-    <router-link to="/productos2" class="leftside_button">
+    <router-link to="/venta" class="leftside_button">
       <img src="./images/sell.png" alt="" />
       <p>VENTA</p>
     </router-link>
@@ -100,7 +100,7 @@ export default {
     font-weight: 700;
   }
   img {
-    width: 60%;
+    width: 50%;
   }
 }
 </style>

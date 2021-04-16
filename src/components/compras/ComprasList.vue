@@ -1,8 +1,5 @@
 <template>
   <div class="compras">
-    <button class="add__button" @click="openAddModal">
-      <img src="./images/plus.svg" alt="" />
-    </button>
     <div class="compras__head">
       <div class="compras_head_title">
         <h2>COMPRAS</h2>
@@ -58,25 +55,25 @@ export default {
     };
   },
   computed: {
-    productos: function () {
+    productos: function() {
       return this.$store.getters.allProductos;
     },
-    proveedores: function () {
+    proveedores: function() {
       return this.$store.getters.allProveedores;
     },
-    ordenesCompras: function () {
+    ordenesCompras: function() {
       return this.$store.getters.allOrdenesCompras;
     },
-    comprobantes: function () {
+    comprobantes: function() {
       return this.$store.getters.allComprobantes;
     },
   },
 
   methods: {
-    openAddModal: function () {
+    openAddModal: function() {
       this.$refs.add.openModal();
     },
-    postCompra: function () {
+    postCompra: function() {
       this.$store.dispatch("postCompra", this.newCompra);
       this.$refs.add.closeModal();
     },
