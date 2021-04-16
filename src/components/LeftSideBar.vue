@@ -100,7 +100,7 @@ export default {
     font-weight: 700;
   }
   img {
-    width: 60%;
+    width: 50%;
   }
 }
 </style>

@@ -10,9 +10,10 @@ import SubCategorias from "../views/SubCategorias.vue";
 import Clientes from "../views/Clientes.vue";
 import Compras from "../views/Compras.vue";
 import Ventas from "../views/Ventas.vue";
-import Venta from "../views/Venta.vue";
+import NewVenta from "../views/NewVenta.vue";
 import PresupuestoFab from "../views/PresupuestoFab.vue";
 import Presupuesto from "../views/Presupuesto.vue";
+import PresupuestoGade from "../views/PresupuestoGade.vue";
 
 const routes = [
   {
@@ -77,8 +78,8 @@ const routes = [
   },
   {
     path: "/venta",
-    name: "Venta",
-    component: Venta,
+    name: "NewVenta",
+    component: NewVenta,
   },
   {
     path: "/presupuesto",
@@ -89,6 +90,11 @@ const routes = [
     path: "/presupuestof",
     name: "PresupuestoFab",
     component: PresupuestoFab,
+  },
+  {
+    path: "/presupuestog",
+    name: "PresupuestoGade",
+    component: PresupuestoGade,
   },
 ];
 

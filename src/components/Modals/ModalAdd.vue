@@ -63,10 +63,10 @@ export default {
     align-items: center;
   }
   &__dialog {
-    width: 50%;
-    min-width: 350px;
+    max-width: 80%;
+    min-width: 60%;
     min-height: 550px;
-    height: 90%;
+    height: 80%;
     z-index: 99999;
     border-radius: 20px;
     background-color: white;
@@ -100,9 +100,9 @@ export default {
   }
   &__body {
     height: 70%;
-    width: 80%;
+    width: 90%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
@@ -122,17 +122,21 @@ export default {
     }
     input {
       border: 1px black solid;
-      height: 20px;
-      width: 40%;
+      height: 25px;
+      width: 30%;
+      min-width: 250px;
       margin: 5px;
       padding: 5px;
+      font-size: 20px;
     }
     select {
       border: 1px black solid;
-      /* height: 30px; */
+      min-height: 30px;
+      min-width: 250px;
       width: 30%;
       margin: 5px;
       padding: 5px;
+      text-align: center;
     }
   }
   &__footer {

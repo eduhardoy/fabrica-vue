@@ -309,11 +309,14 @@ details[open] {
 }
 
 .image__input__label {
-  background-color: #f1f1f1;
+  background-color: black;
   border: black solid 1px;
-  height: 20px;
-  width: 40%;
+  height: 25px;
+  min-width: 250px;
+  width: 30%;
   margin: 5px;
   padding: 5px;
+  color: white;
+  font-size: 18px;
 }
 </style>
