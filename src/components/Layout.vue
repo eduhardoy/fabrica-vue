@@ -5,13 +5,13 @@
         <img src="./images/home.png" alt="" />
       </button>
     </router-link>
-    <button class="menu__button"><img src="./images/menu.png" alt="" /></button>
     <div class="header__loged_wrapper">
       <h1 class="header__loged__wrapper__title">
         FABRICA DE LUZ
       </h1>
     </div>
   </header>
+  <LeftSideBar></LeftSideBar>
   <div class="container">
     <div class="container__area">
       <slot></slot>
@@ -20,32 +20,19 @@
 </template>
 
 <script>
+import LeftSideBar from "./LeftSideBar";
+
 export default {
   name: "Layout",
+  components: {
+    LeftSideBar,
+  },
 };
 </script>
 
 <style lang="scss" scoped>
-.menu__button {
-  width: 64px;
-  height: 64px;
-  position: absolute;
-  left: 0;
-  top: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: none;
-  outline: none;
-  background: transparent;
-  img {
-    color: white;
-    height: 50%;
-  }
-}
-
 .home__button {
-  width: 64px;
+  width: 80px;
   height: 64px;
   position: absolute;
   right: 0;
@@ -56,6 +43,7 @@ export default {
   border: none;
   outline: none;
   background: transparent;
+  cursor: pointer;
   img {
     color: white;
     height: 50%;

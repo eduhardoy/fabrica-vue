@@ -64,17 +64,26 @@
     <template v-slot:body>
       <input v-model="selectedProducto.nombre" placeholder="NOMBRE" />
       <input v-model="selectedProducto.costo" placeholder="COSTO" />
-      <input v-model="selectedProducto.precioVenta" placeholder="PRECIO DE VENTA" />
+      <input
+        v-model="selectedProducto.precioVenta"
+        placeholder="PRECIO DE VENTA"
+      />
       <input v-model="selectedProducto.stock" placeholder="STOCK" />
       <input
         v-model="selectedProducto.tiempoProduccion"
         placeholder="TIEMPO DE PRODUCCION"
       />
-      <input v-model="selectedProducto.costoFlete" placeholder="COSTO DE FLETE" />
-      <input v-model="selectedProducto.margen" placeholder="MARGEN DE GANANCIA" />
-      <input v-model="selectedProducto.medidas.alto" placeholder="ALTO"/>
-      <input v-model="selectedProducto.medidas.ancho" placeholder="ANCHO"/>
-      <input v-model="selectedProducto.medidas.largo" placeholder="LARGO"/>
+      <input
+        v-model="selectedProducto.costoFlete"
+        placeholder="COSTO DE FLETE"
+      />
+      <input
+        v-model="selectedProducto.margen"
+        placeholder="MARGEN DE GANANCIA"
+      />
+      <input v-model="selectedProducto.medidas.alto" placeholder="ALTO" />
+      <input v-model="selectedProducto.medidas.ancho" placeholder="ANCHO" />
+      <input v-model="selectedProducto.medidas.largo" placeholder="LARGO" />
       <input
         v-model="selectedProducto.costoFlete"
         placeholder="COSTO DE FLETE"
@@ -87,14 +96,17 @@
         class="image__input"
         type="file"
         accept="image/png, image/jpeg, image/jpg"
-        v-on:change="handleFile"
         id="imgfile"
       />
       <label class="image__input__label" for="imgfile"
         >Seleccionar Imagen</label
       >
       <select v-model="selectedProducto.proveedor">
-        <option v-for="item in proveedores" :key="item._key" v-bind:value="item">
+        <option
+          v-for="item in proveedores"
+          :key="item._key"
+          v-bind:value="item"
+        >
           {{ item.nombre }}
         </option>
       </select>
@@ -107,7 +119,7 @@
           {{ item.categoria.nombre }} - {{ item.nombre }}
         </option>
       </select>
-      <select v-model="selectedProducto.partes"  multiple >
+      <select v-model="selectedProducto.partes" multiple>
         <option v-for="item in partes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
