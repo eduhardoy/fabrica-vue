@@ -1,18 +1,18 @@
 <template>
   <Layout>
-    <VentaGenerador/>
+    <PresupuestoNew/>
   </Layout>
 </template>
 
 <script>
 import Layout from "@/components/Layout.vue";
-import VentaGenerador from "@/components/ventas/VentaGenerador.vue";
+import PresupuestoNew from "@/components/presupuesto/PresupuestoNew.vue";
 
 export default {
   name: "Home",
   components: {
     Layout,
-    VentaGenerador,
+    PresupuestoNew,
   },
 };
 </script>

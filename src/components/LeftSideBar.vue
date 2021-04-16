@@ -6,11 +6,11 @@
     <img src="./images/menu.png" alt="" />
   </button>
   <div class="leftside" v-show="menu == 'open'">
-    <router-link to="/productos1" class="leftside_button">
+    <router-link to="/presupuesto" class="leftside_button">
       <img src="./images/presupuesto.png" alt="" />
       <p>PRESUPUESTO</p>
     </router-link>
-    <router-link to="/productos2" class="leftside_button">
+    <router-link to="/venta" class="leftside_button">
       <img src="./images/sell.png" alt="" />
       <p>VENTA</p>
     </router-link>
