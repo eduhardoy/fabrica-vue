@@ -5,6 +5,11 @@
         <img src="./images/home.png" alt="" />
       </button>
     </router-link>
+
+    <button class="back__button" @click="$router.go(-1)">
+      <img src="./images/atras.png" alt="" />
+    </button>
+
     <div class="header__loged_wrapper">
       <h1 class="header__loged__wrapper__title">
         FABRICA DE LUZ
@@ -31,6 +36,26 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.back__button {
+  width: 80px;
+  height: 64px;
+  z-index: 999999;
+  position: absolute;
+  left: 80px;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  img {
+    color: white;
+    height: 70%;
+  }
+}
+
 .home__button {
   width: 80px;
   height: 64px;
