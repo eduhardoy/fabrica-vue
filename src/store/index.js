@@ -7,6 +7,7 @@ import partes from './partes/partes'
 import clientes from './clientes/clientes'
 import compras from './compras/compras'
 import ventas from './ventas/ventas'
+import presupuestos from './presupuestos/presupuestos'
 
 export default createStore({
   modules: {
@@ -17,6 +18,7 @@ export default createStore({
     partes,
     clientes,
     compras,
-    ventas
+    ventas,
+    presupuestos
   }
 })
