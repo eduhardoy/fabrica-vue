@@ -5,7 +5,24 @@
   >
     <img src="./images/menu.png" alt="" />
   </button>
-  <div class="leftSide" v-show="menu == 'open'"></div>
+  <div class="leftside" v-show="menu == 'open'">
+    <router-link to="/productos1" class="leftside_button">
+      <img src="./images/presupuesto.png" alt="" />
+      <p>PRESUPUESTO</p>
+    </router-link>
+    <router-link to="/productos2" class="leftside_button">
+      <img src="./images/sell.png" alt="" />
+      <p>VENTA</p>
+    </router-link>
+    <router-link to="/productos3" class="leftside_button">
+      <img src="./images/compra.png" alt="" />
+      <p>COMPRA</p>
+    </router-link>
+    <router-link to="/productos4" class="leftside_button">
+      <img src="./images/user.png" alt="" />
+      <p>CLIENTE</p>
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -43,7 +60,7 @@ export default {
   }
 }
 
-.leftSide {
+.leftside {
   position: absolute;
   bottom: 0;
   left: 0;
@@ -53,10 +70,37 @@ export default {
   background-color: #343a40;
   flex-direction: column;
   justify-content: flex-start;
-  div {
-    img {
-      width: 40px;
+}
+
+.leftside_button {
+  margin-top: 30px;
+  height: 64px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  background-color: transparent;
+  color: white;
+  border: none;
+  outline: none;
+  overflow: visible;
+  font-size: 1.5rem;
+  text-align: center;
+  text-decoration: none;
+  :hover {
+    p {
+      display: block;
     }
+  }
+  p {
+    display: block;
+    font-size: 10px;
+    font-family: "Lato";
+    font-weight: 700;
+  }
+  img {
+    width: 60%;
   }
 }
 </style>
