@@ -7,7 +7,7 @@
     >
       <summary>
         <div class="summary__title">
-          <h3>NOMBRE:{{ item.nombre }}</h3>
+          <h3>{{ item.id }}</h3>
         </div>
         <div class="summary__buttons">
           <button @click="openDelModal(item)">
@@ -22,10 +22,16 @@
         <button>FINALIZAR VENTA</button>
       </div>
       <ul class="details_list">
-        <li>ESTADO: {{ item.estado }}</li>
-        <li>CLIENTE: {{ item.cliente ? item.cliente.nombre : null }}</li>
+        <li>
+          <strong>Cliente:</strong>
+          {{ item.cliente ? item.cliente.nombre : null }}
+        </li>
+        <li><strong>Estado: </strong> {{ item.estado }}</li>
+        <li><strong>Monto Total: </strong> {{ item.montoTotal }}</li>
+        <li><strong>Monto Pagado: </strong> {{ item.montoPagado }}</li>
+        <li><strong>Monto Pendiente: </strong> {{ item.montoPendiente }}</li>
         <ul>
-          <strong>PRODUCTOS:</strong>
+          <strong>Productos:</strong>
           <li v-for="producto in item.productos" :key="producto._key">
             {{ producto.nombre }}
           </li>
@@ -90,7 +96,7 @@ export default {
 };
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .venta__wrapper__button {
   display: flex;
   justify-content: center;
@@ -103,5 +109,28 @@ export default {
     background-color: black;
     border-radius: 8px;
   }
+}
+
+.details_list {
+  ul {
+    list-style: none;
+    text-align: start;
+    padding: 10px;
+    padding-top: 25px;
+    li {
+      padding: 0px;
+      padding-top: 8px;
+      padding-bottom: 8px;
+    }
+  }
+  li {
+    padding: 8px;
+  }
+  img {
+    width: 50%;
+  }
+}
+strong {
+  font-weight: 700;
 }
 </style>
