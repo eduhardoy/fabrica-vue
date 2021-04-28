@@ -5,15 +5,18 @@
   <div class="a4__hero">
     <div class="a4__direccion">
       <br />
-      <p>Av. Sarmiento 1992 Resistencia Chaco | +54 362 4570305</p>
-      <p>Serrano 1308 CABA | +54 11 4777 1460</p>
-      <p>Arenales 1239 Pasaje Rue des Artisans CABA | +54 11 4811 6356</p>
+      <p>Av. Sarmiento 1992</p>
+      <p>Resistencia - Chaco</p>
+      <p>Tel: 362 - 525883</p>
+      <br />
     </div>
     <div class="a4__redes">
-      <p><img src="./images/facebook.png" alt="" />fabricadeluz.ba</p>
+      <br />
+      <p>
+        <img src="./images/correo.png" alt="" />gadedeco.resistencia@gmail.com
+      </p>
       <p><img src="./images/instagram.png" alt="" />gade.deco</p>
-      <p><img src="./images/gorjeo.png" alt="" />fabricadeluz.ba</p>
-      <p>www.fabricadeluz.com</p>
+      <br />
     </div>
   </div>
 </template>
