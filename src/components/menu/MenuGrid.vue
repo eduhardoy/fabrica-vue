@@ -18,8 +18,8 @@
     <div class="Gastos">
       <a href=""><div></div></a>
     </div>
-    <div class="Inventario">
-      <a href=""><div></div></a>
+    <div class="Presupuestos">
+      <router-link to="/presupuestos"><div>PRESUPUESTOS</div></router-link>
     </div>
     <div class="Contabilidad">
       <a href=""><div></div></a>
