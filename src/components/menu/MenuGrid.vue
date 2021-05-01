@@ -16,7 +16,7 @@
       <router-link to="/ventas"><div>VENTAS</div></router-link>
     </div>
     <div class="Gastos">
-      <a href=""><div></div></a>
+      <router-link to="/gastos"><div>GASTOS</div></router-link>
     </div>
     <div class="Presupuestos">
       <router-link to="/presupuestos"><div>PRESUPUESTOS</div></router-link>
