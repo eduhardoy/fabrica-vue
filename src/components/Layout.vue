@@ -5,6 +5,11 @@
         <img src="./images/home.png" alt="" />
       </button>
     </router-link>
+    <router-link to="/vendedores">
+      <button class="vendedor__button">
+        <img src="./images/vendedor.png" alt="" />
+      </button>
+    </router-link>
 
     <button class="back__button" @click="$router.go(-1)">
       <img src="./images/atras.png" alt="" />
@@ -61,6 +66,25 @@ export default {
   height: 64px;
   position: absolute;
   right: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  background: transparent;
+  cursor: pointer;
+  img {
+    color: white;
+    height: 50%;
+  }
+}
+
+.vendedor__button {
+  width: 80px;
+  height: 64px;
+  position: absolute;
+  right: 80px;
   top: 0;
   display: flex;
   justify-content: center;

@@ -14,6 +14,7 @@ import NewVenta from "../views/NewVenta.vue";
 import PresupuestoFab from "../views/PresupuestoFab.vue";
 import Presupuesto from "../views/Presupuesto.vue";
 import PresupuestoGade from "../views/PresupuestoGade.vue";
+import Vendedores from "../views/Vendedores.vue";
 
 const routes = [
   {
@@ -95,6 +96,11 @@ const routes = [
     path: "/presupuestog",
     name: "PresupuestoGade",
     component: PresupuestoGade,
+  },
+  {
+    path: "/vendedores",
+    name: "Vendedores",
+    component: Vendedores,
   },
 ];
 
