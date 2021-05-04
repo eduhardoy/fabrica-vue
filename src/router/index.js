@@ -102,7 +102,9 @@ const routes = [
     path: "/vendedores",
     name: "Vendedores",
     component: Vendedores,
-    path: "/gastos",
+  }, 
+  {  
+  path: "/gastos",
     name: "Gastos",
     component: Gastos,
   },

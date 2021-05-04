@@ -6,7 +6,7 @@
     >
       <summary>
         <div class="summary__title">
-          <h3>Test maquetando</h3>
+          <h3>Test maquetado</h3>
         </div>
         <div class="summary__buttons">
           <button @click="openEditModal(item)">
