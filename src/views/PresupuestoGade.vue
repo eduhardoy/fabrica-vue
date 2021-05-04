@@ -31,9 +31,7 @@
       <div class="a4__items__list">
         <div class="a4__items__wrapper">
           <div class="a4__items__item">D1</div>
-          <div class="a4__items__imagen">
-            <img src="./images/lampara.jpg" alt="" />
-          </div>
+          <div class="a4__items__imagen"></div>
           <div class="a4__items__descripcion">
             <ul>
               <li><strong>LAMPARA</strong></li>
@@ -163,8 +161,7 @@
                 - Nuestros productos se retiran exclusivamente por el local.
               </p>
               <p>
-                - Esta cotización es por la provición de los artefactos. No
-                incluye instalación.
+                - Esta cotización no incluye flete interno.
               </p>
             </div>
           </div>
