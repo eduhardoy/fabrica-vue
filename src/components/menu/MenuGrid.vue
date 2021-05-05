@@ -22,10 +22,10 @@
       <router-link to="/presupuestos"><div>PRESUPUESTOS</div></router-link>
     </div>
     <div class="Contabilidad">
-      <a href=""><div></div></a>
+      <router-link to="/contaEstad"><div>CONTABILIDAD</div></router-link>
     </div>
-    <div class="Estadisticas">
-      <a href=""><div></div></a>
+    <div class="Inventario">
+      <router-link to="/inventario"><div>INVENTARIO</div></router-link>
     </div>
   </div>
 </template>
@@ -48,9 +48,9 @@ export default {
     "Articulos Compras"
     "Articulos Ventas"
     "Clientes Gastos"
-    "Clientes Inventario"
+    "Clientes Presupuestos"
     "Proveedores Contabilidad"
-    "Proveedores Estadisticas";
+    "Proveedores Inventario";
   & div {
     display: flex;
     justify-content: center;
@@ -97,13 +97,13 @@ export default {
 .Gastos {
   grid-area: Gastos;
 }
-.Inventario {
-  grid-area: Inventario;
+.Presupuestos {
+  grid-area: Presupuestos;
 }
 .Contabilidad {
   grid-area: Contabilidad;
 }
-.Estadisticas {
-  grid-area: Estadisticas;
+.Inventario {
+  grid-area: Inventario;
 }
 </style>

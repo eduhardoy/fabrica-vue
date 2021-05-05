@@ -1,8 +1,5 @@
 <template>
   <div class="presupuestos">
-    <!-- <button class="add__button" @click="openAddModal">
-      <img src="./images/plus.svg" alt="" />
-    </button> --> <!-- SACAR ESTE MODAL -->
     <div class="presupuestos__head">
       <div class="presupuestos_head_title">
         <h2>PRESUPUESTOS</h2>
@@ -18,28 +15,35 @@
 </template>
 
 <script>
-//import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
-  name: "presupuestosList",
+  name: "PresupuestosList",
   data() {
     return {
-      newpresupuesto: {},
+      newPresupuesto: {},
     };
   },
   //TRAIGO DEL STORE, LOS DATOS NECESARIOS PARA ESTE MODULO
   computed: {
-    productos: function () {
-      return this.$store.getters.allProductos;
+    presupuestos: function() {
+      return this.$store.getters.allPresupuestos;
     },
-    clientes: function () {
+    clientes: function() {
       return this.$store.getters.allClientes;
     },
+    productos: function() {
+      return this.$store.getters.allProductos;
+    },
+    partes: function() {
+      return this.$store.getters.allPartes;
+    },
   },
+  methods: {},
   created() {
     this.$store.dispatch("getProductos");
     this.$store.dispatch("getClientes");
     this.$store.dispatch("getPresupuestos");
+    this.$store.dispatch("getPartes");
   },
 };
 </script>

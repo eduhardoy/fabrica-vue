@@ -15,6 +15,11 @@ import PresupuestoFab from "../views/PresupuestoFab.vue";
 import Presupuesto from "../views/Presupuesto.vue";
 import PresupuestoGade from "../views/PresupuestoGade.vue";
 import Presupuestos from "../views/Presupuestos.vue";
+import Gastos from "../views/Gastos.vue";
+import ContaEstad from "../views/ContaEstad.vue";
+import Contabilidad from "../views/Contabilidad.vue";
+import Estadistica from "../views/Estadistica.vue";
+import Inventario from "../views/Inventario.vue";
 
 const routes = [
   {
@@ -78,14 +83,44 @@ const routes = [
     component: Ventas,
   },
   {
+    path: "/gastos",
+    name: "Gastos",
+    component: Gastos,
+  },
+  {
     path: "/venta",
     name: "NewVenta",
     component: NewVenta,
   },
+  //presupuestos
   {
     path: "/presupuesto",
     name: "Presupuesto",
     component: Presupuesto,
+  },
+  //model contabilidad-estadistica
+  {
+    path: "/contaEstad",
+    name: "ContaEstad",
+    component: ContaEstad,
+  },
+  //contabilidad
+  {
+    path: "/contabilidad",
+    name: "Contabilidad",
+    component: Contabilidad,
+  },
+  //estadistica
+  {
+    path: "/estadistica",
+    name: "Estadistica",
+    component: Estadistica
+  },
+  //inventario
+  {
+    path: "/inventario",
+    name: "Inventario",
+    component: Inventario,
   },
   {
     path: "/presupuestof",

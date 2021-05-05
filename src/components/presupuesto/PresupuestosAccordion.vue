@@ -54,7 +54,8 @@
         CANCELAR
       </button>
       <button class="cancel_button" 
-      @click="deletePresupuesto(this.selectedPresupuesto)">
+      @click="deletePresupuesto(this.selectedPresupuesto)"
+      >
         ELIMINAR
       </button>
     </template>
@@ -88,7 +89,6 @@ export default {
   },
   methods: {
     openDelModal: function(presupuesto) {
-      //Object.assign(this.selectedPresupuesto, presupuesto);
       this.selectedPresupuesto = presupuesto;
       this.$refs.del.openModal();
     },
@@ -104,10 +104,10 @@ export default {
       this.$store.dispatch("getProductos", this.presupuesto);
       this.$refs.del.closeModal();
     },
-    // getPartes: function() {
-    //   this.#$store.dispatch("getPartes", this.presupuesto);
-    //   this.$refs.del.closeModal();
-    // },
+    getPartes: function() {
+      this.$store.dispatch("deletePresupuesto", this.presupuesto)
+      this.$refs.del.closeModal()
+    },
   },
   created() {
     this.$store.dispatch("getPresupuestos");

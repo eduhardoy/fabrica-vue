@@ -1,8 +1,6 @@
 <template>
   <Layout>
-    <PresupuestosList> 
-        <PresupuestosAccordion />
-    </PresupuestosList>
+    <PresupuestosList> <PresupuestosAccordion /> </PresupuestosList>
   </Layout>
 </template>
 
