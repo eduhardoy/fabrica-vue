@@ -24,7 +24,6 @@ export default {
                 .finally(() => dispatch("setSubCategoriasLoader", false))
         },
         async postSubCategoria({ dispatch }, subcategoria) {
-
             dispatch("setSubCategoriasLoader", true)
             Axios.post(URL, subcategoria)
                 .then(() => dispatch("getSubCategorias"))

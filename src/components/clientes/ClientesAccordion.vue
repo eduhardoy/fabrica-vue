@@ -67,7 +67,7 @@
       <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postCliente(this.selectedCliente)">
+      <button class="add_button" @click="putCliente(this.selectedCliente)">
         MODIFICAR
       </button>
     </template>
@@ -101,9 +101,8 @@ export default {
       Object.assign(this.selectedCliente, cliente);
       this.$refs.edit.openModal();
     },
-    postCliente: function() {
-      console.log(this.selectedCliente);
-      this.$store.dispatch("postCliente", this.selectedCliente);
+    putCliente: function() {
+      this.$store.dispatch("putCliente", this.selectedCliente);
       this.$refs.edit.closeModal();
     },
     deleteCliente: function() {

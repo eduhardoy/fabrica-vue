@@ -51,7 +51,7 @@
       <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postCategoria(this.selectedCategoria)">
+      <button class="add_button" @click="putCategoria(this.selectedCategoria)">
         MODIFICAR
       </button>
     </template>
@@ -88,8 +88,8 @@ export default {
       this.$store.dispatch("getCategorias");
       console.log("Categorias", this.$store.getters.allCategorias);
     },
-    postCategoria: function() {
-      this.$store.dispatch("postCategoria", this.selectedCategoria);
+    putCategoria: function() {
+      this.$store.dispatch("putCategoria", this.selectedCategoria);
       this.$refs.edit.closeModal();
     },
     deleteCategoria: function(categoria) {

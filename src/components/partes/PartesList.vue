@@ -15,7 +15,7 @@
   <ModalAdd ref="add">
     <template v-slot:body>
       <input v-model="newParte.nombre" placeholder="NOMBRE" />
-      <select v-model="newParte.producto" placeholder="PRODUCTO">
+      <!-- <select v-model="newParte.producto" placeholder="PRODUCTO">
         <option
           v-for="item in productos"
           :key="item._key"
@@ -23,7 +23,7 @@
         >
           {{ item.nombre }}
         </option>
-      </select>
+      </select> -->
       <input v-model="newParte.costo" placeholder="COSTO" />
       <input v-model="newParte.costoFlete" placeholder="COSTO FLETE" />
       <input v-model="newParte.stock" placeholder="STOCK" />

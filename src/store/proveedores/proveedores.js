@@ -30,6 +30,13 @@ export default {
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setProveedoresLoader", false))
         },
+        async putProveedor({ dispatch }, proveedor) {
+            dispatch("setProveedoresLoader", true)
+            Axios.put(URL, proveedor)
+                .then(() => dispatch("getProveedores"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setProveedoresLoader", false))
+        },
         async deleteProveedor({ dispatch }, proveedor) {
             dispatch("setProveedoresLoader", true)
             Axios.delete(URL + `/${proveedor._key}`)

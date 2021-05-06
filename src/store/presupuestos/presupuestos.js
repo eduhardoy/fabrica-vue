@@ -24,9 +24,15 @@ export default {
                 .finally(() => dispatch("setPresupuestosLoader", false))
         },
         async postPresupuesto({ dispatch }, presupuesto) {
-
             dispatch("setPresupuestosLoader", true)
             Axios.post(URL, presupuesto)
+                .then(() => dispatch("getPresupuestos"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setPresupuestosLoader", false))
+        },
+        async putPresupuesto({ dispatch }, presupuesto) {
+            dispatch("setPresupuestosLoader", true)
+            Axios.put(URL, presupuesto)
                 .then(() => dispatch("getPresupuestos"))
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setPresupuestosLoader", false))
@@ -37,7 +43,7 @@ export default {
                 .then(() => dispatch("getPresupuestos"))
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setPresupuestosLoader", true))
-        }
+        },
     },
     mutations: {
         SET_PRESUPUESTOS(state, presupuestos) {

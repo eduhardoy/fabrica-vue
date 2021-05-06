@@ -37,8 +37,8 @@ export default {
   components: { ModalAdd },
   data() {
     return {
-      newCliente: {},
-    };
+      newCliente: {}
+    }
   },
   
   methods: {
