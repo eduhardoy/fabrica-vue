@@ -16,7 +16,7 @@
     <template v-slot:body>
       <input v-model="newSubCategoria.nombre" placeholder="NOMBRE" />
       <select v-model="newSubCategoria.categoria">
-        <option v-for="item in categorias" :key="item._key">
+        <option v-for="item in categorias" :key="JSON.stringify(item._key)">
           {{ item.nombre }}
         </option>
       </select>
@@ -39,7 +39,7 @@ export default {
    data() {
     return {
       newSubCategoria: {
-        /* categoria: [], */
+        categoria: {},
       },
     };
   },

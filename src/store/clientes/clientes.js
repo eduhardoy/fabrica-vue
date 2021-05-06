@@ -30,6 +30,13 @@ export default {
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setClientesLoader", false))
         },
+        async putCliente({ dispatch }, cliente) {
+            dispatch("setClientesLoader", true)
+            Axios.put(URL, cliente)
+                .then(() => dispatch("getClientes"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setClientesLoader", false))
+        },
         async deleteCliente({ dispatch }, cliente) {
             dispatch("setClientesLoader", true)
             Axios.delete(URL + `/${cliente._key}`)

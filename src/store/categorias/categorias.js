@@ -1,3 +1,4 @@
+import axios from "axios";
 import Axios from "axios";
 
 const URL = "http://198.58.123.120:3005/categorias";
@@ -26,6 +27,13 @@ export default {
         async postCategoria({ dispatch }, categoria) {
             dispatch("setCategoriasLoader", true)
             Axios.post(URL, categoria)
+                .then(() => dispatch("getCategorias"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setCategoriasLoader", false))
+        },
+        async putCategoria({ dispatch }, categoria) {
+            dispatch("setCategoriasLoader", true)
+            axios.put(URL, categoria)
                 .then(() => dispatch("getCategorias"))
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setCategoriasLoader", false))

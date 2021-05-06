@@ -76,7 +76,7 @@
       <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postProveedor(this.selectedProveedor)">
+      <button class="add_button" @click="putProveedor(this.selectedProveedor)">
         MODIFICAR
       </button>
     </template>
@@ -121,6 +121,10 @@ export default {
     },
     postProveedor: function() {
       this.$store.dispatch("postProveedor", this.selectedProveedor);
+      this.$refs.edit.closeModal();
+    },
+    putProveedor: function() {
+      this.$store.dispatch("putProveedor", this.selectedProveedor);
       this.$refs.edit.closeModal();
     },
     deleteProveedor: function(proveedor) {

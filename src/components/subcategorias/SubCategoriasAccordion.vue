@@ -59,7 +59,7 @@
       </button>
       <button
         class="add_button"
-        @click="postSubCategoria(this.selectedSubCategoria)"
+        @click="putSubCategoria(this.selectedSubCategoria)"
       >
         MODIFICAR
       </button>
@@ -97,8 +97,8 @@ export default {
       this.selectedSubCategoria.categoria = subCategoria.categoria.nombre;
       this.$refs.edit.openModal();
     },
-    postSubCategoria: function() {
-      this.$store.dispatch("postSubCategoria", this.selectedSubCategoria);
+    putSubCategoria: function() {
+      this.$store.dispatch("putSubCategoria", this.selectedSubCategoria);
       this.$refs.edit.closeModal();
     },
     deleteSubCategoria: function(subCategoria) {

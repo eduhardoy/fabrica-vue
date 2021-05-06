@@ -25,13 +25,13 @@
         <input v-model.lazy="item.banco" placeholder="BANCO" />
       </div>
       <div>
+        <button @click="addCBU(newProveedor)">ADD CBU</button>
         <button
           v-if="newProveedor.cuentasBanco.length > 1"
           @click="delCBU(newProveedor)"
         >
           DEL CBU
         </button>
-        <button @click="addCBU(newProveedor)">ADD CBU</button>
       </div>
     </template>
     <template v-slot:footer>
