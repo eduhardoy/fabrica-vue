@@ -18,7 +18,7 @@
       <img src="./images/compra.png" alt="" />
       <p>COMPRA</p>
     </router-link>
-    <router-link to="/productos4" class="leftside_button">
+    <router-link to="/clientes" class="leftside_button">
       <img src="./images/user.png" alt="" />
       <p>CLIENTE</p>
     </router-link>

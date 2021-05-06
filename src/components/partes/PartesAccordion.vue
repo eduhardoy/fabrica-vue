@@ -20,17 +20,17 @@
       </summary>
       <ul class="details_list">
         <li><strong>Nombre: </strong>{{ item.nombre }}</li>
-        <li>
+        <!-- <li>
           <strong>PRODUCTO: </strong
           >{{ item.producto ? item.producto.nombre : null }}
-        </li>
+        </li> -->
         <li><strong>Costo: </strong>{{ item.costo }}</li>
         <li><strong>Costo Flete: </strong>{{ item.costoFlete }}</li>
         <li><strong>Stock: </strong>{{ item.stock }}</li>
         <li>
           <strong>Tiempo de produccion: </strong>{{ item.tiempoProduccion }}
         </li>
-        <li><strong>Margen: </strong>{{ item.margen }}</li>
+        <!-- <li><strong>Margen: </strong>{{ item.margen }}</li> -->
         <li>
           <strong>Proveedor: </strong
           >{{ item.proveedor ? item.proveedor.nombre : null }}
@@ -54,7 +54,7 @@
   <ModalEdit ref="edit">
     <template v-slot:body>
       <input v-model="selectedParte.nombre" placeholder="NOMBRE" />
-      <select v-model="selectedParte.producto">
+      <!-- <select v-model="selectedParte.producto">
         <option
           v-for="item in productos"
           :key="item._key"
@@ -62,7 +62,7 @@
         >
           {{ item.nombre }}
         </option>
-      </select>
+      </select> -->
       <input v-model="selectedParte.costo" placeholder="COSTO" />
       <input v-model="selectedParte.costoFlete" placeholder="COSTO FLETE" />
       <input v-model="selectedParte.stock" placeholder="STOCK" />
@@ -70,12 +70,12 @@
         v-model="selectedParte.tiempoProduccion"
         placeholder="TIEMPO DE PRODUCCION"
       />
-      <input v-model="selectedParte.margen" placeholder="MARGEN" />
+      <!-- <input v-model="selectedParte.margen" placeholder="MARGEN" /> -->
       <select v-model="selectedParte.proveedor">
         <option
           v-for="item in proveedores"
           :key="item._key"
-          v-bind:value="item.nombre"
+          v-bind:value="item"
         >
           {{ item.nombre }}
         </option>
@@ -85,7 +85,7 @@
       <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postParte(this.selectedParte)">
+      <button class="add_button" @click="putParte(this.selectedParte)">
         MODIFICAR
       </button>
     </template>
@@ -101,15 +101,12 @@ export default {
   components: { ModalDelete, ModalEdit },
   data() {
     return {
-      selectedParte: {},
+      selectedParte: { },
     };
   },
   computed: {
     partes: function() {
       return this.$store.getters.allPartes;
-    },
-    productos: function() {
-      return this.$store.getters.allProductos;
     },
     proveedores: function() {
       return this.$store.getters.allProveedores;
@@ -117,30 +114,31 @@ export default {
   },
   methods: {
     openDelModal: function(parte) {
-      Object.assign(this.selectedParte, parte);
       this.selectedParte = parte;
       this.$refs.del.openModal();
     },
     openEditModal: function(parte) {
-      /* this.selectedParte = parte; */
       Object.assign(this.selectedParte, parte);
-      this.selectedParte.producto = parte.producto.nombre;
-      this.selectedParte.proveedor = parte.proveedor.nombre;
+      this.selectedParte = parte;
       this.$refs.edit.openModal();
     },
-    postParte: function() {
+    putParte: function() {
+      console.log("PUT");
       console.log(this.selectedParte);
-      this.$store.dispatch("postParte", this.selectedParte);
+      this.$store.dispatch("putParte", this.selectedParte);
       this.$refs.edit.closeModal();
     },
     deleteParte: function() {
       this.$store.dispatch("deleteParte", this.selectedParte);
       this.$refs.del.closeModal();
     },
+    getProveedores: function () {
+      this.$store.dispatch("getProveedores");
+      console.log("Proveedores", this.$store.getters.allProveedores);
+    },
   },
   created() {
     this.$store.dispatch("getPartes");
-    this.$store.dispatch("getProductos");
     this.$store.dispatch("getProveedores");
   },
 };

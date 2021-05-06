@@ -93,7 +93,7 @@ export default {
     },
     openEditModal: function(subCategoria) {
       Object.assign(this.selectedSubCategoria, subCategoria);
-      this.selectedSubCategoria.categoria = subCategoria.categoria.nombre;
+      this.selectedSubCategoria = subCategoria;
       this.$refs.edit.openModal();
     },
     putSubCategoria: function() {
