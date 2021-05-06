@@ -31,6 +31,13 @@ export default {
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setSubCategoriasLoader", false))
         },
+        async putSubCategoria({ dispatch }, subcategoria) {
+            dispatch("setSubCategoriasLoader", true)
+            Axios.put(URL, subcategoria)
+                .then(() => dispatch("getSubCategorias"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setSubCategoriasLoader", false))
+        },
         async deleteSubCategoria({ dispatch }, subcategoria) {
             dispatch("setSubCategoriasLoader", true)
             Axios.delete(URL + `/${subcategoria._key}`)

@@ -16,7 +16,8 @@
     <template v-slot:body>
       <input v-model="newSubCategoria.nombre" placeholder="NOMBRE" />
       <select v-model="newSubCategoria.categoria">
-        <option v-for="item in categorias" :key="item._key">
+        <option disabled selected>SUBCATEGORIA</option>
+        <option v-for="item in categorias" :key="item._key" v-bind:value="item" >
           {{ item.nombre }}
         </option>
       </select>
@@ -49,10 +50,13 @@ export default {
     },
   },
   methods: {
+    
     openAddModal: function () {
       this.$refs.add.openModal();
     },
     postSubCategoria: function () {
+      console.log("POST");
+      console.log(this.newSubCategoria);
       this.$store.dispatch("postSubCategoria", this.newSubCategoria);
       this.$refs.add.closeModal();
     },

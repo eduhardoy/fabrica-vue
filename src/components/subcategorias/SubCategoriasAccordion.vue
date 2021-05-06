@@ -42,12 +42,11 @@
   <ModalEdit ref="edit">
     <template v-slot:body>
       <input v-model="selectedSubCategoria.nombre" placeholder="NOMBRE" />
-
       <select v-model="selectedSubCategoria.categoria">
         <option
           v-for="item in categorias"
           :key="item._key"
-          v-bind:value="item.nombre"
+          v-bind:value="item"
         >
           {{ item.nombre }}
         </option>
@@ -59,7 +58,7 @@
       </button>
       <button
         class="add_button"
-        @click="postSubCategoria(this.selectedSubCategoria)"
+        @click="putSubCategoria(this.selectedSubCategoria)"
       >
         MODIFICAR
       </button>
@@ -76,7 +75,7 @@ export default {
   components: { ModalDelete, ModalEdit },
   data() {
     return {
-      selectedSubCategoria: {},
+      selectedSubCategoria: { },
     };
   },
   computed: {
@@ -97,8 +96,10 @@ export default {
       this.selectedSubCategoria.categoria = subCategoria.categoria.nombre;
       this.$refs.edit.openModal();
     },
-    postSubCategoria: function() {
-      this.$store.dispatch("postSubCategoria", this.selectedSubCategoria);
+    putSubCategoria: function() {
+      console.log("PUT");
+      console.log(this.selectedSubCategoria);
+      this.$store.dispatch("putSubCategoria", this.selectedSubCategoria);
       this.$refs.edit.closeModal();
     },
     deleteSubCategoria: function(subCategoria) {
