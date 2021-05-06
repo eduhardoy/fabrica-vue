@@ -10,22 +10,22 @@
       <router-link to="/proveedores"><div>PROVEEDORES</div></router-link>
     </div>
     <div class="Compras">
-      <router-link to="/compras"><div>COMPRAS</div></router-link>
+      <router-link to="/compras"><div>COMPRAS**</div></router-link>
     </div>
     <div class="Ventas">
-      <router-link to="/ventas"><div>VENTAS</div></router-link>
+      <router-link to="/ventas"><div>VENTAS**</div></router-link>
     </div>
     <div class="Gastos">
       <router-link to="/gastos"><div>GASTOS</div></router-link>
     </div>
     <div class="Presupuestos">
-      <router-link to="/presupuestos"><div>PRESUPUESTOS</div></router-link>
+      <router-link to="/presupuestos"><div>PRESUPUESTOS**</div></router-link>
     </div>
     <div class="Contabilidad">
-      <router-link to="/contaEstad"><div>CONTABILIDAD</div></router-link>
+      <router-link to="/contaEstad"><div>CONTABILIDAD**</div></router-link>
     </div>
     <div class="Inventario">
-      <router-link to="/inventario"><div>INVENTARIO</div></router-link>
+      <router-link to="/inventario"><div>INVENTARIO**</div></router-link>
     </div>
   </div>
 </template>

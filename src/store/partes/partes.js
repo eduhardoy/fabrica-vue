@@ -30,6 +30,13 @@ export default {
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setPartesLoader", false))
         },
+        async putParte({ dispatch }, parte) {
+            dispatch("setPartesLoader", true)
+            Axios.put(URL, parte)
+                .then(() => dispatch("getPartes"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setPartesLoader", false))
+        },
         async deleteParte({ dispatch }, parte) {
             dispatch("setPartesLoader", true)
             Axios.delete(URL + `/${parte._key}`)

@@ -31,12 +31,12 @@
         v-model="newParte.tiempoProduccion"
         placeholder="TIEMPO DE PRODUCCION"
       />
-      <input v-model="newParte.margen" placeholder="MARGEN" />
+      <!-- <input v-model="newParte.margen" placeholder="MARGEN" /> -->
       <select v-model="newParte.proveedor">
         <option
           v-for="item in proveedores"
           :key="item._key"
-          v-bind:value="item.nombre"
+          v-bind:value="item"
         >
           {{ item.nombre }}
         </option>
@@ -63,9 +63,6 @@ export default {
     };
   },
   computed: {
-    productos: function () {
-      return this.$store.getters.allProductos;
-    },
     proveedores: function () {
       return this.$store.getters.allProveedores;
     },
