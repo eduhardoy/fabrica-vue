@@ -12,9 +12,15 @@
       <slot></slot>
     </div>
   </div>
-  <ModalAdd ref="add">
+  <ModalAdd ref="add" > 
     <template v-slot:body>
-      <input style="display: none !important" type="file" v-on:change="onFileSelected" ref="fileInput"/>
+      <input 
+        style="display: none !important" 
+        type="file" 
+        accept="image/*" 
+        v-on:change="onFileSelected" 
+        ref="fileInput"
+      />
       <button v-on:click="$refs.fileInput.click()">Cargar imagen</button>
       <p>{{newProducto.imagen.name}}</p>
       <input v-model="newProducto.nombre" placeholder="NOMBRE" />
@@ -70,7 +76,7 @@ export default {
       newProducto: {
         medidas: {},
         imagen:{
-          name: "Imagen seleccionada...",
+          name: "nombre imagen seleccionada...",
         }
       },
     };
@@ -97,7 +103,7 @@ export default {
     },
     postProducto: function() {
       console.log(this.newProducto)
-      //this.$store.dispatch("postProducto", this.newProducto);
+      this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.add.closeModal();
     },
   },
