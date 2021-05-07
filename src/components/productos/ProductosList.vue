@@ -1,14 +1,14 @@
 <template>
-  <div class="products">
+  <div class="productos">
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
-    <div class="products__head">
-      <div class="products__head__title">
+    <div class="productos__head">
+      <div class="productos__head__title">
         <h2>PRODUCTOS</h2>
       </div>
     </div>
-    <div class="products__accordion__wrapper">
+    <div class="productos__accordion__wrapper">
       <slot></slot>
     </div>
   </div>
@@ -37,11 +37,13 @@
       <input v-model="newProducto.medidas.ancho" placeholder="ANCHO"/>
       <input v-model="newProducto.medidas.largo" placeholder="LARGO"/>
       <select v-model="newProducto.proveedor">
+        <option disabled selected>PROVEEDOR</option>
         <option v-for="item in proveedores" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
       <select v-model="newProducto.subCategoria">
+        <option disabled selected>SUBCATEGORIA</option>
         <option
           v-for="item in subCategorias"
           :key="item._key"
@@ -76,8 +78,8 @@ export default {
       newProducto: {
         medidas: {},
         imagen:{
-          name: "nombre imagen seleccionada...",
-        }
+          name: "imagen seleccionada...",
+        },
       },
     };
   },
@@ -97,14 +99,14 @@ export default {
       this.$refs.add.openModal();
     },
     onFileSelected(event){
-      // console.log(event)
+      //console.log(event)
       this.newProducto.imagen = event.target.files[0]
       //console.log(this.newProducto)
     },
-    postProducto: function() {
-      console.log(this.newProducto)
+    postProducto: function () {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.add.closeModal();
+      console.log(this.newProducto)
     },
   },
   created() {
@@ -116,7 +118,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.products {
+.productos {
   height: 100%;
   width: 100%;
   display: flex;
@@ -163,14 +165,14 @@ export default {
     height: 100%;
   }
 }
-.products__head {
+.productos__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .products__head__title {
+  .productos__head__title {
     height: 100%;
     color: black;
     .proveedores {
@@ -243,7 +245,7 @@ export default {
     }
   }
 }
-.products__accordion__wrapper {
+.productos__accordion__wrapper {
   height: 85%;
   width: 100%;
   display: flex;

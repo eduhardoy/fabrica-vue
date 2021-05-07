@@ -24,18 +24,14 @@
           </li>
           <li><strong>Costo de Flete: </strong>{{ item.costoFlete }}</li>
           <li><strong>Margen: </strong>{{ item.margen }}</li>
-          <li>
+          <!-- <li>
             <strong>Proveedor: </strong
-            >{{ item.proveedor ? item.proveedor.nombre : null }}
-          </li>
-          <li>
-            <strong> Categoria: </strong
-            >{{ item.subCategoria ? item.subCategoria.categoria : null }}
+            >{{ item.proveedor.nombre }}
           </li>
           <li>
             <strong> SubCategoria: </strong
-            >{{ item.subCategoria ? item.subCategoria.nombre : null }}
-          </li>
+            >{{ item.subCategoria.nombre }}
+          </li> -->
           <ul>
             <strong>PARTES</strong>
             <li v-for="parte in item.partes" :key="parte._key">
