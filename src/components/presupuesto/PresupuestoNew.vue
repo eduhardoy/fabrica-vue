@@ -6,15 +6,15 @@
       </div>
     </div>
     <div class="presupuesto_wrapper">
-      <div class="new">
+      <!-- <div class="new">
       <button @click="openAddModalPro">
           Nuevo producto
       </button>
       <button @click="openAddModal">
           Nuevo cliente
         </button>
-      </div>
-      <input v-model="newPresupuesto.fechaEntrega" placeholder="FECHA DE ENTREGA"/>
+      </div> -->
+      <input type="date" v-model="newPresupuesto.fechaVencimiento"/>
       <select v-model="newPresupuesto.cliente">
         <option v-for="item in clientes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
@@ -43,16 +43,16 @@
         AGREGAR PRODUCTO
       </button>
       
-      <input v-model="newPresupuesto.pago" placeholder="Pago"/>
+      <!-- <input v-model="newPresupuesto.pago" placeholder="Pago"/>
       <select v-model="newPresupuesto.estado">
           <option value="pendiente">Pendiente</option>
           <option value="finalizado">Finalizado</option>
         </select>
-      <button class="button-factura" >VER FACTURA</button>
-      <button @click="postPresupuesto()">GENERAR PRESUPUESTO</button>
+      <button class="button-factura" >VER FACTURA</button> -->
+      <button class="add_button" @click="postPresupuesto()">GENERAR PRESUPUESTO</button>
     </div>
   </div>
-  <ModalAdd ref="add"> 
+  <!-- <ModalAdd ref="add"> 
     <template v-slot:body>
       <input v-model="newCliente.nombre" placeholder="NOMBRE" />
       <input v-model="newCliente.cuitOrDni" placeholder="DNI o CUIT" />
@@ -108,25 +108,25 @@
       </button>
       <button class="add_button" @click="postProducto()">AGREGAR</button>
     </template>
-  </ModalAdd>
+  </ModalAdd> -->
 
 </template>
 
 <script>
-import ModalAdd from "../Modals/ModalAdd.vue";
+// import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
   name: "Presupuesto",
-  components: { ModalAdd },
+  // components: { ModalAdd },
   data() {
     return {
       newPresupuesto: {
         productos:[{cantidad:1}],
       },
-      newProducto: {
-        medidas: {}
-      },
-      newCliente: {},
+      // newProducto: {
+      //   medidas: {}
+      // },
+      // newCliente: {},
     };
   },
   computed: {
@@ -150,12 +150,12 @@ export default {
       let producto = this.newPresupuesto.productos[index]
       this.newPresupuesto.productos[index] = {...producto,cantidad:e.target.value}
     },
-    openAddModal: function () {
-      this.$refs.add.openModal();
-    },
-    openAddModalPro: function () {
-      this.$refs.addPro.openModal();
-    },
+    // openAddModal: function () {
+    //   this.$refs.add.openModal();
+    // },
+    // openAddModalPro: function () {
+    //   this.$refs.addPro.openModal();
+    // },
     addProducto: function (){
       this.newPresupuesto.productos.push({cantidad:1});
     },
@@ -165,16 +165,16 @@ export default {
     },
     postPresupuesto: function () {
       this.$store.dispatch("postPresupuesto", this.newPresupuesto);
-      this.$refs.add.closeModal();
+      this.$refs.add;
     },
-    postCliente: function () {
-      this.$store.dispatch("postCliente", this.newCliente);
-      this.$refs.add.closeModal();
-    },
-    postProducto: function () {
-      this.$store.dispatch("postProducto", this.newProducto);
-      this.$refs.add.closeModal();
-    },
+    // postCliente: function () {
+    //   this.$store.dispatch("postCliente", this.newCliente);
+    //   this.$refs.add.closeModal();
+    // },
+    // postProducto: function () {
+    //   this.$store.dispatch("postProducto", this.newProducto);
+    //   this.$refs.add.closeModal();
+    // },
   },
   created() {
     this.$store.dispatch("getProductos");

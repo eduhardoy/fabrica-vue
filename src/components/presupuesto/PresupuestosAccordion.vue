@@ -15,33 +15,22 @@
           </button>
         </div>
       </summary>
-      <div class="presupuesto__wrapper__button">
+      <!-- <div class="presupuesto__wrapper__button">
         <button>VER PRESUPUESTO</button>
         <button>VER CLIENTE</button>
         <button>FINALIZAR PRESUPUESTO</button>
-      </div>
+      </div> -->
       <ul class="details_list">
-        <li>
-          <strong>Cliente:</strong>
-          {{ item.cliente ? item.cliente.nombre : null }}
-        </li>
-        <li><strong>Fecha vencimiento: </strong> {{item.fechaVencimiento}} </li>
-        <ul>
-          <!-- PRODUCTOS -->
-          <ul>
-          <strong>Productos:</strong>
-          <li v-for="productos in item.productos" :key="productos._key">
-            {{ productos.nombre }}
-          </li>
-          </ul>
-          <!-- PARTES -->
-          <ul>
-          <strong>Partes:</strong>
-          <li v-for="partes in item.partes" :key="partes._key">
-            {{ partes.nombre }}
-          </li>
-          </ul>
-        </ul>
+        <li><strong>Fecha vencimiento: </strong> {{ item.fechaVencimiento }}</li>
+        <!-- <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li> -->
+      </ul>
+      <ul>
+        <strong>PRODUCTOS</strong>
+        <li v-for="producto in item.productos" :key="producto._key">{{ producto.nombre }}</li>
+      </ul>
+      <ul>
+        <strong>PARTES</strong>
+        <li v-for="parte in item.partes" :key="parte._key">{{ parte.nombre }}</li>
       </ul>
     </details>
   </div>
@@ -118,41 +107,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.presupuesto__wrapper__button {
-  display: flex;
-  justify-content: center;
-  button {
-    padding: 10px 10px;
-    margin: 10px;
-    color: white;
-    outline: none;
-    border: none;
-    background-color: black;
-    border-radius: 8px;
-  }
-}
-
-.details_list {
-  ul {
-    list-style: none;
-    text-align: start;
-    padding: 10px;
-    padding-top: 25px;
-    li {
-      padding: 0px;
-      padding-top: 8px;
-      padding-bottom: 8px;
-    }
-  }
-  li {
-    padding: 8px;
-  }
-  img {
-    width: 50%;
-  }
-}
-strong {
-  font-weight: 700;
-}
-</style>
+<style></style>
