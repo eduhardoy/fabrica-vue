@@ -9,25 +9,18 @@
       <slot></slot>
     </div>
   </div>
-
-  
-  
 </template>
 
 <script>
 
 export default {
   name: "PresupuestosList",
-  data() {
+   data() {
     return {
-      newPresupuesto: {},
+      newPresupuesto: { },
     };
   },
-  //TRAIGO DEL STORE, LOS DATOS NECESARIOS PARA ESTE MODULO
   computed: {
-    presupuestos: function() {
-      return this.$store.getters.allPresupuestos;
-    },
     clientes: function() {
       return this.$store.getters.allClientes;
     },
@@ -38,18 +31,19 @@ export default {
       return this.$store.getters.allPartes;
     },
   },
-  methods: {},
-  created() {
-    this.$store.dispatch("getProductos");
+  methods: {
+
+  },
+  created(){
     this.$store.dispatch("getClientes");
-    this.$store.dispatch("getPresupuestos");
+    this.$store.dispatch("getProductos");
     this.$store.dispatch("getPartes");
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.presupuestos {
+.subCategorias {
   height: 100%;
   width: 100%;
   display: flex;
@@ -96,20 +90,20 @@ export default {
     height: 100%;
   }
 }
-.presupuestos__head {
+.subCategorias__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .presupuestos_head_title {
+  .subCategorias_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.presupuestos_accordion_wrapper {
+.subCategorias_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;
