@@ -1,11 +1,11 @@
 <template>
-  <div class="presupuestos">
-    <div class="presupuestos__head">
-      <div class="presupuestos_head_title">
+  <div class="productos">
+    <div class="productos__head">
+      <div class="productos_head_title">
         <h2>PRESUPUESTOS</h2>
       </div>
     </div>
-    <div class="presupuestos_accordion_wrapper">
+    <div class="productos_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
@@ -15,35 +15,51 @@
 
 export default {
   name: "PresupuestosList",
+  components: {  },
    data() {
     return {
-      newPresupuesto: { },
+      newPresupuesto: {  },
     };
   },
   computed: {
+    presupuestos: function() {
+      return this.$store.getters.allPresupuestos;
+    },
     clientes: function() {
       return this.$store.getters.allClientes;
     },
     productos: function() {
       return this.$store.getters.allProductos;
     },
-    partes: function() {
-      return this.$store.getters.allPartes;
+  },
+  methods: {    
+    openDelModal: function(presupuesto) {
+      this.selectedPresupuesto = presupuesto;
+      this.$refs.del.openModal();
+    },
+    deletePresupuesto: function(presupuesto) {
+      this.$store.dispatch("deletePresupuesto", presupuesto);
+      this.$refs.del.closeModal();
+    },
+    getClientes: function() {
+      this.$store.dispatch("getClientes", this.presupuesto);
+      this.$refs.del.closeModal();
+    },
+    getProductos: function() {
+      this.$store.dispatch("getProductos", this.presupuesto);
+      this.$refs.del.closeModal();
     },
   },
-  methods: {
-
-  },
-  created(){
+  created() {
+    this.$store.dispatch("getPresupuestos");
     this.$store.dispatch("getClientes");
     this.$store.dispatch("getProductos");
-    this.$store.dispatch("getPartes");
   },
 };
 </script>
 
 <style lang="scss" scoped>
-.subCategorias {
+.productos {
   height: 100%;
   width: 100%;
   display: flex;
@@ -90,20 +106,20 @@ export default {
     height: 100%;
   }
 }
-.subCategorias__head {
+.productos__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .subCategorias_head_title {
+  .productos_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.subCategorias_accordion_wrapper {
+.productos_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;

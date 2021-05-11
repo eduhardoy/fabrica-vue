@@ -7,33 +7,24 @@
     >
       <summary>
         <div class="summary__title">
-          <h3>{{ item.id }}</h3>
+          <h3>{{ item.estado }}</h3>
         </div>
         <div class="summary__buttons">
+          <!-- <button @click="openEditModal(item)">
+            <img src="./images/pencil.svg" alt="" />EDITAR
+          </button> -->
           <button @click="openDelModal(item)">
             <img src="./images/trash.svg" alt="" />ELIMINAR
           </button>
         </div>
       </summary>
-      <div class="venta__wrapper__button">
-        <button>VER FACTURA</button>
-        <button>VER FACTURA 2</button>
-        <button>VER PRESUPUESTO</button>
-        <button>FINALIZAR VENTA</button>
-      </div>
       <ul class="details_list">
-        <li>
-          <strong>Cliente:</strong>
-          {{ item.cliente ? item.cliente.nombre : null }}
-        </li>
-        <li><strong>Estado: </strong> {{ item.estado }}</li>
-        <li><strong>Monto Total: </strong> {{ item.montoTotal }}</li>
-        <li><strong>Monto Pagado: </strong> {{ item.montoPagado }}</li>
-        <li><strong>Monto Pendiente: </strong> {{ item.montoPendiente }}</li>
-        <ul>
-          <strong>Productos:</strong>
+        <li><strong>Emitida: </strong>{{ item.modifiedDate }}</li>
+        <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li>
+        <li><strong>Presupuesto #</strong>{{ item.presupuesto._key }}</li>
+        <ul><strong>PRODUCTOS</strong>
           <li v-for="producto in item.productos" :key="producto._key">
-            {{ producto.nombre }}
+              {{ producto.nombre }}
           </li>
         </ul>
       </ul>
@@ -47,7 +38,10 @@
       <button class="black_button" @click="$refs.del.closeModal()">
         CANCELAR
       </button>
-      <button class="cancel_button" @click="deleteVenta(this.selectedVenta)">
+      <button
+        class="cancel_button"
+        @click="deleteVenta(this.selectedVenta)"
+      >
         ELIMINAR
       </button>
     </template>
@@ -62,12 +56,15 @@ export default {
   components: { ModalDelete },
   data() {
     return {
-      selectedVenta: {},
+      selectedVenta: { },
     };
   },
   computed: {
     ventas: function() {
       return this.$store.getters.allVentas;
+    },
+    presupuestos: function() {
+      return this.$store.getters.allPresupuestos;
     },
     clientes: function() {
       return this.$store.getters.allClientes;
@@ -78,59 +75,35 @@ export default {
   },
   methods: {
     openDelModal: function(venta) {
-      Object.assign(this.selectedVenta, venta);
       this.selectedVenta = venta;
       this.$refs.del.openModal();
     },
-
-    deleteVenta: function() {
-      this.$store.dispatch("deleteVenta", this.selectedVenta);
+    putVenta: function() {
+      this.$store.dispatch("putVenta", this.selectedVenta);
+      this.$refs.edit.closeModal();
+    },
+    deleteVenta: function(venta) {
+      this.$store.dispatch("deleteVenta", venta);
       this.$refs.del.closeModal();
     },
+    getClientes: function() {
+      this.$store.dispatch("getClientes");
+    },
+    getProveedores: function() {
+      this.$store.dispatch("getProveedores");
+    },
+    getProductos: function() {
+      this.$store.dispatch("getProductos");
+    },
   },
+
   created() {
     this.$store.dispatch("getVentas");
-    this.$store.dispatch("getProductos");
     this.$store.dispatch("getClientes");
+    this.$store.dispatch("getProveedores");
+    this.$store.dispatch("getProductos");
   },
 };
 </script>
 
-<style lang="scss" scoped>
-.venta__wrapper__button {
-  display: flex;
-  justify-content: center;
-  button {
-    padding: 10px 10px;
-    margin: 10px;
-    color: white;
-    outline: none;
-    border: none;
-    background-color: black;
-    border-radius: 8px;
-  }
-}
-
-.details_list {
-  ul {
-    list-style: none;
-    text-align: start;
-    padding: 10px;
-    padding-top: 25px;
-    li {
-      padding: 0px;
-      padding-top: 8px;
-      padding-bottom: 8px;
-    }
-  }
-  li {
-    padding: 8px;
-  }
-  img {
-    width: 50%;
-  }
-}
-strong {
-  font-weight: 700;
-}
-</style>
+<style></style>

@@ -30,6 +30,13 @@ export default {
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setComprasLoader", false))
         },
+        async putCompra({ dispatch }, compra) {
+            dispatch("setComprasLoader", true)
+            Axios.put(URL, compra)
+                .then(() => dispatch("getCompras"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setComprasLoader", false))
+        },
         async deleteCompra({ dispatch }, compra) {
             dispatch("setComprasLoader", true)
             Axios.delete(URL + `/${compra._key}`)

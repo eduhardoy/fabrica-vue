@@ -1,8 +1,5 @@
 <template>
   <div class="ventas">
-    <!-- <button class="add__button" @click="openAddModal">
-      <img src="./images/plus.svg" alt="" />
-    </button> --> <!-- SACAR ESTE MODAL -->
     <div class="ventas__head">
       <div class="ventas_head_title">
         <h2>VENTAS</h2>
@@ -12,86 +9,46 @@
       <slot></slot>
     </div>
   </div>
-  <ModalAdd ref="add"> <!-- SACAR ESTE MODAL -->
-    <template v-slot:body>
-      <input v-model="newVenta.presupuesto" placeholder="PRESUPUESTO"/>
-      <input v-model="newVenta.cliente" placeholder="CLIENTE"/>
-      <div>
-        <button @click="addCliente()"> Agregar Cliente </button>
-      </div>
-      <!-- <select v-model="newVenta.cliente">
-        <option
-          v-for="item in clientes"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select> -->
-      <select v-model="newVenta.producto">
-        <option
-          v-for="item in productos"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select>
-      
-      <div>
-        <!-- v-if="newVenta.productos.length > 1" -->
-        <button @click="delArticulo()">Eliminar Articulo</button>
-        <button @click="addArticulo()"> Agregar Articulo </button>
-      </div>
-    </template>
-    <template v-slot:footer>
-      <button class="cancel_button" @click="$refs.add.closeModal()">
-        CANCELAR
-      </button>
-      <button class="add_button" @click="postVenta()">AGREGAR</button>
-    </template>
-  </ModalAdd>
 </template>
 
 <script>
-import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
   name: "VentasList",
-  components: { ModalAdd },
-  data() {
+  components: {  },
+   data() {
     return {
-      newVenta: {},
+      newVenta: {  },
     };
   },
   computed: {
-    productos: function () {
-      return this.$store.getters.allProductos;
+    ventas: function() {
+      return this.$store.getters.allVentas;
     },
-    proveedores: function () {
+    clientes: function() {
       return this.$store.getters.allClientes;
     },
+    productos: function() {
+      return this.$store.getters.allProductos;
+    },
+    presupuestos: function() {
+      return this.$store.getters.allPresupuestos;
+    },
   },
-
-  methods: {
-    openAddModal: function () {
-      this.$refs.add.openModal();
+  methods: {    
+    openDelModal: function(venta) {
+      this.selectedVenta = venta;
+      this.$refs.del.openModal();
     },
-    addArticulo: function (variable){
-      variable.articulos.push({value: ""});
-    },
-    delArticulo: function(variable){
-      variable.articulos.pop();
-    },
-    postVenta: function () {
-      this.$store.dispatch("postVenta", this.newVenta);
-      this.$refs.add.closeModal();
+    deleteVenta: function(venta) {
+      this.$store.dispatch("deleteVenta", venta);
+      this.$refs.del.closeModal();
     },
   },
   created() {
-    this.$store.dispatch("getProductos");
-    this.$store.dispatch("getClientes");
+    this.$store.dispatch("getVentas");
     this.$store.dispatch("getPresupuestos");
+    this.$store.dispatch("getClientes");
   },
 };
 </script>

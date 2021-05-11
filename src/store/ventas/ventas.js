@@ -30,6 +30,13 @@ export default {
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setVentasLoader", false))
         },
+        async putVenta({ dispatch }, venta) {
+            dispatch("setVentasLoader", true)
+            Axios.put(URL, venta)
+                .then(() => dispatch("getVentas"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setVentasLoader", false))
+        },
         async deleteVenta({ dispatch }, venta) {
             dispatch("setVentasLoader", true)
             Axios.delete(URL + `/${venta._key}`)
