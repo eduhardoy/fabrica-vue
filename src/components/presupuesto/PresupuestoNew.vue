@@ -13,8 +13,8 @@
       <button @click="openAddModalCliente">
           Nuevo cliente
         </button>
-      </div>
-      <input v-model="newPresupuesto.fechaEntrega" placeholder="FECHA DE ENTREGA"/>
+      </div> -->
+      <input type="date" v-model="newPresupuesto.fechaVencimiento"/>
       <select v-model="newPresupuesto.cliente">
         <option v-for="item in clientes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
@@ -43,13 +43,13 @@
         AGREGAR PRODUCTO
       </button>
       
-      <input v-model="newPresupuesto.pago" placeholder="Pago"/>
+      <!-- <input v-model="newPresupuesto.pago" placeholder="Pago"/>
       <select v-model="newPresupuesto.estado">
           <option value="pendiente">Pendiente</option>
           <option value="finalizado">Finalizado</option>
         </select>
-      <button class="button-factura" >VER FACTURA</button>
-      <button @click="postPresupuesto()">GENERAR PRESUPUESTO</button>
+      <button class="button-factura" >VER FACTURA</button> -->
+      <button class="add_button" @click="postPresupuesto()">GENERAR PRESUPUESTO</button>
     </div>
   </div>
   <ModalAdd ref="addCliente"> 
@@ -108,25 +108,25 @@
       </button>
       <button class="add_button" @click="postProducto()">AGREGAR</button>
     </template>
-  </ModalAdd>
+  </ModalAdd> -->
 
 </template>
 
 <script>
-import ModalAdd from "../Modals/ModalAdd.vue";
+// import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
   name: "Presupuesto",
-  components: { ModalAdd },
+  // components: { ModalAdd },
   data() {
     return {
       newPresupuesto: {
         productos:[{cantidad:1}],
       },
-      newProducto: {
-        medidas: {}
-      },
-      newCliente: {},
+      // newProducto: {
+      //   medidas: {}
+      // },
+      // newCliente: {},
     };
   },
   computed: {
@@ -185,6 +185,14 @@ export default {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.addProducto.closeModal();
     },
+    // postCliente: function () {
+    //   this.$store.dispatch("postCliente", this.newCliente);
+    //   this.$refs.add.closeModal();
+    // },
+    // postProducto: function () {
+    //   this.$store.dispatch("postProducto", this.newProducto);
+    //   this.$refs.add.closeModal();
+    // },
   },
   created() {
     this.$store.dispatch("getProductos");
