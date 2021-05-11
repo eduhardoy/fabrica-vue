@@ -30,18 +30,18 @@
           </li>
           <li>
             <strong> Categoria: </strong
-            >{{ item.subCategoria ? item.subCategoria.categoria : null }}
+            >{{ item.subCategoria ? item.subCategoria.categoria.nombre : null }}
           </li>
           <li>
             <strong> SubCategoria: </strong
             >{{ item.subCategoria ? item.subCategoria.nombre : null }}
           </li>
-          <ul>
+          <!-- <ul>
             <strong>PARTES</strong>
             <li v-for="parte in item.partes" :key="parte._key">
               {{ parte.nombre }}
             </li>
-          </ul>
+          </ul> -->
         </div>
         <div class="details_list_image">
           <img src="./images/lampara.jpg" alt="" />
@@ -81,9 +81,9 @@
         v-model="selectedProducto.margen"
         placeholder="MARGEN DE GANANCIA"
       />
-      <input v-model="selectedProducto.medidas.alto" placeholder="ALTO" />
+      <!-- <input v-model="selectedProducto.medidas.alto" placeholder="ALTO" />
       <input v-model="selectedProducto.medidas.ancho" placeholder="ANCHO" />
-      <input v-model="selectedProducto.medidas.largo" placeholder="LARGO" />
+      <input v-model="selectedProducto.medidas.largo" placeholder="LARGO" /> -->
       <input
         v-model="selectedProducto.costoFlete"
         placeholder="COSTO DE FLETE"
@@ -92,7 +92,7 @@
         v-model="selectedProducto.margen"
         placeholder="MARGEN DE GANANCIA"
       />
-      <input
+      <!-- <input
         class="image__input"
         type="file"
         accept="image/png, image/jpeg, image/jpg"
@@ -100,7 +100,7 @@
       />
       <label class="image__input__label" for="imgfile"
         >Seleccionar Imagen</label
-      >
+      > -->
       <select v-model="selectedProducto.proveedor">
         <option
           v-for="item in proveedores"

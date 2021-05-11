@@ -14,15 +14,16 @@
   </div>
   <ModalAdd ref="add" > 
     <template v-slot:body>
-      <input 
+      <!-- <form enctype="multipart/form-data"> -->
+      <!-- <input 
         style="display: none !important" 
         type="file" 
         accept="image/*" 
         v-on:change="onFileSelected" 
         ref="fileInput"
       />
-      <button v-on:click="$refs.fileInput.click()">Cargar imagen</button>
-      <p>{{newProducto.imagen.name}}</p>
+      <button type="button" v-on:click="$refs.fileInput.click()">Cargar imagen</button> -->
+      <!-- <p>{{newProducto.imagen.name}}</p> -->
       <input v-model="newProducto.nombre" placeholder="NOMBRE" />
       <input v-model="newProducto.costo" placeholder="COSTO" />
       <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" />
@@ -33,9 +34,9 @@
       />
       <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
       <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
-      <input v-model="newProducto.medidas.alto" placeholder="ALTO"/>
+      <!-- <input v-model="newProducto.medidas.alto" placeholder="ALTO"/>
       <input v-model="newProducto.medidas.ancho" placeholder="ANCHO"/>
-      <input v-model="newProducto.medidas.largo" placeholder="LARGO"/>
+      <input v-model="newProducto.medidas.largo" placeholder="LARGO"/> -->
       <select v-model="newProducto.proveedor">
         <option v-for="item in proveedores" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
@@ -55,6 +56,7 @@
           {{ item.nombre }}
         </option>
       </select>
+      <!-- </form> -->
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">
@@ -74,10 +76,10 @@ export default {
   data() {
     return {
       newProducto: {
-        medidas: {},
-        imagen:{
+        /* medidas: {}, */
+        /* imagen:{
           name: "nombre imagen seleccionada...",
-        }
+        } */
       },
     };
   },

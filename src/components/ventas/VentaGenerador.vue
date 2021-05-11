@@ -10,10 +10,10 @@
         <option>presupuesto</option>
       </select>
       <div class="new">
-      <button @click="openAddModalPro">
+      <button @click="openAddModalProducto">
           Nuevo producto
       </button>
-      <button @click="openAddModal">
+      <button @click="openAddModalCliente">
           Nuevo cliente
         </button>
       </div>
@@ -61,7 +61,7 @@
     </div>
     <p>{{newVenta.montoTotal}}</p>
   </div>
-  <ModalAdd ref="add"> 
+  <ModalAdd ref="addCliente"> 
     <template v-slot:body>
       <input v-model="newCliente.nombre" placeholder="NOMBRE" />
       <input v-model="newCliente.cuitOrDni" placeholder="DNI o CUIT" />
@@ -70,13 +70,13 @@
       <input v-model="newCliente.email" placeholder="EMAIL" />
     </template>
     <template v-slot:footer>
-      <button class="cancel_button" @click="$refs.add.closeModal()">
+      <button class="cancel_button" @click="$refs.addCliente.closeModal()">
         CANCELAR
       </button>
       <button class="add_button" @click="postCliente()">AGREGAR </button>
     </template>
   </ModalAdd>
-  <ModalAdd ref="addPro"> 
+  <ModalAdd ref="addProducto"> 
     <template v-slot:body>
       <input v-model="newProducto.nombre" placeholder="NOMBRE" />
       <input v-model="newProducto.costo" placeholder="COSTO" />
@@ -112,7 +112,7 @@
       </select>
     </template>
     <template v-slot:footer>
-      <button class="cancel_button" @click="$refs.addPro.closeModal()">
+      <button class="cancel_button" @click="$refs.addProducto.closeModal()">
         CANCELAR
       </button>
       <button class="add_button" @click="postProducto()">AGREGAR</button>
@@ -148,6 +148,15 @@ export default {
     clientes: function () {
       return this.$store.getters.allClientes;
     },
+    proveedores: function() {
+      return this.$store.getters.allProveedores;
+    },
+    subCategorias: function() {
+      return this.$store.getters.allSubCategorias;
+    },
+    partes: function() {
+      return this.$store.getters.allPartes;
+    },
   },
 
   methods: {
@@ -161,11 +170,11 @@ export default {
       this.newVenta.productos[index] = {...producto,cantidad:e.target.value}
 
     },
-    openAddModal: function () {
-      this.$refs.add.openModal();
+    openAddModalCliente: function () {
+      this.$refs.addCliente.openModal();
     },
-    openAddModalPro: function () {
-      this.$refs.addPro.openModal();
+    openAddModalProducto: function () {
+      this.$refs.addProducto.openModal();
     },
     addProducto: function (){
       this.newVenta.productos.push({cantidad:1});
@@ -181,16 +190,19 @@ export default {
     },
     postCliente: function () {
       this.$store.dispatch("postCliente", this.newCliente);
-      this.$refs.add.closeModal();
+      this.$refs.addCliente.closeModal();
     },
     postProducto: function () {
       this.$store.dispatch("postProducto", this.newProducto);
-      this.$refs.add.closeModal();
+      this.$refs.addProducto.closeModal();
     },
   },
   created() {
     this.$store.dispatch("getProductos");
     this.$store.dispatch("getClientes");
+    this.$store.dispatch("getProveedores");
+    this.$store.dispatch("getSubCategorias");
+    this.$store.dispatch("getPartes");
   },
 };
 </script>
