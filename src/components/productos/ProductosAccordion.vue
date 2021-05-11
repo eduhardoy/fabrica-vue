@@ -36,12 +36,12 @@
             <strong> SubCategoria: </strong
             >{{ item.subCategoria ? item.subCategoria.nombre : null }}
           </li>
-          <!-- <ul>
+          <ul>
             <strong>PARTES</strong>
             <li v-for="parte in item.partes" :key="parte._key">
               {{ parte.nombre }}
             </li>
-          </ul> -->
+          </ul> 
         </div>
         <div class="details_list_image">
           <img src="./images/lampara.jpg" alt="" />

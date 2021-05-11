@@ -16,7 +16,7 @@
     <template v-slot:body>
       <input v-model="newSubCategoria.nombre" placeholder="NOMBRE" />
       <select v-model="newSubCategoria.categoria">
-        <option disabled selected>SUBCATEGORIA</option>
+        <option disabled selected>CATEGORIA</option>
         <option v-for="item in categorias" :key="item._key" v-bind:value="item" >
           {{ item.nombre }}
         </option>

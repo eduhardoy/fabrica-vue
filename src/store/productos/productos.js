@@ -6,6 +6,8 @@ export default {
     state: {
         productos: [],
         loading: false,
+        updateProducto: {},
+        selectedProducto: {}
     },
     getters: {
         allProductos: state => state.productos
@@ -24,6 +26,13 @@ export default {
         async postProducto({ dispatch }, producto) {
             dispatch("setProductosLoader", true)
             Axios.post(URL, producto)
+                .then(() => dispatch("getProductos"))
+                .catch(err => console.log(err))
+                .finally(() => dispatch("setProductosLoader", false))
+        },
+        async putProducto({ dispatch }, producto) {
+            dispatch("setProductosLoader", true)
+            Axios.put(URL, producto)
                 .then(() => dispatch("getProductos"))
                 .catch(err => console.log(err))
                 .finally(() => dispatch("setProductosLoader", false))
