@@ -1,11 +1,11 @@
 <template>
-  <div class="productos">
-    <div class="productos__head">
-      <div class="productos_head_title">
+  <div class="presupuestos">
+    <div class="presupuestos__head">
+      <div class="presupuestos_head_title">
         <h2>PRESUPUESTOS</h2>
       </div>
     </div>
-    <div class="productos_accordion_wrapper">
+    <div class="presupuestos_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
@@ -59,7 +59,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.productos {
+.presupuestos {
   height: 100%;
   width: 100%;
   display: flex;
@@ -106,20 +106,20 @@ export default {
     height: 100%;
   }
 }
-.productos__head {
+.presupuestos__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .productos_head_title {
+  .presupuestos_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.productos_accordion_wrapper {
+.presupuestos_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;

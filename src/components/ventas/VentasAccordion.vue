@@ -21,7 +21,7 @@
       <ul class="details_list">
         <li><strong>Emitida: </strong>{{ item.modifiedDate }}</li>
         <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li>
-        <li><strong>Presupuesto #</strong>{{ item.presupuesto._key }}</li>
+        <!-- <li><strong>Presupuesto #</strong>{{ item.presupuesto._key }}</li> -->
         <ul><strong>PRODUCTOS</strong>
           <li v-for="producto in item.productos" :key="producto._key">
               {{ producto.nombre }}
