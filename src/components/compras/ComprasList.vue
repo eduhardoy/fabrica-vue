@@ -9,80 +9,39 @@
       <slot></slot>
     </div>
   </div>
-  <ModalAdd ref="add">
-    <template v-slot:body>
-      <!-- <select v-model="selectedCompra.proveedor">
-        <option
-          v-for="item in proveedores"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select>
-      <select v-model="selectedCompra.producto">
-        <option
-          v-for="item in productos"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select> -->
-      <input v-model="selectedCompra.monto" placeholder="MONTO" />
-      <input v-model="selectedCompra.descripcion" placeholder="DESCRIPCION" />
-      <input v-model="selectedCompra.motivo" placeholder="MOTIVO" />
-      <input v-model="selectedCompra.vendedor" placeholder="VENDEDOR" />
-    </template>
-    <template v-slot:footer>
-      <button class="cancel_button" @click="$refs.add.closeModal()">
-        CANCELAR
-      </button>
-      <button class="add_button" @click="postCompra()">AGREGAR</button>
-    </template>
-  </ModalAdd>
 </template>
 
 <script>
-import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
   name: "ComprasList",
-  components: { ModalAdd },
-  data() {
+  components: {  },
+   data() {
     return {
-      newCompra: {},
+      newCompra: {  },
     };
   },
   computed: {
-    productos: function() {
-      return this.$store.getters.allProductos;
+    compras: function() {
+      return this.$store.getters.allCompras;
     },
-    proveedores: function() {
-      return this.$store.getters.allProveedores;
-    },
-    ordenesCompras: function() {
-      return this.$store.getters.allOrdenesCompras;
-    },
-    comprobantes: function() {
-      return this.$store.getters.allComprobantes;
+    vendedores: function() {
+      return this.$store.getters.allVendedores;
     },
   },
-
-  methods: {
-    openAddModal: function() {
-      this.$refs.add.openModal();
+  methods: {    
+    openDelModal: function(compra) {
+      this.selectedCompra = compra;
+      this.$refs.del.openModal();
     },
-    postCompra: function() {
-      this.$store.dispatch("postCompra", this.newCompra);
-      this.$refs.add.closeModal();
+    deleteCompra: function(compra) {
+      this.$store.dispatch("deleteCompra", compra);
+      this.$refs.del.closeModal();
     },
   },
   created() {
-    this.$store.dispatch("getProductos");
-    this.$store.dispatch("getProveedores");
-    this.$store.dispatch("getOrdenesCompras");
-    this.$store.dispatch("getComprobantes");
+    this.$store.dispatch("getCompras");
+    this.$store.dispatch("getVendedores");
   },
 };
 </script>

@@ -7,31 +7,22 @@
     >
       <summary>
         <div class="summary__title">
-          <h3>{{ item.nombre }}</h3>
+          <h3>{{ item.descripcion }}</h3>
         </div>
         <div class="summary__buttons">
-          <button @click="openEditModal(item)">
+          <!-- <button @click="openEditModal(item)">
             <img src="./images/pencil.svg" alt="" />EDITAR
-          </button>
+          </button> -->
           <button @click="openDelModal(item)">
             <img src="./images/trash.svg" alt="" />ELIMINAR
           </button>
         </div>
       </summary>
       <ul class="details_list">
-        
-        <!-- <li>
-          <strong>Proveedor: </strong
-          >{{ item.proveedor ? item.proveedor.nombre : null }}
-        </li>
-        <li>
-          <strong>Articulo: </strong
-          >{{ item.producto ? item.producto.nombre : null }}
-        </li> -->
+        <li><strong>Emitida: </strong>{{ item.modifiedDate }}</li>
         <li><strong>Monto: </strong>{{ item.monto }}</li>
-        <li><strong>Descripcion: </strong>{{ item.descripcion }}</li>
         <li><strong>Motivo: </strong>{{ item.motivo }}</li>
-        <li><strong>Vendedor: </strong>{{ item.vendedor }}</li>
+        <li><strong>Vendedor: </strong>{{ item.vendedor.nombre }}</li>
       </ul>
     </details>
   </div>
@@ -43,103 +34,56 @@
       <button class="black_button" @click="$refs.del.closeModal()">
         CANCELAR
       </button>
-      <button class="cancel_button" @click="deleteCompra(this.selectedCompra)">
+      <button
+        class="cancel_button"
+        @click="deleteCompra(this.selectedCompra)"
+      >
         ELIMINAR
       </button>
     </template>
   </ModalDelete>
-  <ModalEdit ref="edit">
-    <template v-slot:body>
-      <!-- <select v-model="selectedCompra.proveedor">
-        <option
-          v-for="item in proveedores"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select>
-      <select v-model="selectedCompra.producto">
-        <option
-          v-for="item in productos"
-          :key="item._key"
-          v-bind:value="item.nombre"
-        >
-          {{ item.nombre }}
-        </option>
-      </select> -->
-      <input v-model="selectedCompra.monto" placeholder="MONTO" />
-      <input v-model="selectedCompra.descripcion" placeholder="DESCRIPCION" />
-      <input v-model="selectedCompra.motivo" placeholder="MOTIVO" />
-      <input v-model="selectedCompra.vendedor" placeholder="VENDEDOR" />
-    </template>
-    <template v-slot:footer>
-      <button class="cancel_button" @click="$refs.edit.closeModal()">
-        CANCELAR
-      </button>
-      <button class="add_button" @click="postCompra(this.selectedCompra)">
-        MODIFICAR
-      </button>
-    </template>
-  </ModalEdit>
 </template>
 
 <script>
 import ModalDelete from "../Modals/ModalDelete.vue";
-import ModalEdit from "../Modals/ModalChange.vue";
 
 export default {
   name: "ComprasAccordion",
-  components: { ModalDelete, ModalEdit },
+  components: { ModalDelete },
   data() {
     return {
-      selectedCompra: {},
+      selectedCompra: { },
     };
   },
   computed: {
     compras: function() {
       return this.$store.getters.allCompras;
     },
-    productos: function() {
-      return this.$store.getters.allProductos;
-    },
-    proveedores: function() {
-      return this.$store.getters.allProveedores;
-    },
-    subCategorias: function() {
-      return this.$store.getters.allSubCategorias;
+    vendedores: function() {
+      return this.$store.getters.allVendedores;
     },
   },
   methods: {
     openDelModal: function(compra) {
-      Object.assign(this.selectedCompra, compra);
       this.selectedCompra = compra;
       this.$refs.del.openModal();
     },
-    openEditModal: function(compra) {
-      /* this.selectedCompra = compra; */
-      Object.assign(this.selectedCompra, compra);
-      this.selectedCompra.producto = compra.producto.nombre;
-      this.selectedCompra.proveedor = compra.proveedor.nombre;
-      this.selectedCompra.ordenCompra = compra.ordenCompra.nombre;
-      this.selectedCompra.comprobante = compra.comprobante.nombre;
-      this.$refs.edit.openModal();
-    },
-    postCompra: function() {
-      console.log(this.selectedCompra);
-      this.$store.dispatch("postCompra", this.selectedCompra);
+    putCompra: function() {
+      this.$store.dispatch("putCompra", this.selectedCompra);
       this.$refs.edit.closeModal();
     },
-    deleteCompra: function() {
-      this.$store.dispatch("deleteCompra", this.selectedCompra);
+    deleteCompra: function(compra) {
+      this.$store.dispatch("deleteCompra", compra);
       this.$refs.del.closeModal();
     },
+    getVendedores: function() {
+      this.$store.dispatch("getVendedores");
+    },
   },
+
   created() {
-    this.$store.dispatch("getProveedores");
-    this.$store.dispatch("getProductos");
-    this.$store.dispatch("getOrdenesCompras");
-    this.$store.dispatch("getComprobantes");
+    this.$store.dispatch("getCompras");
+    this.$store.dispatch("getVendedores");
   },
 };
 </script>
