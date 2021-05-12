@@ -28,10 +28,6 @@
         <strong>PRODUCTOS</strong>
         <li v-for="producto in item.productos" :key="producto._key">{{ producto.nombre }}</li>
       </ul>
-      <ul>
-        <strong>PARTES</strong>
-        <li v-for="parte in item.partes" :key="parte._key">{{ parte.nombre }}</li>
-      </ul>
     </details>
   </div>
   <ModalDelete ref="del">

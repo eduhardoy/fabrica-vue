@@ -113,20 +113,20 @@
 </template>
 
 <script>
-// import ModalAdd from "../Modals/ModalAdd.vue";
+import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
   name: "Presupuesto",
-  // components: { ModalAdd },
+  components: { ModalAdd },
   data() {
     return {
       newPresupuesto: {
         productos:[{cantidad:1}],
       },
-      // newProducto: {
-      //   medidas: {}
-      // },
-      // newCliente: {},
+      newProducto: {
+         medidas: {}
+      },
+      newCliente: {},
     };
   },
   computed: {
@@ -173,7 +173,7 @@ export default {
       this.$delete(this.items, index)
     },
     postPresupuesto: function () {
-      this.$store.dispatch("postPresupuesto", this.newPresupuesto);
+      //this.$store.dispatch("postPresupuesto", this.newPresupuesto);
       this.$refs.add.closeModal();
       console.log(this.newPresupuesto);
     },
@@ -185,14 +185,6 @@ export default {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.addProducto.closeModal();
     },
-    // postCliente: function () {
-    //   this.$store.dispatch("postCliente", this.newCliente);
-    //   this.$refs.add.closeModal();
-    // },
-    // postProducto: function () {
-    //   this.$store.dispatch("postProducto", this.newProducto);
-    //   this.$refs.add.closeModal();
-    // },
   },
   created() {
     this.$store.dispatch("getProductos");

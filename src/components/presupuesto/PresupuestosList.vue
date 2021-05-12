@@ -43,7 +43,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.subCategorias {
+.presupuestos {
   height: 100%;
   width: 100%;
   display: flex;
@@ -90,20 +90,20 @@ export default {
     height: 100%;
   }
 }
-.subCategorias__head {
+.presupuestos__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .subCategorias_head_title {
+  .presupuestos_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.subCategorias_accordion_wrapper {
+.presupuestos_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;

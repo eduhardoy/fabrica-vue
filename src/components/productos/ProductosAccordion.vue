@@ -129,7 +129,7 @@
       <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postProducto()">MODIFICAR</button>
+      <button class="add_button" @click="putProducto()">MODIFICAR</button>
     </template>
   </ModalEdit>
 </template>
@@ -176,9 +176,9 @@ export default {
       this.selectedProducto.subCategoria = producto.subCategoria.nombre;
       this.$refs.edit.openModal();
     },
-    postProducto: function() {
+    putProducto: function() {
       console.log(this.selectedProducto);
-      this.$store.dispatch("postProducto", this.selectedProducto);
+      this.$store.dispatch("putProducto", this.selectedProducto);
       this.$refs.edit.closeModal();
     },
     deleteProducto: function() {
