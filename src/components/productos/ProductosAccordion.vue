@@ -84,14 +84,7 @@
       <!-- <input v-model="selectedProducto.medidas.alto" placeholder="ALTO" />
       <input v-model="selectedProducto.medidas.ancho" placeholder="ANCHO" />
       <input v-model="selectedProducto.medidas.largo" placeholder="LARGO" /> -->
-      <input
-        v-model="selectedProducto.costoFlete"
-        placeholder="COSTO DE FLETE"
-      />
-      <input
-        v-model="selectedProducto.margen"
-        placeholder="MARGEN DE GANANCIA"
-      />
+      
       <!-- <input
         class="image__input"
         type="file"

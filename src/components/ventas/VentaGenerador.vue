@@ -185,7 +185,7 @@ export default {
     },
     postVenta: function () {
       this.$store.dispatch("postVenta", this.newVenta);
-      this.$refs.add.closeModal();
+      //this.$refs.add.closeModal();
       console.log(this.newVenta);
     },
     postCliente: function () {

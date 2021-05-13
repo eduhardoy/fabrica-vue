@@ -18,6 +18,12 @@
           </button>
         </div>
       </summary>
+      <div class="venta__wrapper__button">
+        <button>VER FACTURA</button>
+        <button>VER FACTURA 2</button>
+        <button>VER PRESUPUESTO</button>
+        <button>FINALIZAR VENTA</button>
+      </div>
       <ul class="details_list">
         <li><strong>Emitida: </strong>{{ item.modifiedDate }}</li>
         <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li>
@@ -94,6 +100,7 @@ export default {
     },
     getProductos: function() {
       this.$store.dispatch("getProductos");
+
     },
   },
 
@@ -106,4 +113,18 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+.venta__wrapper__button {
+  display: flex;
+  justify-content: center;
+  button {
+    padding: 10px 10px;
+    margin: 10px;
+    color: white;
+    outline: none;
+    border: none;
+    background-color: black;
+    border-radius: 8px;
+  }
+}
+</style>
