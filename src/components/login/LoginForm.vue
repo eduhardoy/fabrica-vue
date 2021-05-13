@@ -1,20 +1,44 @@
 <template>
-  <form action="" class="login__form">
+  <form class="login__form" @submit.prevent="login">
     <div>
-      <input type="text" placeholder="Usuario" />
+      <input required v-model="usuario" type="text" placeholder="Usuario" />
     </div>
     <div>
-      <input type="password" placeholder="Contraseña" />
+      <input
+        required
+        v-model="contrasena"
+        type="password"
+        placeholder="Contraseña"
+      />
     </div>
-    <router-link to="/home">
-      <button>LOGIN</button>
-    </router-link>
+    <!-- <router-link to="/home"> -->
+    <button type="submit">LOGIN</button>
+    <!-- </router-link> -->
   </form>
 </template>
 
 <script>
 export default {
   name: "LoginForm",
+  data() {
+    return {
+      /* usuario,
+      contrasena */
+    };
+  },
+  methods: {
+    login: function() {
+      this.$store
+        .dispatch("login", {
+          usuario: this.usuario,
+          contrasena: this.contrasena,
+        })
+        .then(() => this.$router.push("/home"));
+    },
+    logout: function() {
+      this.$store.dispatch("logout");
+    },
+  },
 };
 </script>
 
