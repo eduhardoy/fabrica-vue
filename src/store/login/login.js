@@ -1,7 +1,7 @@
 import Axios from "axios";
+import url from "../../www/url";
 
-// const URL = "http://198.58.123.120:3005/auth/login";
-const URL = "http://192.168.1.108:3005/auth/login";
+const URL = url + "/auth/login";
 
 export default {
   state: {

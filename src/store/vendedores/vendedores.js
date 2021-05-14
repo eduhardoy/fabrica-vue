@@ -1,6 +1,7 @@
 import Axios from "axios";
+import url from "../../www/url";
 
-const URL = "http://198.58.123.120:3005/vendedores";
+const URL = url + "/vendedores";
 
 export default {
     state: {
