@@ -66,8 +66,8 @@
           {{ item.categoria.nombre }} - {{ item.nombre }}
         </option>
       </select>
-      <label for="">PARTES</label>
-      <select size="5" v-model="newProducto.partes" multiple>
+      <label for="">PARTES (CTRL + CLICK)</label>
+      <select class="big_select" size="5" v-model="newProducto.partes" multiple>
         <option v-for="item in partes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>

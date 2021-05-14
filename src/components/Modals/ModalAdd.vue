@@ -95,7 +95,7 @@ export default {
     justify-content: center;
   }
   &__body {
-    overflow-y: auto;
+    overflow-y: scroll;
     margin: 10px;
     width: 90%;
     display: flex;
@@ -149,6 +149,9 @@ export default {
       text-align: center;
       -webkit-box-sizing: content-box;
       box-sizing: content-box;
+    }
+    .big_select {
+      min-height: 100px;
     }
   }
   &__footer {
