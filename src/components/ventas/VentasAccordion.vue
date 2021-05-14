@@ -13,7 +13,10 @@
           <!-- <button @click="openEditModal(item)">
             <img src="./images/pencil.svg" alt="" />EDITAR
           </button> -->
-          <button @click="openDelModal(item)">
+          <button
+            v-show="$store.state.token === undefined"
+            @click="openDelModal(item)"
+          >
             <img src="./images/trash.svg" alt="" />ELIMINAR
           </button>
         </div>
@@ -28,9 +31,10 @@
         <li><strong>Emitida: </strong>{{ item.modifiedDate }}</li>
         <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li>
         <!-- <li><strong>Presupuesto #</strong>{{ item.presupuesto._key }}</li> -->
-        <ul><strong>PRODUCTOS</strong>
+        <ul>
+          <strong>PRODUCTOS</strong>
           <li v-for="producto in item.productos" :key="producto._key">
-              {{ producto.nombre }}
+            {{ producto.nombre }}
           </li>
         </ul>
       </ul>
@@ -44,10 +48,7 @@
       <button class="black_button" @click="$refs.del.closeModal()">
         CANCELAR
       </button>
-      <button
-        class="cancel_button"
-        @click="deleteVenta(this.selectedVenta)"
-      >
+      <button class="cancel_button" @click="deleteVenta(this.selectedVenta)">
         ELIMINAR
       </button>
     </template>
@@ -62,7 +63,7 @@ export default {
   components: { ModalDelete },
   data() {
     return {
-      selectedVenta: { },
+      selectedVenta: {},
     };
   },
   computed: {
@@ -100,7 +101,6 @@ export default {
     },
     getProductos: function() {
       this.$store.dispatch("getProductos");
-
     },
   },
 

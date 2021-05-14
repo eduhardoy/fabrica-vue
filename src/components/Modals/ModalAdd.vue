@@ -6,7 +6,7 @@
         <div class="modal__header">
           <h2>AGREGAR</h2>
           <button type="button" class="modal__close" @click="closeModal()">
-            x
+            X
           </button>
         </div>
         <div class="modal__body">
@@ -47,7 +47,7 @@ export default {
   z-index: 9999;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   background-color: rgba(40, 40, 40, 0.6);
   display: flex;
@@ -63,49 +63,55 @@ export default {
     align-items: center;
   }
   &__dialog {
-    max-width: 80%;
-    min-width: 60%;
+    max-width: 70%;
+    min-width: 50%;
     min-height: 550px;
-    height: 80%;
-    z-index: 99999;
+    max-height: 80%;
+    min-height: 60%;
     border-radius: 20px;
+    z-index: 99999;
     background-color: white;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     position: relative;
-    @media (max-width: 426px) {
-      height: 80%;
-      width: 80%;
-    }
   }
   &__close {
-    font-size: 20px;
+    font-size: 30px;
+    color: black;
     position: absolute;
-    top: 5px;
-    right: 5px;
+    top: 20px;
+    right: 20px;
     border: none;
     outline: none;
     background-color: transparent;
   }
   &__header {
-    padding-right: 15px;
-    padding-top: 8px;
     width: 100%;
-    height: 10%;
+    margin: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
   }
   &__body {
-    height: 70%;
+    overflow-y: auto;
+    margin: 10px;
     width: 90%;
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
     align-items: center;
-    flex-wrap: wrap;
+
+    label {
+      width: 30%;
+      display: flex;
+      justify-content: flex-start;
+      color: black;
+      font-weight: bold;
+      max-width: 300px;
+      margin-top: 10px;
+    }
     div {
       display: flex;
       justify-content: center;
@@ -122,32 +128,38 @@ export default {
     }
     input {
       border: 1px black solid;
-      height: 25px;
+      min-height: 25px;
       width: 30%;
+      max-width: 300px;
       min-width: 250px;
       margin: 5px;
       padding: 5px;
-      font-size: 20px;
+      font-size: 15px;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
     }
     select {
+      max-width: 300px;
       border: 1px black solid;
-      min-height: 30px;
+      min-height: 25px;
       min-width: 250px;
       width: 30%;
       margin: 5px;
       padding: 5px;
       text-align: center;
+      -webkit-box-sizing: content-box;
+      box-sizing: content-box;
     }
   }
   &__footer {
-    height: 10%;
+    margin: 20px;
     width: 80%;
     font-size: 25px;
     display: flex;
     justify-content: center;
     align-items: center;
     .black_button {
-      width: 30%;
+      width: 200px;
       margin: 10px;
       height: 40px;
       font-weight: 500;
@@ -171,7 +183,7 @@ export default {
       }
     }
     .cancel_button {
-      width: 30%;
+      width: 200px;
       margin: 10px;
       height: 40px;
       font-weight: 500;
@@ -195,7 +207,7 @@ export default {
       }
     }
     .add_button {
-      width: 30%;
+      width: 200px;
       margin: 10px;
       height: 40px;
       font-weight: 500;

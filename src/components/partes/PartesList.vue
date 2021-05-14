@@ -14,7 +14,8 @@
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
-      <input v-model="newParte.nombre" placeholder="NOMBRE" />
+      <label for="">NOMBRE</label>
+      <input v-model="newParte.nombre" placeholder="Ej: Juana" />
       <!-- <select v-model="newParte.producto" placeholder="PRODUCTO">
         <option
           v-for="item in productos"
@@ -24,14 +25,16 @@
           {{ item.nombre }}
         </option>
       </select> -->
-      <input v-model="newParte.costo" placeholder="COSTO" />
-      <input v-model="newParte.costoFlete" placeholder="COSTO FLETE" />
-      <input v-model="newParte.stock" placeholder="STOCK" />
-      <input
-        v-model="newParte.tiempoProduccion"
-        placeholder="TIEMPO DE PRODUCCION"
-      />
+      <label for="">COSTO</label>
+      <input v-model="newParte.costo" placeholder="Ej: 500" />
+      <label for="">COSTO DE FLETE</label>
+      <input v-model="newParte.costoFlete" placeholder="Ej: 500" />
+      <label for="">STOCK</label>
+      <input v-model="newParte.stock" placeholder="Ej: 20" />
+      <label for="">TIEMPO DE PRODUCCION</label>
+      <input v-model="newParte.tiempoProduccion" placeholder="Ej: 2 meses" />
       <!-- <input v-model="newParte.margen" placeholder="MARGEN" /> -->
+      <label for="">PROVEEDOR</label>
       <select v-model="newParte.proveedor">
         <option
           v-for="item in proveedores"
@@ -63,16 +66,16 @@ export default {
     };
   },
   computed: {
-    proveedores: function () {
+    proveedores: function() {
       return this.$store.getters.allProveedores;
     },
   },
 
   methods: {
-    openAddModal: function () {
+    openAddModal: function() {
       this.$refs.add.openModal();
     },
-    postParte: function () {
+    postParte: function() {
       this.$store.dispatch("postParte", this.newParte);
       this.$refs.add.closeModal();
     },

@@ -12,7 +12,7 @@
       <slot></slot>
     </div>
   </div>
-  <ModalAdd ref="add" > 
+  <ModalAdd ref="add">
     <template v-slot:body>
       <!-- <form enctype="multipart/form-data"> -->
       <!-- <input 
@@ -24,25 +24,38 @@
       />
       <button type="button" v-on:click="$refs.fileInput.click()">Cargar imagen</button> -->
       <!-- <p>{{newProducto.imagen.name}}</p> -->
+      <label for="">NOMBRE</label>
       <input v-model="newProducto.nombre" placeholder="NOMBRE" />
+      <label for="">COSTO</label>
       <input v-model="newProducto.costo" placeholder="COSTO" />
+      <label for="">PRECIO DE VENTA</label>
       <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" />
+      <label for="">STOCK</label>
       <input v-model="newProducto.stock" placeholder="STOCK" />
+      <label for="">TIEMPO DE PRODUCCION</label>
       <input
         v-model="newProducto.tiempoProduccion"
         placeholder="TIEMPO DE PRODUCCION"
       />
+      <label for="">COSTO DE FLETE</label>
       <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
+      <label for="">MARGEN DE GANANCIA</label>
       <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
       <!-- <input v-model="newProducto.medidas.alto" placeholder="ALTO"/>
       <input v-model="newProducto.medidas.ancho" placeholder="ANCHO"/>
       <input v-model="newProducto.medidas.largo" placeholder="LARGO"/> -->
+      <label for="">PROVEEDOR</label>
       <select v-model="newProducto.proveedor">
         <option disabled selected>PROVEEDOR</option>
-        <option v-for="item in proveedores" :key="item._key" v-bind:value="item">
+        <option
+          v-for="item in proveedores"
+          :key="item._key"
+          v-bind:value="item"
+        >
           {{ item.nombre }}
         </option>
       </select>
+      <label for="">SUBCATEGORIA</label>
       <select v-model="newProducto.subCategoria">
         <option disabled selected>SUBCATEGORIA</option>
         <option
@@ -53,7 +66,8 @@
           {{ item.categoria.nombre }} - {{ item.nombre }}
         </option>
       </select>
-      <select size="5" v-model="newProducto.partes"  multiple >
+      <label for="">PARTES</label>
+      <select size="5" v-model="newProducto.partes" multiple>
         <option v-for="item in partes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
@@ -100,15 +114,15 @@ export default {
     openAddModal: function() {
       this.$refs.add.openModal();
     },
-    onFileSelected(event){
+    onFileSelected(event) {
       //console.log(event)
-      this.newProducto.imagen = event.target.files[0]
+      this.newProducto.imagen = event.target.files[0];
       //console.log(this.newProducto)
     },
-    postProducto: function () {
+    postProducto: function() {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.add.closeModal();
-      console.log(this.newProducto)
+      console.log(this.newProducto);
     },
   },
   created() {
