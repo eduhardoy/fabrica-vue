@@ -14,7 +14,6 @@
           Nuevo cliente
         </button>
       </div>
-      -->
       <label for="">FECHA DE VENCIMIENTO</label>
       <input type="date" v-model="newPresupuesto.fechaVencimiento" />
       <label for="">CLIENTE</label>
@@ -146,7 +145,6 @@
       <button class="add_button" @click="postProducto()">AGREGAR</button>
     </template>
   </ModalAdd>
-  -->
 </template>
 
 <script>
