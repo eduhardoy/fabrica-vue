@@ -20,6 +20,7 @@ import ContaEstad from "../views/ContaEstad.vue";
 import Contabilidad from "../views/Contabilidad.vue";
 import Estadistica from "../views/Estadistica.vue";
 import Inventario from "../views/Inventario.vue";
+import Factura from "../views/FacturaView.vue";
 
 const routes = [
   {
@@ -137,6 +138,12 @@ const routes = [
     name: "Presupuestos",
     component: Presupuestos,
   },
+  {
+    path: "/factura",
+    name: "Factura",
+    component: Factura,
+  },
+
 ];
 
 const router = createRouter({
