@@ -23,6 +23,14 @@
           <li><strong>Emitido: </strong>{{ item.modifiedDate }}</li>
           <li><strong>Vencimiento: </strong>{{ item.fechaVencimiento }}</li>
           <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li>
+          <ul>
+            <strong>PRODUCTOS</strong>
+            <li v-for="producto in item.productos" :key="producto._key">
+              {{ producto.nombre }} ({{ producto.cantidad }} Unidades)
+            </li>
+            <strong>MONTO TOTAL</strong>
+            <li>{{ item.montoTotal }}</li>
+          </ul>
         </div>
       </ul>
     </details>
@@ -35,12 +43,7 @@
       <button class="black_button" @click="$refs.del.closeModal()">
         CANCELAR
       </button>
-      <button
-        class="cancel_button"
-        @click="deletePresupuesto"
-      >
-        ELIMINAR
-      </button>
+      <button class="cancel_button" @click="deletePresupuesto">ELIMINAR</button>
     </template>
   </ModalDelete>
   <!-- <ModalEdit ref="edit">
@@ -79,22 +82,22 @@ export default {
   components: { ModalDelete },
   data() {
     return {
-      selectedPresupuesto: { },
+      selectedPresupuesto: {},
     };
   },
   computed: {
-    presupuestos: function() {
+    presupuestos: function () {
       return this.$store.getters.allPresupuestos;
     },
-    clientes: function() {
+    clientes: function () {
       return this.$store.getters.allClientes;
     },
-    productos: function() {
+    productos: function () {
       return this.$store.getters.allProductos;
     },
   },
   methods: {
-    openDelModal: function(presupuesto) {
+    openDelModal: function (presupuesto) {
       Object.assign(this.selectedPresupuesto, presupuesto);
       this.selectedPresupuesto = presupuesto;
       this.$refs.del.openModal();
@@ -110,7 +113,7 @@ export default {
     //   this.$store.dispatch("putPresupuesto", this.selectedPresupuesto);
     //   this.$refs.edit.closeModal();
     // },
-    deletePresupuesto: function() {
+    deletePresupuesto: function () {
       this.$store.dispatch("deletePresupuesto", this.selectedPresupuesto);
       this.$refs.del.closeModal();
     },

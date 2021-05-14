@@ -31,6 +31,7 @@
         <div class="productos-datos">
           <input @change="handleCantidad($event, index)" placeholder="1" />
           <select name="producto" @change="handleProducto($event, index)">
+            <option>Seleccionar Producto</option>
             <option
               v-for="producto in productos"
               :key="producto._key"
@@ -214,9 +215,10 @@ export default {
       this.$delete(this.items, index);
     },
     postPresupuesto: function() {
-      //this.$store.dispatch("postPresupuesto", this.newPresupuesto);
-      this.$refs.add.closeModal();
+      this.$store.dispatch("postPresupuesto", this.newPresupuesto);
+      // this.$refs.add.closeModal();
       console.log(this.newPresupuesto);
+      this.$router.push("/presupuestos")
     },
     postCliente: function() {
       this.$store.dispatch("postCliente", this.newCliente);
