@@ -62,6 +62,7 @@
       <button class="button-addProducto" @click="addProducto(newVenta)">
         AGREGAR PRODUCTO
       </button>
+      <p>MONTO TOTAL:</p>
       <label for="">MONTO PAGADO</label>
       <input v-model="newVenta.montoPagado" placeholder="MONTO PAGADO" />
       <!-- <label for="">ESTADO</label>
@@ -240,12 +241,16 @@ export default {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.addProducto.closeModal();
     },
-    verFactura: function(){
+    verFactura: function() {
       //console.log(this.newVenta);
       // this.$router.go({ path: "/factura" })
-      let routeData = this.$router.resolve({name: 'Factura', query: {data: this.newVenta}}); //params: this.newVenta.cliente
-      window.open(routeData.href, '_blank');
-    }
+      localStorage.setItem("estaVenta", JSON.stringify(this.newVenta));
+      /* let routeData = this.$router.resolve({
+        name: "Factura",
+        query: { data: this.newVenta },
+      }); //params: this.newVenta.cliente
+      window.open(routeData.href, "_blank"); */
+    },
   },
   created() {
     this.$store.dispatch("getProductos");
