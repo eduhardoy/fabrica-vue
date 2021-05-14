@@ -41,13 +41,13 @@
       <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
       <label for="">MARGEN DE GANANCIA</label>
       <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
-      <!-- <label for="">ALTO</label> -->
-      <!-- <input v-model="newProducto.medidas.alto" placeholder="ALTO"/>
-      <label for=""ANCHO</label>
-
-      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO"/>
+      <!-- Medidas -->
+      <label for="">ALTO</label>
+      <input v-model="newProducto.medidas.alto" placeholder="ALTO" />
+      <label for="">ANCHO</label>
+      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO" />
       <label for="">LARGO</label>
-      <input v-model="newProducto.medidas.largo" placeholder="LARGO"/> -->
+      <input v-model="newProducto.medidas.largo" placeholder="LARGO" />
       <label for="">PROVEEDOR</label>
       <select v-model="newProducto.proveedor">
         <option disabled selected>PROVEEDOR</option>
@@ -96,26 +96,26 @@ export default {
   data() {
     return {
       newProducto: {
-        /* medidas: {}, */
-        /* imagen:{
+        medidas: {},
+        imagen: {
           name: "nombre imagen seleccionada...",
-        } */
+        },
       },
     };
   },
   computed: {
-    proveedores: function() {
+    proveedores: function () {
       return this.$store.getters.allProveedores;
     },
-    subCategorias: function() {
+    subCategorias: function () {
       return this.$store.getters.allSubCategorias;
     },
-    partes: function() {
+    partes: function () {
       return this.$store.getters.allPartes;
     },
   },
   methods: {
-    openAddModal: function() {
+    openAddModal: function () {
       this.$refs.add.openModal();
     },
     onFileSelected(event) {
@@ -123,7 +123,7 @@ export default {
       this.newProducto.imagen = event.target.files[0];
       //console.log(this.newProducto)
     },
-    postProducto: function() {
+    postProducto: function () {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.add.closeModal();
       console.log(this.newProducto);
