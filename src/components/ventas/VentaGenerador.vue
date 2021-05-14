@@ -6,9 +6,9 @@
       </div>
     </div>
     <div class="venta_wrapper">
-      <select hidden>
+      <!-- <select hidden>
         <option>presupuesto</option>
-      </select>
+      </select> -->
       <div class="new">
       <button @click="openAddModalProducto">
           Nuevo producto
@@ -18,19 +18,31 @@
         </button>
       </div>
       <input type="date" v-model="newVenta.fechaEntrega" placeholder="FECHA DE ENTREGA"/>
+      <!-- CLIENTES -->
       <select v-model="newVenta.cliente">
+        <option value="" disabled selected>CLIENTES</option>
         <option v-for="item in clientes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
+      <!-- PRESUPUESTOS -->
+      <select v-model="newVenta.presupuesto">
+        <option selected disabled>PRESUPUESTOS</option>
+        <option v-for="item in presupuestos" :key="item._key" v-bind:value="item">
+          {{ item._key }}
+        </option>
+      </select>
+      <!-- PRODUCTOS -->
       <div class="productos" v-for="(item,index) in newVenta.productos" :key="item.value">
         <div class="productos-datos">
-          <input  @change="handleCantidad($event,index)" placeholder="1"/>
-          <select name="producto" @change="handleProducto($event,index)">
+          <input  @change="handleCantidad($event,index)" placeholder="1" id="cantidadProd"/>
+          <select v-model="selecter" name="producto" @change="handleProducto($event,index)">
             <option v-for="producto in productos" :key="producto._key" v-bind:value="JSON.stringify(producto)">
               {{producto.nombre}}
             </option>
           </select>
+          <!-- HACER CALCULO precio producto X cantidad -->
+          <input disabled class="price" placeholder="precioPRODxCantidad" />
         </div>
           
           <div class="productos__buttons">
@@ -41,9 +53,13 @@
               <img src="./images/trash.svg" alt="-" />
             </button>
           </div>
-          
-            
+
       </div>
+      <div class="productos" align="center">
+        <input class="total-venta" disabled type="text" placeholder="SUMAR total-venta"/>
+      </div>
+      <!--- HASTA ACA PRODUCTOS --->
+
       <button class="button-addProducto" @click="addProducto(newVenta)">
         AGREGAR PRODUCTO
       </button>
@@ -53,6 +69,7 @@
           <option value="pendiente">Pendiente</option>
           <option value="finalizado">Finalizado</option>
         </select>
+        <!-- MODELO ESTANDAR DE FACTURA -->
       <router-link to="/presupuestof" class="button-factura">
       <p>VER FACTURA</p>
       
@@ -61,7 +78,7 @@
     </div>
     <p>{{newVenta.montoTotal}}</p>
   </div>
-  <ModalAdd ref="addCliente"> 
+  <ModalAdd ref="addCliente">
     <template v-slot:body>
       <input v-model="newCliente.nombre" placeholder="NOMBRE" />
       <input v-model="newCliente.cuitOrDni" placeholder="DNI o CUIT" />
@@ -70,10 +87,10 @@
       <input v-model="newCliente.email" placeholder="EMAIL" />
     </template>
     <template v-slot:footer>
-      <button class="cancel_button" @click="$refs.addCliente.closeModal()">
+      <button class="cancel_button" @click="$refs.add.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postCliente()">AGREGAR </button>
+      <button class="add_button" @click="postCliente()">AGREGAR</button>
     </template>
   </ModalAdd>
   <ModalAdd ref="addProducto"> 
@@ -163,13 +180,18 @@ export default {
     handleProducto: function(e,index){
       let cantidad = this.newVenta.productos[index].cantidad
       this.newVenta.productos[index] = {...JSON.parse(e.target.value),cantidad}
-
+    },
+    handlePresupuesto: function(e,index){
+      this.newVenta.presupuestos[index] = {...JSON.parse(e.target.value)}
     },
     handleCantidad: function(e,index){
       let producto = this.newVenta.productos[index]
       this.newVenta.productos[index] = {...producto,cantidad:e.target.value}
-
     },
+    // handlePrecio: function(index){
+    //   let producto = this.newVenta.productos[index]
+    //   var operation = document.getElementById("precioVenta").value;
+    // },
     openAddModalCliente: function () {
       this.$refs.addCliente.openModal();
     },
@@ -181,6 +203,22 @@ export default {
     },
     delProducto: function(index){
       this.newVenta.productos.pop();
+      this.$delete(this.items, index)
+    },
+    addFila: function(){
+      document.getElementById("tableProducts").insertRow(-1).innerHTML = '<td></td><td></td><td></td>';
+    },
+    delFila: function() {
+      var table = document.getElementById("tableProducts");
+      var rowCount = table.rows.length;
+      if(rowCount <= 1){
+        alert('No se puede eliminar el encabezado');
+      } else {
+        table.deleteRow(rowCount -1);
+      }
+    },
+    delPresupuesto: function(index){
+      this.newVenta.presupuestos.pop();
       this.$delete(this.items, index)
     },
     postVenta: function () {
@@ -203,6 +241,7 @@ export default {
     this.$store.dispatch("getProveedores");
     this.$store.dispatch("getSubCategorias");
     this.$store.dispatch("getPartes");
+    this.$store.dispatch("getPresupuestos");
   },
 };
 </script>
@@ -287,18 +326,36 @@ export default {
         align-items: center;
         width: 40%;
         input{
-        width: 18px;
+        width: 25px;
         height: 21px;
         margin: 5px 0px;
         margin-right: 5px;
+        margin-left: 5px;
+        text-align-last: center;
       }
+      .price{
+        width: 70px;
+        height: 21px;
+        margin: 5px 0px;
+        margin-right: 5px;
+        margin-left: 5px;
+        text-align-last: right;
+      }
+      
 
       select {
         border: 1px black solid;
-        width: 95%;
+        width: 50%;
         margin: 5px 0px;
         padding: 5px;
       }
+      }
+      .total-venta{
+        width: 130px;
+        height: 21px;
+        margin: 5px 0px;
+        padding: 5px;
+        text-align-last: right;
       }
       
       

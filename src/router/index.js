@@ -20,6 +20,7 @@ import ContaEstad from "../views/ContaEstad.vue";
 import Contabilidad from "../views/Contabilidad.vue";
 import Estadistica from "../views/Estadistica.vue";
 import Inventario from "../views/Inventario.vue";
+import Sucursales from "../views/Sucursales.vue";
 
 const routes = [
   {
@@ -136,6 +137,11 @@ const routes = [
     path: "/presupuestos",
     name: "Presupuestos",
     component: Presupuestos,
+  },
+  {
+    path: "/sucursales-menu",
+    name: "Sucursales",
+    component: Sucursales,
   },
 ];
 
