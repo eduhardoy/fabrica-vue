@@ -10,92 +10,127 @@
         <option>presupuesto</option>
       </select>
       <div class="new">
-      <button @click="openAddModalProducto">
+        <button @click="openAddModalProducto">
           Nuevo producto
-      </button>
-      <button @click="openAddModalCliente">
+        </button>
+        <button @click="openAddModalCliente">
           Nuevo cliente
         </button>
       </div>
-      <input type="date" v-model="newVenta.fechaEntrega" placeholder="FECHA DE ENTREGA"/>
+      <label for="">FECHA DE ENTREGA</label>
+      <input
+        type="date"
+        v-model="newVenta.fechaEntrega"
+        placeholder="FECHA DE ENTREGA"
+      />
+      <label for="">CLIENTE</label>
       <select v-model="newVenta.cliente">
         <option v-for="item in clientes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
-      <div class="productos" v-for="(item,index) in newVenta.productos" :key="item.value">
+      <label for="">PRODUCTOS</label>
+      <div
+        class="productos"
+        v-for="(item, index) in newVenta.productos"
+        :key="item.value"
+      >
         <div class="productos-datos">
-          <input  @change="handleCantidad($event,index)" placeholder="1"/>
-          <select name="producto" @change="handleProducto($event,index)">
-            <option v-for="producto in productos" :key="producto._key" v-bind:value="JSON.stringify(producto)">
-              {{producto.nombre}}
+          <input @change="handleCantidad($event, index)" placeholder="1" />
+          <select name="producto" @change="handleProducto($event, index)">
+            <option
+              v-for="producto in productos"
+              :key="producto._key"
+              v-bind:value="JSON.stringify(producto)"
+            >
+              {{ producto.nombre }}
             </option>
           </select>
         </div>
-          
-          <div class="productos__buttons">
-            <button class="productos__buttons-del"
-              v-if="newVenta.productos.length > 1"
-              @click="delProducto()"
-            >
-              <img src="./images/trash.svg" alt="-" />
-            </button>
-          </div>
-          
-            
+
+        <div class="productos__buttons">
+          <button
+            class="productos__buttons-del"
+            v-if="newVenta.productos.length > 1"
+            @click="delProducto()"
+          >
+            <img src="./images/trash.svg" alt="-" />
+          </button>
+        </div>
       </div>
       <button class="button-addProducto" @click="addProducto(newVenta)">
         AGREGAR PRODUCTO
       </button>
-      
-      <input v-model="newVenta.montoPagado" placeholder="MONTO PAGADO"/>
+      <label for="">MONTO PAGADO</label>
+      <input v-model="newVenta.montoPagado" placeholder="MONTO PAGADO" />
+      <label for="">ESTADO</label>
       <select v-model="newVenta.estado">
-          <option value="pendiente">Pendiente</option>
-          <option value="finalizado">Finalizado</option>
-        </select>
+        <option value="pendiente">Pendiente</option>
+        <option value="finalizado">Finalizado</option>
+      </select>
       <router-link to="/presupuestof" class="button-factura">
-      <p>VER FACTURA</p>
-      
-    </router-link>
+        <p>VER FACTURA</p>
+      </router-link>
       <button @click="postVenta()">GENERAR VENTA</button>
     </div>
-    <p>{{newVenta.montoTotal}}</p>
+    <p>{{ newVenta.montoTotal }}</p>
   </div>
-  <ModalAdd ref="addCliente"> 
+  <ModalAdd ref="addCliente">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="newCliente.nombre" placeholder="NOMBRE" />
+      <label for="">DNI O CUIT</label>
       <input v-model="newCliente.cuitOrDni" placeholder="DNI o CUIT" />
+      <label for="">DIRECCION</label>
       <input v-model="newCliente.direccion" placeholder="DIRECCION" />
-      <input v-model="newCliente.telefono" placeholder="TELEFONO"/>
+      <label for="">TELEFONO</label>
+      <input v-model="newCliente.telefono" placeholder="TELEFONO" />
+      <label for="">EMAIL</label>
       <input v-model="newCliente.email" placeholder="EMAIL" />
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.addCliente.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postCliente()">AGREGAR </button>
+      <button class="add_button" @click="postCliente()">AGREGAR</button>
     </template>
   </ModalAdd>
-  <ModalAdd ref="addProducto"> 
+  <ModalAdd ref="addProducto">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="newProducto.nombre" placeholder="NOMBRE" />
+      <label for="">COSTO</label>
       <input v-model="newProducto.costo" placeholder="COSTO" />
+      <label for="">PRECIO DE VENTA</label>
       <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" />
+      <label for="">STOCK</label>
       <input v-model="newProducto.stock" placeholder="STOCK" />
+      <label for="">TIEMPO DE PRODUCCION</label>
       <input
         v-model="newProducto.tiempoProduccion"
         placeholder="TIEMPO DE PRODUCCION"
       />
+      <label for="">COSTO DE FLETE</label>
       <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
+      <label for="">MARGEN DE GANANCIA</label>
       <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
-      <input v-model="newProducto.medidas.alto" placeholder="ALTO"/>
-      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO"/>
-      <input v-model="newProducto.medidas.largo" placeholder="LARGO"/>
+      <label for="">ALTO</label>
+      <input v-model="newProducto.medidas.alto" placeholder="ALTO" />
+      <label for="">ANCHO</label>
+      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO" />
+      <label for="">LARGO</label>
+      <input v-model="newProducto.medidas.largo" placeholder="LARGO" />
+      <label for="">PROVEEDOR</label>
       <select v-model="newProducto.proveedor">
-        <option v-for="item in proveedores" :key="item._key" v-bind:value="item">
+        <option
+          v-for="item in proveedores"
+          :key="item._key"
+          v-bind:value="item"
+        >
           {{ item.nombre }}
         </option>
       </select>
+      <label for="">SUBCATEGORIA</label>
       <select v-model="newProducto.subCategoria">
         <option
           v-for="item in subCategorias"
@@ -105,7 +140,8 @@
           {{ item.categoria.nombre }} - {{ item.nombre }}
         </option>
       </select>
-      <select size="5" v-model="newProducto.partes"  multiple >
+      <label for="">PARTES</label>
+      <select class="big_select" size="5" v-model="newProducto.partes" multiple>
         <option v-for="item in partes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
@@ -118,7 +154,6 @@
       <button class="add_button" @click="postProducto()">AGREGAR</button>
     </template>
   </ModalAdd>
-
 </template>
 
 <script>
@@ -130,22 +165,22 @@ export default {
   data() {
     return {
       newVenta: {
-        productos:[{cantidad:1}],
+        productos: [{ cantidad: 1 }],
       },
       newProducto: {
-        medidas: {}
+        medidas: {},
       },
       newCliente: {},
     };
   },
   computed: {
-    presupuestos: function () {
+    presupuestos: function() {
       return this.$store.getters.allPresupuestos;
     },
-    productos: function () {
+    productos: function() {
       return this.$store.getters.allProductos;
     },
-    clientes: function () {
+    clientes: function() {
       return this.$store.getters.allClientes;
     },
     proveedores: function() {
@@ -160,39 +195,43 @@ export default {
   },
 
   methods: {
-    handleProducto: function(e,index){
-      let cantidad = this.newVenta.productos[index].cantidad
-      this.newVenta.productos[index] = {...JSON.parse(e.target.value),cantidad}
-
+    handleProducto: function(e, index) {
+      let cantidad = this.newVenta.productos[index].cantidad;
+      this.newVenta.productos[index] = {
+        ...JSON.parse(e.target.value),
+        cantidad,
+      };
     },
-    handleCantidad: function(e,index){
-      let producto = this.newVenta.productos[index]
-      this.newVenta.productos[index] = {...producto,cantidad:e.target.value}
-
+    handleCantidad: function(e, index) {
+      let producto = this.newVenta.productos[index];
+      this.newVenta.productos[index] = {
+        ...producto,
+        cantidad: e.target.value,
+      };
     },
-    openAddModalCliente: function () {
+    openAddModalCliente: function() {
       this.$refs.addCliente.openModal();
     },
-    openAddModalProducto: function () {
+    openAddModalProducto: function() {
       this.$refs.addProducto.openModal();
     },
-    addProducto: function (){
-      this.newVenta.productos.push({cantidad:1});
+    addProducto: function() {
+      this.newVenta.productos.push({ cantidad: 1 });
     },
-    delProducto: function(index){
+    delProducto: function(index) {
       this.newVenta.productos.pop();
-      this.$delete(this.items, index)
+      this.$delete(this.items, index);
     },
-    postVenta: function () {
+    postVenta: function() {
       this.$store.dispatch("postVenta", this.newVenta);
       //this.$refs.add.closeModal();
       console.log(this.newVenta);
     },
-    postCliente: function () {
+    postCliente: function() {
       this.$store.dispatch("postCliente", this.newCliente);
       this.$refs.addCliente.closeModal();
     },
-    postProducto: function () {
+    postProducto: function() {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.addProducto.closeModal();
     },
@@ -215,7 +254,15 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  
+  label {
+    width: 40%;
+    display: flex;
+    justify-content: flex-start;
+    color: black;
+    font-weight: bold;
+    max-width: 400px;
+    margin-top: 10px;
+  }
   .venta__head {
     height: 15%;
     width: 100%;
@@ -230,7 +277,6 @@ export default {
   }
 
   .venta_wrapper {
-    
     height: 85%;
     width: 100%;
     display: flex;
@@ -241,7 +287,7 @@ export default {
       height: 22px;
       width: 38.7%;
       margin: 5px;
-      padding: 5px;  
+      padding: 5px;
     }
 
     select {
@@ -252,11 +298,11 @@ export default {
       padding: 5px;
     }
 
-    .new{
+    .new {
       display: flex;
       width: 40%;
       justify-content: center;
-      button{
+      button {
         width: 40%;
         margin: 10px;
         height: 40px;
@@ -270,45 +316,43 @@ export default {
         align-items: center;
         justify-content: center;
         border: none;
-        border-radius: 5px;      
+        border-radius: 5px;
       }
     }
 
-    .productos{
+    .productos {
       width: 100%;
       display: flex;
       flex-direction: row;
       justify-content: center;
       align-items: center;
 
-      .productos-datos{
-        display:flex;
+      .productos-datos {
+        display: flex;
         justify-content: center;
         align-items: center;
         width: 40%;
-        input{
-        width: 18px;
-        height: 21px;
-        margin: 5px 0px;
-        margin-right: 5px;
+        input {
+          width: 18px;
+          height: 21px;
+          margin: 5px 0px;
+          margin-right: 5px;
+        }
+        select {
+          border: 1px black solid;
+          width: 95%;
+          margin: 5px 0px;
+          padding: 5px;
+        }
       }
 
-      select {
-        border: 1px black solid;
-        width: 95%;
-        margin: 5px 0px;
-        padding: 5px;
-      }
-      }
-      
-      
-      .productos__buttons{
+      .productos__buttons {
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: center;
         height: 30px;
-        button{
+        button {
           width: 30px;
           height: 30px;
           display: flex;
@@ -318,33 +362,31 @@ export default {
           background-color: transparent;
           border: none;
           outline: none;
-        }  
+        }
         img {
           width: 100%;
           height: 100%;
         }
-      
-      .productos__buttons-button {
-        width: 30px;
-        height: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background-color: transparent;
-        border: none;
-        outline: none;
-        img {
-          width: 100%;
-          height: 100%;
-        }
-      } 
-      
-    }
-      
-    }  
 
-    button{
+        .productos__buttons-button {
+          width: 30px;
+          height: 30px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background-color: transparent;
+          border: none;
+          outline: none;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+      }
+    }
+
+    button {
       width: 30%;
       margin: 10px;
       height: 40px;
@@ -358,12 +400,12 @@ export default {
       align-items: center;
       justify-content: center;
       border: none;
-      border-radius: 5px; 
+      border-radius: 5px;
     }
-    .button-addProducto{
+    .button-addProducto {
       background-color: #5a5a5a;
     }
-    .button-factura{
+    .button-factura {
       background-color: #378eff;
       width: 30%;
       margin: 10px;
@@ -378,8 +420,7 @@ export default {
       justify-content: center;
       border: none;
       border-radius: 5px;
-      text-decoration: none; 
-     
+      text-decoration: none;
     }
   }
 }
