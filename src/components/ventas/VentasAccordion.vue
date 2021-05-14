@@ -24,7 +24,7 @@
       <div class="venta__wrapper__button">
         <button>VER FACTURA</button>
         <button>VER FACTURA 2</button>
-        <button>VER PRESUPUESTO</button>
+        <!-- <button>VER PRESUPUESTO</button> -->
         <button>FINALIZAR VENTA</button>
       </div>
       <ul class="details_list">
@@ -34,8 +34,12 @@
         <ul>
           <strong>PRODUCTOS</strong>
           <li v-for="producto in item.productos" :key="producto._key">
-            {{ producto.nombre }}
+            {{ producto.nombre }} ({{ producto.cantidad }} Unidades)
           </li>
+          <strong>MONTO PENDIENTE</strong>
+          <li>{{ item.montoTotal - item.montoPagado }}</li>
+          <strong>MONTO TOTAL</strong>
+          <li>{{ item.montoTotal }}</li>
         </ul>
       </ul>
     </details>
@@ -67,39 +71,39 @@ export default {
     };
   },
   computed: {
-    ventas: function() {
+    ventas: function () {
       return this.$store.getters.allVentas;
     },
-    presupuestos: function() {
+    presupuestos: function () {
       return this.$store.getters.allPresupuestos;
     },
-    clientes: function() {
+    clientes: function () {
       return this.$store.getters.allClientes;
     },
-    productos: function() {
+    productos: function () {
       return this.$store.getters.allProductos;
     },
   },
   methods: {
-    openDelModal: function(venta) {
+    openDelModal: function (venta) {
       this.selectedVenta = venta;
       this.$refs.del.openModal();
     },
-    putVenta: function() {
+    putVenta: function () {
       this.$store.dispatch("putVenta", this.selectedVenta);
       this.$refs.edit.closeModal();
     },
-    deleteVenta: function(venta) {
+    deleteVenta: function (venta) {
       this.$store.dispatch("deleteVenta", venta);
       this.$refs.del.closeModal();
     },
-    getClientes: function() {
+    getClientes: function () {
       this.$store.dispatch("getClientes");
     },
-    getProveedores: function() {
+    getProveedores: function () {
       this.$store.dispatch("getProveedores");
     },
-    getProductos: function() {
+    getProductos: function () {
       this.$store.dispatch("getProductos");
     },
   },

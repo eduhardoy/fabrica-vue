@@ -38,6 +38,7 @@
         <div class="productos-datos">
           <input @change="handleCantidad($event, index)" placeholder="1" />
           <select name="producto" @change="handleProducto($event, index)">
+            <option>Seleccionar Producto</option>
             <option
               v-for="producto in productos"
               :key="producto._key"
@@ -64,11 +65,11 @@
       <p>MONTO TOTAL:</p>
       <label for="">MONTO PAGADO</label>
       <input v-model="newVenta.montoPagado" placeholder="MONTO PAGADO" />
-      <label for="">ESTADO</label>
+      <!-- <label for="">ESTADO</label>
       <select v-model="newVenta.estado">
         <option value="pendiente">Pendiente</option>
         <option value="finalizado">Finalizado</option>
-      </select>
+      </select> -->
       <router-link to="/presupuestof" class="button-factura">
         <p>VER MODELO FACTURA</p>
       </router-link>
@@ -205,6 +206,7 @@ export default {
         ...JSON.parse(e.target.value),
         cantidad,
       };
+      console.log("Venta",this.newVenta)
     },
     handleCantidad: function(e, index) {
       let producto = this.newVenta.productos[index];
