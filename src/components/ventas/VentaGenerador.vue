@@ -69,8 +69,11 @@
         <option value="finalizado">Finalizado</option>
       </select>
       <router-link to="/presupuestof" class="button-factura">
-        <p>VER FACTURA</p>
+        <p>VER MODELO FACTURA</p>
       </router-link>
+      <button @click="verFactura()" class="button-factura">
+        <p>VER FACTURA</p>
+      </button>
       <button @click="postVenta()">GENERAR VENTA</button>
     </div>
     <p>{{ newVenta.montoTotal }}</p>
@@ -235,6 +238,12 @@ export default {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.addProducto.closeModal();
     },
+    verFactura: function(){
+      //console.log(this.newVenta);
+      // this.$router.go({ path: "/factura" })
+      let routeData = this.$router.resolve({name: 'Factura', query: {data: this.newVenta}}); //params: this.newVenta.cliente
+      window.open(routeData.href, '_blank');
+    }
   },
   created() {
     this.$store.dispatch("getProductos");
@@ -282,7 +291,7 @@ export default {
     flex-direction: column;
     align-items: center;
     input {
-      border: 1px black solid;
+      border: 1px rgb(0, 0, 0) solid;
       height: 22px;
       width: 38.7%;
       margin: 5px;
@@ -290,7 +299,7 @@ export default {
     }
 
     select {
-      border: 1px black solid;
+      border: 1px rgb(0, 0, 0) solid;
       height: 34px;
       width: 40%;
       margin: 5px;
