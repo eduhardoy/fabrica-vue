@@ -62,7 +62,6 @@
       <button class="button-addProducto" @click="addProducto(newVenta)">
         AGREGAR PRODUCTO
       </button>
-      <p>MONTO TOTAL:</p>
       <label for="">MONTO PAGADO</label>
       <input v-model="newVenta.montoPagado" placeholder="MONTO PAGADO" />
       <!-- <label for="">ESTADO</label>
@@ -206,7 +205,7 @@ export default {
         ...JSON.parse(e.target.value),
         cantidad,
       };
-      console.log("Venta",this.newVenta)
+      console.log("Venta", this.newVenta);
     },
     handleCantidad: function(e, index) {
       let producto = this.newVenta.productos[index];
