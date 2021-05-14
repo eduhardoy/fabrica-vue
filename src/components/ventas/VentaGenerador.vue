@@ -251,9 +251,10 @@ export default {
   height: 100%;
   width: 60%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  overflow-y: auto;
   label {
     width: 40%;
     display: flex;
@@ -264,7 +265,6 @@ export default {
     margin-top: 10px;
   }
   .venta__head {
-    height: 15%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -277,7 +277,6 @@ export default {
   }
 
   .venta_wrapper {
-    height: 85%;
     width: 100%;
     display: flex;
     flex-direction: column;
