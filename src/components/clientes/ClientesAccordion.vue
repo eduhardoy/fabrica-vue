@@ -25,16 +25,18 @@
         <li><strong>Telefono: </strong>{{ item.telefono }}</li>
         <li><strong>Email: </strong>{{ item.email }}</li>
         <ul>
-            <strong>COMPRAS:</strong>
-            <li v-for="compra in item.compras" :key="compra._key">
-              {{ compra.presupuesto }}<!-- que campo?? -->
-            </li>
+          <strong>COMPRAS:</strong>
+          <li v-for="compra in item.compras" :key="compra._key">
+            {{ compra.presupuesto
+            }}<!-- que campo?? -->
+          </li>
         </ul>
         <ul>
-            <strong>PRESUPUESTOS:</strong>
-            <li v-for="presupuesto in item.presupuesto" :key="presupuesto._key">
-              {{ presupuesto.fechaVencimiento }}<!-- que campo?? -->
-            </li>
+          <strong>PRESUPUESTOS:</strong>
+          <li v-for="presupuesto in item.presupuesto" :key="presupuesto._key">
+            {{ presupuesto.fechaVencimiento
+            }}<!-- que campo?? -->
+          </li>
         </ul>
       </ul>
     </details>
@@ -57,10 +59,15 @@
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="selectedCliente.nombre" placeholder="NOMBRE" />
+      <label for="">DNI O CUIT</label>
       <input v-model="selectedCliente.cuitOrDni" placeholder="DNI o CUIT" />
+      <label for="">DIRECCION</label>
       <input v-model="selectedCliente.direccion" placeholder="DIRECCION" />
+      <label for="">TELEFONO</label>
       <input v-model="selectedCliente.telefono" placeholder="TELEFONO" />
+      <label for="">EMAIL</label>
       <input v-model="selectedCliente.email" placeholder="EMAIL" />
     </template>
     <template v-slot:footer>

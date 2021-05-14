@@ -41,13 +41,11 @@
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="selectedSubCategoria.nombre" placeholder="NOMBRE" />
+      <label for="">CATEGORIA</label>
       <select v-model="selectedSubCategoria.categoria">
-        <option
-          v-for="item in categorias"
-          :key="item._key"
-          v-bind:value="item"
-        >
+        <option v-for="item in categorias" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
@@ -75,7 +73,7 @@ export default {
   components: { ModalDelete, ModalEdit },
   data() {
     return {
-      selectedSubCategoria: { },
+      selectedSubCategoria: {},
     };
   },
   computed: {

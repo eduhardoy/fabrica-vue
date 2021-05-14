@@ -95,7 +95,7 @@ export default {
     justify-content: center;
   }
   &__body {
-    overflow-y: scroll;
+    overflow-y: auto;
     margin: 10px;
     width: 90%;
     display: flex;

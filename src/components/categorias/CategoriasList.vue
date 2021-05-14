@@ -14,7 +14,9 @@
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="newCategoria.nombre" placeholder="NOMBRE" />
+      <label for="">DESCRIPCION</label>
       <input v-model="newCategoria.descripcion" placeholder="DESCRIPCION" />
     </template>
     <template v-slot:footer>
@@ -31,17 +33,17 @@ import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
   name: "CategoriasList",
-  data(){
-    return{
-      newCategoria:{}
-    }
+  data() {
+    return {
+      newCategoria: {},
+    };
   },
   components: { ModalAdd },
   methods: {
-    openAddModal: function () {
+    openAddModal: function() {
       this.$refs.add.openModal();
     },
-    postCategoria: function () {
+    postCategoria: function() {
       this.$store.dispatch("postCategoria", this.newCategoria);
       this.$refs.add.closeModal();
     },

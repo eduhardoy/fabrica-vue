@@ -41,7 +41,10 @@
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
+
       <input v-model="selectedCategoria.nombre" placeholder="NOMBRE" />
+      <label for="">DESCRIPCION</label>
       <input
         v-model="selectedCategoria.descripcion"
         placeholder="DESCRIPCION"

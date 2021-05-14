@@ -48,12 +48,17 @@
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="selectedProveedor.nombre" placeholder="NOMBRE" />
+      <label for="">DIRECCION</label>
       <input v-model="selectedProveedor.direccion" placeholder="DIRECCION" />
+      <label for="">TELEFONO</label>
       <input v-model="selectedProveedor.telefono" placeholder="TELEFONO" />
+      <label for="">EMAIL</label>
       <input v-model="selectedProveedor.email" placeholder="EMAIL" />
+      <label for="">CUIT</label>
       <input v-model="selectedProveedor.cuit" placeholder="CUIT" />
-
+      <label for="">CUENTAS BANCARIAS</label>
       <div
         v-for="item in selectedProveedor.cuentasBanco"
         :key="item.cbu"
