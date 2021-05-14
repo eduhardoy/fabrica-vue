@@ -28,8 +28,8 @@
       <input v-model="newProducto.nombre" placeholder="NOMBRE" />
       <label for="">COSTO</label>
       <input v-model="newProducto.costo" placeholder="COSTO" />
-      <label for="">PRECIO DE VENTA</label>
-      <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" />
+      <!--       <label for="">PRECIO DE VENTA</label>
+      <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" /> -->
       <label for="">STOCK</label>
       <input v-model="newProducto.stock" placeholder="STOCK" />
       <label for="">TIEMPO DE PRODUCCION</label>
@@ -104,18 +104,18 @@ export default {
     };
   },
   computed: {
-    proveedores: function () {
+    proveedores: function() {
       return this.$store.getters.allProveedores;
     },
-    subCategorias: function () {
+    subCategorias: function() {
       return this.$store.getters.allSubCategorias;
     },
-    partes: function () {
+    partes: function() {
       return this.$store.getters.allPartes;
     },
   },
   methods: {
-    openAddModal: function () {
+    openAddModal: function() {
       this.$refs.add.openModal();
     },
     onFileSelected(event) {
@@ -123,7 +123,7 @@ export default {
       this.newProducto.imagen = event.target.files[0];
       //console.log(this.newProducto)
     },
-    postProducto: function () {
+    postProducto: function() {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.add.closeModal();
       console.log(this.newProducto);
