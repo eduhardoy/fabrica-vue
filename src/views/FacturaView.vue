@@ -1,12 +1,11 @@
 <template>
   <div class="a4__container">
-    <div class="a4">
-      <FacturaHeader/>
+    <div class="a4" v-for="item in venta" v-bind:key="item._key">
+      <FacturaHeader />
       <div class="a4__clients__wrapper">
         <div class="a4__client">
-          <h3>EDUARDO HARDOY</h3>
+          <h3>CLIENTE: {{ item.cliente }}</h3>
           <h3>VENTA N° 454545</h3>
-          <button @click="handleData()">ver</button>
         </div>
         <div class="a4__phone">
           <p>+54 3794 290578</p>
@@ -91,19 +90,12 @@ import FacturaHeader from "../components/comprobantes/FacturaHeader";
 
 export default {
   name: "FacturaView",
-  components: {
-    FacturaHeader,
+  components: { FacturaHeader },
+  computed: {
+    venta: function() {
+      return this.$store.getters.getSelectedVenta;
+    },
   },
-  methods:{
-    handleData: function(){
-      /* const venta =this.$route.query.data
-      this.venta = venta
-      console.log(venta) */
-      console.log(this.$route.query)
-    }
-  },
-
-
 };
 </script>
 

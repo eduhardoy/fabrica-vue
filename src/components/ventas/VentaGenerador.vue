@@ -243,12 +243,13 @@ export default {
     verFactura: function() {
       //console.log(this.newVenta);
       // this.$router.go({ path: "/factura" })
-      localStorage.setItem("estaVenta", JSON.stringify(this.newVenta));
-      /* let routeData = this.$router.resolve({
-        name: "Factura",
-        query: { data: this.newVenta },
-      }); //params: this.newVenta.cliente
-      window.open(routeData.href, "_blank"); */
+      // localStorage.setItem("estaVenta", JSON.stringify(this.newVenta));
+      this.$store.dispatch("setSelectedVenta", this.newVenta);
+      let routeData = this.$router.resolve({
+        name: "Factura" /* ,
+        query: { data: this.newVenta }, */,
+      });
+      window.open(routeData.href, "_blank");
     },
   },
   created() {
