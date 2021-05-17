@@ -21,11 +21,11 @@
     <div class="Presupuestos">
       <router-link to="/presupuestos"><div>PRESUPUESTOS</div></router-link>
     </div>
-    <div class="Contabilidad">
-      <router-link to="/contaEstad"><div>CONTABILIDAD**</div></router-link>
-    </div>
     <div class="Inventario">
       <router-link to="/inventario"><div>INVENTARIO**</div></router-link>
+    </div>
+    <div class="Contabilidad" v-show="$store.state.token != undefined">
+      <router-link to="/contaEstad"><div>CONTABILIDAD**</div></router-link>
     </div>
   </div>
 </template>
@@ -49,8 +49,8 @@ export default {
     "Articulos Ventas"
     "Clientes Gastos"
     "Clientes Presupuestos"
-    "Proveedores Contabilidad"
-    "Proveedores Inventario";
+    "Proveedores Inventario"
+    "Proveedores Contabilidad";
   & div {
     display: flex;
     justify-content: center;

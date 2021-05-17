@@ -14,10 +14,15 @@
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="newCliente.nombre" placeholder="NOMBRE" />
+      <label for="">DNI O CUIT</label>
       <input v-model="newCliente.cuitOrDni" placeholder="DNI o CUIT" />
+      <label for="">DIRECCION</label>
       <input v-model="newCliente.direccion" placeholder="DIRECCION" />
-      <input v-model="newCliente.telefono" placeholder="TELEFONO"/>
+      <label for="">TELEFONO</label>
+      <input v-model="newCliente.telefono" placeholder="TELEFONO" />
+      <label for="">EMAIL</label>
       <input v-model="newCliente.email" placeholder="EMAIL" />
     </template>
     <template v-slot:footer>
@@ -37,15 +42,15 @@ export default {
   components: { ModalAdd },
   data() {
     return {
-      newCliente: {}
-    }
+      newCliente: {},
+    };
   },
-  
+
   methods: {
-    openAddModal: function () {
+    openAddModal: function() {
       this.$refs.add.openModal();
     },
-    postCliente: function () {
+    postCliente: function() {
       this.$store.dispatch("postCliente", this.newCliente);
       this.$refs.add.closeModal();
     },

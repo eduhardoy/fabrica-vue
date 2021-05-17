@@ -41,7 +41,7 @@
             <li v-for="parte in item.partes" :key="parte._key">
               {{ parte.nombre }}
             </li>
-          </ul> 
+          </ul>
         </div>
         <div class="details_list_image">
           <img src="./images/lampara.jpg" alt="" />
@@ -62,21 +62,28 @@
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="selectedProducto.nombre" placeholder="NOMBRE" />
+      <label for="">COSTO</label>
       <input v-model="selectedProducto.costo" placeholder="COSTO" />
+      <label for="">PRECIO DE VENTA</label>
       <input
         v-model="selectedProducto.precioVenta"
         placeholder="PRECIO DE VENTA"
       />
+      <label for="">STOCK</label>
       <input v-model="selectedProducto.stock" placeholder="STOCK" />
+      <label for="">TIEMPO DE PRODUCCION</label>
       <input
         v-model="selectedProducto.tiempoProduccion"
         placeholder="TIEMPO DE PRODUCCION"
       />
+      <label for="">COSTO DE FLETE</label>
       <input
         v-model="selectedProducto.costoFlete"
         placeholder="COSTO DE FLETE"
       />
+      <label for="">MARGEN DE GANANCIA</label>
       <input
         v-model="selectedProducto.margen"
         placeholder="MARGEN DE GANANCIA"
@@ -84,14 +91,7 @@
       <!-- <input v-model="selectedProducto.medidas.alto" placeholder="ALTO" />
       <input v-model="selectedProducto.medidas.ancho" placeholder="ANCHO" />
       <input v-model="selectedProducto.medidas.largo" placeholder="LARGO" /> -->
-      <input
-        v-model="selectedProducto.costoFlete"
-        placeholder="COSTO DE FLETE"
-      />
-      <input
-        v-model="selectedProducto.margen"
-        placeholder="MARGEN DE GANANCIA"
-      />
+
       <!-- <input
         class="image__input"
         type="file"
@@ -101,6 +101,7 @@
       <label class="image__input__label" for="imgfile"
         >Seleccionar Imagen</label
       > -->
+      <label for="">PROVEEDOR</label>
       <select v-model="selectedProducto.proveedor">
         <option
           v-for="item in proveedores"
@@ -110,6 +111,7 @@
           {{ item.nombre }}
         </option>
       </select>
+      <label for="">SUBCATEGORIA</label>
       <select v-model="selectedProducto.subCategoria">
         <option
           v-for="item in subCategorias"
@@ -119,7 +121,8 @@
           {{ item.categoria.nombre }} - {{ item.nombre }}
         </option>
       </select>
-      <select v-model="selectedProducto.partes" multiple>
+      <label for="">PARTES (CTRL + CLICK)</label>
+      <select class="big_select" v-model="selectedProducto.partes" multiple>
         <option v-for="item in partes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>

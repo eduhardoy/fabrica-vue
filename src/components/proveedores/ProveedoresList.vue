@@ -14,13 +14,27 @@
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
-      <input v-model="newProveedor.nombre" placeholder="NOMBRE" />
-      <input v-model="newProveedor.direccion" placeholder="DIRECCION" />
-      <input v-model="newProveedor.telefono" placeholder="TELEFONO" />
-      <input v-model="newProveedor.email" placeholder="EMAIL" />
-      <input v-model="newProveedor.cuit" placeholder="CUIT" />
+      <label for="">NOMBRE</label>
 
-      <div v-for="item in newProveedor.cuentasBanco" :key="item.value" class="cbu">
+      <input v-model="newProveedor.nombre" placeholder="NOMBRE" />
+      <label for="">DIRECCION</label>
+
+      <input v-model="newProveedor.direccion" placeholder="DIRECCION" />
+      <label for="">TELEFONO</label>
+
+      <input v-model="newProveedor.telefono" placeholder="TELEFONO" />
+      <label for="">EMAIL</label>
+
+      <input v-model="newProveedor.email" placeholder="EMAIL" />
+      <label for="">CUIT</label>
+
+      <input v-model="newProveedor.cuit" placeholder="CUIT" />
+      <label for="">CUENTAS BANCARIAS</label>
+      <div
+        v-for="item in newProveedor.cuentasBanco"
+        :key="item.value"
+        class="cbu"
+      >
         <input v-model.lazy="item.cbu" placeholder="CBU" />
         <input v-model.lazy="item.banco" placeholder="BANCO" />
       </div>

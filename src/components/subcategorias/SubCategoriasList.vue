@@ -14,10 +14,12 @@
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="newSubCategoria.nombre" placeholder="NOMBRE" />
+      <label for="">CATEGORIA</label>
       <select v-model="newSubCategoria.categoria">
         <option disabled selected>CATEGORIA</option>
-        <option v-for="item in categorias" :key="item._key" v-bind:value="item" >
+        <option v-for="item in categorias" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
@@ -37,7 +39,7 @@ import ModalAdd from "../Modals/ModalAdd.vue";
 export default {
   name: "SubCategoriasList",
   components: { ModalAdd },
-   data() {
+  data() {
     return {
       newSubCategoria: {
         /* categoria: [], */
@@ -50,18 +52,17 @@ export default {
     },
   },
   methods: {
-    
-    openAddModal: function () {
+    openAddModal: function() {
       this.$refs.add.openModal();
     },
-    postSubCategoria: function () {
+    postSubCategoria: function() {
       console.log("POST");
       console.log(this.newSubCategoria);
       this.$store.dispatch("postSubCategoria", this.newSubCategoria);
       this.$refs.add.closeModal();
     },
   },
-  created(){
+  created() {
     this.$store.dispatch("getCategorias");
   },
 };

@@ -10,6 +10,7 @@ import ventas from './ventas/ventas'
 import presupuestos from './presupuestos/presupuestos'
 import vendedores from './vendedores/vendedores'
 import gastos from './gastos/gastos'
+import auth from "./login/login"
 
 export default createStore({
   modules: {
@@ -23,6 +24,7 @@ export default createStore({
     ventas,
     presupuestos,
     vendedores,
-    gastos
+    gastos,
+    auth
   }
 })

@@ -53,6 +53,7 @@
   </ModalDelete>
   <ModalEdit ref="edit">
     <template v-slot:body>
+      <label for="">NOMBRE</label>
       <input v-model="selectedParte.nombre" placeholder="NOMBRE" />
       <!-- <select v-model="selectedParte.producto">
         <option
@@ -63,14 +64,19 @@
           {{ item.nombre }}
         </option>
       </select> -->
+      <label for="">COSTO</label>
       <input v-model="selectedParte.costo" placeholder="COSTO" />
+      <label for="">COSTO FLETE</label>
       <input v-model="selectedParte.costoFlete" placeholder="COSTO FLETE" />
+      <label for="">STOCK</label>
       <input v-model="selectedParte.stock" placeholder="STOCK" />
+      <label for="">TIEMPO DE PRODUCCION</label>
       <input
         v-model="selectedParte.tiempoProduccion"
         placeholder="TIEMPO DE PRODUCCION"
       />
       <!-- <input v-model="selectedParte.margen" placeholder="MARGEN" /> -->
+      <label for="">PROVEEDOR</label>
       <select v-model="selectedParte.proveedor">
         <option
           v-for="item in proveedores"
@@ -101,7 +107,7 @@ export default {
   components: { ModalDelete, ModalEdit },
   data() {
     return {
-      selectedParte: { },
+      selectedParte: {},
     };
   },
   computed: {
@@ -132,7 +138,7 @@ export default {
       this.$store.dispatch("deleteParte", this.selectedParte);
       this.$refs.del.closeModal();
     },
-    getProveedores: function () {
+    getProveedores: function() {
       this.$store.dispatch("getProveedores");
       console.log("Proveedores", this.$store.getters.allProveedores);
     },
