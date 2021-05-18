@@ -20,7 +20,8 @@ import ContaEstad from "../views/ContaEstad.vue";
 import Contabilidad from "../views/Contabilidad.vue";
 import Estadistica from "../views/Estadistica.vue";
 import Inventario from "../views/Inventario.vue";
-import Sucursales from "../views/Sucursales.vue";
+import Factura from "../views/FacturaView.vue";
+import Vendedores from "../views/Vendedores.vue";
 
 const routes = [
   {
@@ -115,7 +116,7 @@ const routes = [
   {
     path: "/estadistica",
     name: "Estadistica",
-    component: Estadistica
+    component: Estadistica,
   },
   //inventario
   {
@@ -139,9 +140,14 @@ const routes = [
     component: Presupuestos,
   },
   {
-    path: "/sucursales-menu",
-    name: "Sucursales",
-    component: Sucursales,
+    path: "/factura",
+    name: "Factura",
+    component: Factura,
+  },
+  {
+    path: "/vendedores",
+    name: "Vendedores",
+    component: Vendedores,
   },
 ];
 

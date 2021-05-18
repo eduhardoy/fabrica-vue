@@ -44,6 +44,7 @@
         <div class="productos-datos">
           <input @change="handleCantidad($event, index)" placeholder="1" />
           <select name="producto" @change="handleProducto($event, index)">
+            <option>Seleccionar Producto</option>
             <option
               v-for="producto in productos"
               :key="producto._key"
@@ -74,14 +75,17 @@
       </button>
       <label for="">MONTO PAGADO</label>
       <input v-model="newVenta.montoPagado" placeholder="MONTO PAGADO" />
-      <label for="">ESTADO</label>
+      <!-- <label for="">ESTADO</label>
       <select v-model="newVenta.estado">
         <option value="pendiente">Pendiente</option>
         <option value="finalizado">Finalizado</option>
-      </select>
+      </select> -->
       <router-link to="/presupuestof" class="button-factura">
-        <p>VER FACTURA</p>
+        <p>VER MODELO FACTURA</p>
       </router-link>
+      <button @click="verFactura()" class="button-factura">
+        <p>VER FACTURA</p>
+      </button>
       <button @click="postVenta()">GENERAR VENTA</button>
     </div>
     <p>{{ newVenta.montoTotal }}</p>
@@ -213,6 +217,7 @@ export default {
         ...JSON.parse(e.target.value),
         cantidad,
       };
+      console.log("Venta", this.newVenta);
     },
     handleCantidad: function(e, index) {
       let producto = this.newVenta.productos[index];
@@ -247,6 +252,17 @@ export default {
       this.$store.dispatch("postProducto", this.newProducto);
       this.$refs.addProducto.closeModal();
     },
+    verFactura: function() {
+      //console.log(this.newVenta);
+      // this.$router.go({ path: "/factura" })
+      // localStorage.setItem("estaVenta", JSON.stringify(this.newVenta));
+      this.$store.dispatch("setSelectedVenta", this.newVenta);
+      let routeData = this.$router.resolve({
+        name: "Factura" /* ,
+        query: { data: this.newVenta }, */,
+      });
+      window.open(routeData.href, "_blank");
+    },
   },
   created() {
     this.$store.dispatch("getProductos");
@@ -263,9 +279,10 @@ export default {
   height: 100%;
   width: 60%;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+  overflow-y: auto;
   label {
     width: 40%;
     display: flex;
@@ -276,7 +293,6 @@ export default {
     margin-top: 10px;
   }
   .venta__head {
-    height: 15%;
     width: 100%;
     display: flex;
     justify-content: center;
@@ -289,13 +305,12 @@ export default {
   }
 
   .venta_wrapper {
-    height: 85%;
     width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     input {
-      border: 1px black solid;
+      border: 1px rgb(0, 0, 0) solid;
       height: 22px;
       width: 38.7%;
       margin: 5px;
@@ -303,7 +318,7 @@ export default {
     }
 
     select {
-      border: 1px black solid;
+      border: 1px rgb(0, 0, 0) solid;
       height: 34px;
       width: 40%;
       margin: 5px;

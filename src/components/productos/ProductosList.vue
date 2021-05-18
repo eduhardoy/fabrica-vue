@@ -28,8 +28,8 @@
       <input v-model="newProducto.nombre" placeholder="NOMBRE" />
       <label for="">COSTO</label>
       <input v-model="newProducto.costo" placeholder="COSTO" />
-      <label for="">PRECIO DE VENTA</label>
-      <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" />
+      <!--       <label for="">PRECIO DE VENTA</label>
+      <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" /> -->
       <label for="">STOCK</label>
       <input v-model="newProducto.stock" placeholder="STOCK" />
       <label for="">TIEMPO DE PRODUCCION</label>
@@ -41,13 +41,13 @@
       <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
       <label for="">MARGEN DE GANANCIA</label>
       <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
-      <!-- <label for="">ALTO</label> -->
-      <!-- <input v-model="newProducto.medidas.alto" placeholder="ALTO"/>
-      <label for=""ANCHO</label>
-
-      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO"/>
+      <!-- Medidas -->
+      <label for="">ALTO</label>
+      <input v-model="newProducto.medidas.alto" placeholder="ALTO" />
+      <label for="">ANCHO</label>
+      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO" />
       <label for="">LARGO</label>
-      <input v-model="newProducto.medidas.largo" placeholder="LARGO"/> -->
+      <input v-model="newProducto.medidas.largo" placeholder="LARGO" />
       <label for="">PROVEEDOR</label>
       <select v-model="newProducto.proveedor">
         <option disabled selected>PROVEEDOR</option>
@@ -96,10 +96,10 @@ export default {
   data() {
     return {
       newProducto: {
-        /* medidas: {}, */
-        /* imagen:{
+        medidas: {},
+        imagen: {
           name: "nombre imagen seleccionada...",
-        } */
+        },
       },
     };
   },

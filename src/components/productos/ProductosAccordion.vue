@@ -66,11 +66,11 @@
       <input v-model="selectedProducto.nombre" placeholder="NOMBRE" />
       <label for="">COSTO</label>
       <input v-model="selectedProducto.costo" placeholder="COSTO" />
-      <label for="">PRECIO DE VENTA</label>
-      <input
-        v-model="selectedProducto.precioVenta"
-        placeholder="PRECIO DE VENTA"
-      />
+      <!-- <label for="">PRECIO DE VENTA</label> -->
+      <!--  <input
+      v-model="selectedProducto.precioVenta"
+      placeholder="PRECIO DE VENTA"
+    /> -->
       <label for="">STOCK</label>
       <input v-model="selectedProducto.stock" placeholder="STOCK" />
       <label for="">TIEMPO DE PRODUCCION</label>
