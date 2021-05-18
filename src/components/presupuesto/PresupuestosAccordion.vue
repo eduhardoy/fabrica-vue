@@ -7,7 +7,7 @@
     >
       <summary>
         <div class="summary__title">
-          <h3>#{{ item._key }}</h3>
+          <h3>#{{ item._key }} - {{ item.cliente.nombre }}</h3>
         </div>
         <div class="summary__buttons">
           <button @click="openEditModal(item)">
