@@ -108,12 +108,10 @@ export default {
     },
     verFactura : function (venta){
       this.selectedVenta = venta;
-      console.log("factura con esta venta:", this.selectedVenta);
+      // console.log("factura con esta venta:", this.selectedVenta);
       let routeData = this.$router.resolve({
         name: "Factura" ,
         query: { data: this.selectedVenta._key },
-        props: {venta: this.selectedVenta}
-
       });
       window.open(routeData.href, "_blank");
     }
