@@ -12,7 +12,7 @@ export default {
   },
   getters: {
     allVentas: (state) => state.ventas,
-    getSelectVenta: (state) => state.selectedVenta,
+    getSelectedVenta: (state) => state.selectedVenta,
   },
   actions: {
     setVentasLoader({ commit }, loader) {
@@ -20,6 +20,14 @@ export default {
     },
     setSelectedVenta({ commit }, venta) {
       commit("SET_SELECTED_VENTA", venta);
+      // console.log("seteada", this.selectedVenta);
+    },
+    getVenta({ commit, dispatch }, key) {
+      dispatch("setVentasLoader", true);
+      Axios.get(URL + `/${key}`)
+        .then((result) => commit("SET_SELECTED_VENTA", result.data))
+        .catch((err) => console.log(err))
+        .finally(() => dispatch("setVentasLoader", false));
     },
     getVentas({ commit, dispatch }) {
       dispatch("setVentasLoader", true);

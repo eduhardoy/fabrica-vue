@@ -22,7 +22,7 @@
         </div>
       </summary>
       <div class="venta__wrapper__button">
-        <button>VER FACTURA</button>
+        <button @click="verFactura(item)">VER FACTURA</button>
         <button>VER FACTURA 2</button>
         <!-- <button>VER PRESUPUESTO</button> -->
         <button>FINALIZAR VENTA</button>
@@ -106,6 +106,17 @@ export default {
     getProductos: function () {
       this.$store.dispatch("getProductos");
     },
+    verFactura : function (venta){
+      this.selectedVenta = venta;
+      console.log("factura con esta venta:", this.selectedVenta);
+      let routeData = this.$router.resolve({
+        name: "Factura" ,
+        query: { data: this.selectedVenta._key },
+        props: {venta: this.selectedVenta}
+
+      });
+      window.open(routeData.href, "_blank");
+    }
   },
 
   created() {
