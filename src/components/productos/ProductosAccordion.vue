@@ -37,6 +37,12 @@
             >{{ item.subCategoria ? item.subCategoria.nombre : null }}
           </li>
           <ul>
+            <strong>MEDIDAS</strong>
+            <li>Largo: {{item.medidas.largo}}</li>
+            <li>Ancho: {{item.medidas.alto}}</li>
+            <li>Alto: {{item.medidas.ancho}}</li>
+          </ul>
+          <ul>
             <strong>PARTES</strong>
             <li v-for="parte in item.partes" :key="parte._key">
               {{ parte.nombre }}
@@ -88,9 +94,10 @@
         v-model="selectedProducto.margen"
         placeholder="MARGEN DE GANANCIA"
       />
-      <!-- <input v-model="selectedProducto.medidas.alto" placeholder="ALTO" />
+      <label for="">MEDIDAS</label>
+      <input v-model="selectedProducto.medidas.alto" placeholder="ALTO" />
       <input v-model="selectedProducto.medidas.ancho" placeholder="ANCHO" />
-      <input v-model="selectedProducto.medidas.largo" placeholder="LARGO" /> -->
+      <input v-model="selectedProducto.medidas.largo" placeholder="LARGO" />
 
       <!-- <input
         class="image__input"
