@@ -6,9 +6,6 @@
       </div>
     </div>
     <div class="venta_wrapper">
-      <select hidden>
-        <option>presupuesto</option>
-      </select>
       <div class="new">
         <button @click="openAddModalProducto">
           Nuevo producto
@@ -23,12 +20,21 @@
         v-model="newVenta.fechaEntrega"
         placeholder="FECHA DE ENTREGA"
       />
+      <!-- CLIENTES -->
       <label for="">CLIENTE</label>
       <select v-model="newVenta.cliente">
         <option v-for="item in clientes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
+      <!-- PRESUPUESTOS -->
+      <label for="">PRESUPUESTOS</label>
+      <select v-model="newVenta.presupuesto">
+        <option v-for="item in presupuestos" :key="item._key" v-bind:value="item">
+          #{{ item._key }} - {{ item.cliente.nombre }}
+        </option>
+      </select>
+      <!-- PRODUCTOS -->
       <label for="">PRODUCTOS</label>
       <div
         class="productos"
@@ -47,6 +53,7 @@
               {{ producto.nombre }}
             </option>
           </select>
+          <input disabled class="price" placeholder="precioPRODxCant"/>
         </div>
 
         <div class="productos__buttons">
@@ -59,6 +66,10 @@
           </button>
         </div>
       </div>
+      <div class="productos" align="center">
+        <input class="total-venta" disabled type="text" placeholder="SUMt-venta" />
+      </div>
+
       <button class="button-addProducto" @click="addProducto(newVenta)">
         AGREGAR PRODUCTO
       </button>
@@ -175,6 +186,7 @@ export default {
         medidas: {},
       },
       newCliente: {},
+      newPresupuesto: {},
     };
   },
   computed: {
@@ -187,15 +199,15 @@ export default {
     clientes: function() {
       return this.$store.getters.allClientes;
     },
-    proveedores: function() {
-      return this.$store.getters.allProveedores;
-    },
-    subCategorias: function() {
-      return this.$store.getters.allSubCategorias;
-    },
-    partes: function() {
-      return this.$store.getters.allPartes;
-    },
+    // proveedores: function() {
+    //   return this.$store.getters.allProveedores;
+    // },
+    // subCategorias: function() {
+    //   return this.$store.getters.allSubCategorias;
+    // },
+    // partes: function() {
+    //   return this.$store.getters.allPartes;
+    // },
   },
 
   methods: {
@@ -229,7 +241,7 @@ export default {
     },
     postVenta: function() {
       this.$store.dispatch("postVenta", this.newVenta);
-      //this.$refs.add.closeModal();
+      // this.$refs.add.closeModal();
       console.log(this.newVenta);
     },
     postCliente: function() {
@@ -353,12 +365,27 @@ export default {
           margin: 5px 0px;
           margin-right: 5px;
         }
+        .price{
+        width: 70px;
+        height: 21px;
+        margin: 5px 0px;
+        margin-right: 5px;
+        margin-left: 5px;
+        text-align-last: right;
+        }
         select {
           border: 1px black solid;
           width: 95%;
           margin: 5px 0px;
           padding: 5px;
         }
+      }
+      .total-venta{
+        width: 130px;
+        height: 21px;
+        margin: 5px 0px;
+        padding: 5px;
+        text-align-last: right;
       }
 
       .productos__buttons {

@@ -1,5 +1,17 @@
 <template>
   <div class="presupuestos">
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+
+      <input type="date"/>
+
+      <select>
+        <option>CLIENTES</option>
+      </select>
+    </div>
+
     <div class="presupuestos__head">
       <div class="presupuestos_head_title">
         <h2>PRESUPUESTOS</h2>

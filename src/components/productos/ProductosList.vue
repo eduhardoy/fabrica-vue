@@ -3,6 +3,34 @@
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <!-- SELECT DE EJEMPLO CON DATOS -->
+    <!-- <select v-model="newProducto.proveedor">
+        <option
+          v-for="item in proveedores"
+          :key="item._key"
+          v-bind:value="item"
+        >
+          {{ item.nombre }}
+        </option>
+      </select> -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+
+      <select>
+        <option>CATEGORIA</option>
+      </select>
+
+      <select>
+        <option>SUBCATEGORIA</option>
+      </select>
+
+      <select>
+        <option>PROVEEDOR</option>
+      </select>
+    </div>
+
     <div class="productos__head">
       <div class="productos__head__title">
         <h2>PRODUCTOS</h2>

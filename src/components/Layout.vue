@@ -5,9 +5,9 @@
         <img src="./images/home.png" alt="" />
       </button>
     </router-link>
-    <router-link to="/vendedores">
-      <button class="vendedor__button">
-        <img src="./images/vendedor.png" alt="" />
+    <router-link to="/users">
+      <button class="user__button">
+        <img src="./images/users.png" alt="" />
       </button>
     </router-link>
 
@@ -80,7 +80,7 @@ export default {
   }
 }
 
-.vendedor__button {
+.user__button {
   width: 80px;
   height: 64px;
   position: absolute;
