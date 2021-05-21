@@ -8,7 +8,7 @@ import clientes from './clientes/clientes'
 import compras from './compras/compras'
 import ventas from './ventas/ventas'
 import presupuestos from './presupuestos/presupuestos'
-import vendedores from './vendedores/vendedores'
+import users from './users/users'
 import gastos from './gastos/gastos'
 import auth from "./login/login"
 
@@ -23,7 +23,7 @@ export default createStore({
     compras,
     ventas,
     presupuestos,
-    vendedores,
+    users,
     gastos,
     auth
   }

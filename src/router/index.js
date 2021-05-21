@@ -21,7 +21,9 @@ import Contabilidad from "../views/Contabilidad.vue";
 import Estadistica from "../views/Estadistica.vue";
 import Inventario from "../views/Inventario.vue";
 import Factura from "../views/FacturaView.vue";
-import Vendedores from "../views/Vendedores.vue";
+import Users from "../views/Users.vue";
+
+import Sucursales from "../views/Sucursales.vue";
 
 const routes = [
   {
@@ -124,6 +126,12 @@ const routes = [
     name: "Inventario",
     component: Inventario,
   },
+  //sucursales
+  {
+    path: "/sucursales-menu",
+      name: "Sucursales",
+      component: Sucursales,
+  },
   {
     path: "/presupuestof",
     name: "PresupuestoFab",
@@ -145,9 +153,9 @@ const routes = [
     component: Factura,
   },
   {
-    path: "/vendedores",
-    name: "Vendedores",
-    component: Vendedores,
+    path: "/users",
+    name: "Users",
+    component: Users,
   },
 ];
 

@@ -1,5 +1,17 @@
 <template>
   <div class="ventas">
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+
+      <select>
+        <option>CLIENTES</option>
+      </select>
+
+      <input type="date"/>
+    </div>
+    
     <div class="ventas__head">
       <div class="ventas_head_title">
         <h2>VENTAS</h2>

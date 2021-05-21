@@ -53,7 +53,7 @@
               {{ producto.nombre }}
             </option>
           </select>
-          <input disabled class="price" placeholder="precioPRODxCant" />
+          <input disabled class="price" placeholder="precioPRODxCant"/>
         </div>
 
         <div class="productos__buttons">

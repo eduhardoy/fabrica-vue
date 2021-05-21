@@ -3,6 +3,16 @@
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+
+      <select>
+        <option>PROVEEDOR</option>
+      </select>
+    </div>
+
     <div class="partes__head">
       <div class="partes_head_title">
         <h2>PARTES</h2>

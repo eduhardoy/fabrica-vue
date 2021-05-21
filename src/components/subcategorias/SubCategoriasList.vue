@@ -3,6 +3,16 @@
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+
+      <select>
+        <option>CATEGORIAS</option>
+      </select>
+    </div>
+
     <div class="subCategorias__head">
       <div class="subCategorias_head_title">
         <h2>SUBCATEGORIAS</h2>
