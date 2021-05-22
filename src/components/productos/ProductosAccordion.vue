@@ -3,7 +3,7 @@
     <details class="accordion__box" v-for="item in productos" :key="item._key">
       <summary>
         <div class="summary__title">
-          <h3>{{ item.nombre }}</h3>
+          <h3>{{ item.nombre }} - #{{ item._key }}</h3>
         </div>
         <div class="summary__buttons">
           <button @click="openEditModal(item)">

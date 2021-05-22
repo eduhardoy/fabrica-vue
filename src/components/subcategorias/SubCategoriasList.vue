@@ -25,10 +25,10 @@
   <ModalAdd ref="add">
     <template v-slot:body>
       <label for="">NOMBRE</label>
-      <input v-model="newSubCategoria.nombre" placeholder="NOMBRE" />
+      <input v-model="newSubCategoria.nombre" placeholder="Ej: Comedor" />
       <label for="">CATEGORIA</label>
       <select v-model="newSubCategoria.categoria">
-        <option disabled selected>CATEGORIA</option>
+        <option disabled selected>CATEGORIAS</option>
         <option v-for="item in categorias" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>

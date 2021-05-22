@@ -7,7 +7,7 @@
     >
       <summary>
         <div class="summary__title">
-          <h3>#{{ item._key }} - {{ item.cliente.nombre }}</h3>
+          <h3>#{{ item._key }} - {{ item.cliente.nombre }} - {{dateFormat(item.modifiedDate)}}</h3>
         </div>
         <div class="summary__buttons">
           <button @click="openEditModal(item)">
@@ -20,8 +20,8 @@
       </summary>
       <ul class="details_list">
         <div>
-          <li><strong>Emitido: </strong>{{ item.modifiedDate }}</li>
-          <li><strong>Vencimiento: </strong>{{ item.fechaVencimiento }}</li>
+          <li><strong>Emitido: </strong>{{dateFormat(item.modifiedDate)}} - {{timeFormat(item.modifiedDate)}}</li>
+          <li><strong>Vencimiento: </strong>{{ dateFormat(item.fechaVencimiento) }}</li>
           <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li>
           <ul>
             <strong>PRODUCTOS</strong>
@@ -76,6 +76,7 @@
 <script>
 import ModalDelete from "../Modals/ModalDelete.vue";
 // import ModalEdit from "../Modals/ModalChange.vue";
+import moment from "moment";
 
 export default {
   name: "PresupuestosAccordion",
@@ -97,6 +98,12 @@ export default {
     },
   },
   methods: {
+    dateFormat: function(date){
+      return moment(date).locale("es-mx").format("L");
+    },
+    timeFormat: function(date){
+      return moment(date).format('LT');
+    },
     openDelModal: function (presupuesto) {
       Object.assign(this.selectedPresupuesto, presupuesto);
       this.selectedPresupuesto = presupuesto;

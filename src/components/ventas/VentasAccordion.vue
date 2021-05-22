@@ -7,7 +7,8 @@
     >
       <summary>
         <div class="summary__title">
-          <h3>{{ item.estado }}</h3>
+          <h3>#{{ item._key }} - {{dateFormat(item.modifiedDate)}} - {{ item.cliente.nombre }} ${{ item.montoTotal }}</h3>
+          <!-- <h3>{{dateFormat(item.modifiedDate)}} - {{ item.cliente.nombre }} ${{ item.montoTotal }}</h3> -->
         </div>
         <div class="summary__buttons">
           <!-- <button @click="openEditModal(item)">
@@ -28,9 +29,9 @@
         <button>FINALIZAR VENTA</button>
       </div>
       <ul class="details_list">
-        <li><strong>Emitida: </strong>{{ item.modifiedDate }}</li>
+        <li><strong>Emitida: </strong>{{dateFormat(item.modifiedDate)}} - {{timeFormat(item.modifiedDate)}}</li>
         <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li>
-        <!-- <li><strong>Presupuesto #</strong>{{ item.presupuesto._key }}</li> -->
+        <li><strong>Estado: </strong>{{ item.estado }} (DEFINIR SI VA CON COLORES)</li>
         <ul>
           <strong>PRODUCTOS</strong>
           <li v-for="producto in item.productos" :key="producto._key">
@@ -61,6 +62,7 @@
 
 <script>
 import ModalDelete from "../Modals/ModalDelete.vue";
+import moment from "moment";
 
 export default {
   name: "VentasAccordion",
@@ -85,6 +87,12 @@ export default {
     },
   },
   methods: {
+    dateFormat: function(date){
+      return moment(date).locale("es-mx").format("L");
+    },
+    timeFormat: function(date){
+      return moment(date).format('LT');
+    },
     openDelModal: function (venta) {
       this.selectedVenta = venta;
       this.$refs.del.openModal();

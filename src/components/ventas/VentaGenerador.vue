@@ -93,15 +93,15 @@
   <ModalAdd ref="addCliente">
     <template v-slot:body>
       <label for="">NOMBRE</label>
-      <input v-model="newCliente.nombre" placeholder="NOMBRE" />
+      <input v-model="newCliente.nombre" placeholder="Ej: Juan Perez" />
       <label for="">DNI O CUIT</label>
-      <input v-model="newCliente.cuitOrDni" placeholder="DNI o CUIT" />
+      <input v-model="newCliente.cuitOrDni" placeholder="N° DNI o CUIT" />
       <label for="">DIRECCION</label>
-      <input v-model="newCliente.direccion" placeholder="DIRECCION" />
+      <input v-model="newCliente.direccion" placeholder="Ej: Laprida 1874" />
       <label for="">TELEFONO</label>
-      <input v-model="newCliente.telefono" placeholder="TELEFONO" />
+      <input v-model="newCliente.telefono" placeholder="Ej: 543794452586" />
       <label for="">EMAIL</label>
-      <input v-model="newCliente.email" placeholder="EMAIL" />
+      <input v-model="newCliente.email" placeholder="Ej: juan34@gmail.com" />
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.addCliente.closeModal()">
@@ -113,30 +113,30 @@
   <ModalAdd ref="addProducto">
     <template v-slot:body>
       <label for="">NOMBRE</label>
-      <input v-model="newProducto.nombre" placeholder="NOMBRE" />
-      <label for="">COSTO</label>
-      <input v-model="newProducto.costo" placeholder="COSTO" />
-      <label for="">PRECIO DE VENTA</label>
-      <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" />
+      <input v-model="newProducto.nombre" placeholder="Ej: Juan Perez" />
+      <label for="">COSTO $</label>
+      <input v-model="newProducto.costo" placeholder="Ej: 500" />
       <label for="">STOCK</label>
-      <input v-model="newProducto.stock" placeholder="STOCK" />
+      <input v-model="newProducto.stock" placeholder="Ej: 10" />
       <label for="">TIEMPO DE PRODUCCION</label>
       <input
         v-model="newProducto.tiempoProduccion"
-        placeholder="TIEMPO DE PRODUCCION"
+        placeholder="2 meses"
       />
-      <label for="">COSTO DE FLETE</label>
-      <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
-      <label for="">MARGEN DE GANANCIA</label>
-      <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
+      <label for="">COSTO DE FLETE $</label>
+      <input v-model="newProducto.costoFlete" placeholder="Ej: 500" />
+      <label for="">MARGEN DE GANANCIA $</label>
+      <input v-model="newProducto.margen" placeholder="Ej: 500" />
+      <!-- Medidas -->
       <label for="">ALTO</label>
-      <input v-model="newProducto.medidas.alto" placeholder="ALTO" />
+      <input v-model="newProducto.medidas.alto" placeholder="Ej: 2" />
       <label for="">ANCHO</label>
-      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO" />
+      <input v-model="newProducto.medidas.ancho" placeholder="Ej: 3" />
       <label for="">LARGO</label>
-      <input v-model="newProducto.medidas.largo" placeholder="LARGO" />
+      <input v-model="newProducto.medidas.largo" placeholder="Ej: 4" />
       <label for="">PROVEEDOR</label>
       <select v-model="newProducto.proveedor">
+        <option disabled selected>PROVEEDORES</option>
         <option
           v-for="item in proveedores"
           :key="item._key"
@@ -147,6 +147,7 @@
       </select>
       <label for="">SUBCATEGORIA</label>
       <select v-model="newProducto.subCategoria">
+        <option disabled selected>SUBCATEGORIAS</option>
         <option
           v-for="item in subCategorias"
           :key="item._key"
@@ -155,12 +156,13 @@
           {{ item.categoria.nombre }} - {{ item.nombre }}
         </option>
       </select>
-      <label for="">PARTES</label>
+      <label for="">PARTES (CTRL + CLICK)</label>
       <select class="big_select" size="5" v-model="newProducto.partes" multiple>
         <option v-for="item in partes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
+      <!-- </form> -->
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.addProducto.closeModal()">

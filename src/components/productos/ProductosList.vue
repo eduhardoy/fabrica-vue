@@ -53,32 +53,30 @@
       <button type="button" v-on:click="$refs.fileInput.click()">Cargar imagen</button> -->
       <!-- <p>{{newProducto.imagen.name}}</p> -->
       <label for="">NOMBRE</label>
-      <input v-model="newProducto.nombre" placeholder="NOMBRE" />
-      <label for="">COSTO</label>
-      <input v-model="newProducto.costo" placeholder="COSTO" />
-      <!--       <label for="">PRECIO DE VENTA</label>
-      <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" /> -->
+      <input v-model="newProducto.nombre" placeholder="Ej: Juan Perez" />
+      <label for="">COSTO $</label>
+      <input v-model="newProducto.costo" placeholder="Ej: 500" />
       <label for="">STOCK</label>
-      <input v-model="newProducto.stock" placeholder="STOCK" />
+      <input v-model="newProducto.stock" placeholder="Ej: 10" />
       <label for="">TIEMPO DE PRODUCCION</label>
       <input
         v-model="newProducto.tiempoProduccion"
-        placeholder="TIEMPO DE PRODUCCION"
+        placeholder="2 meses"
       />
-      <label for="">COSTO DE FLETE</label>
-      <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
-      <label for="">MARGEN DE GANANCIA</label>
-      <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
+      <label for="">COSTO DE FLETE $</label>
+      <input v-model="newProducto.costoFlete" placeholder="Ej: 500" />
+      <label for="">MARGEN DE GANANCIA $</label>
+      <input v-model="newProducto.margen" placeholder="Ej: 500" />
       <!-- Medidas -->
       <label for="">ALTO</label>
-      <input v-model="newProducto.medidas.alto" placeholder="ALTO" />
+      <input v-model="newProducto.medidas.alto" placeholder="Ej: 2" />
       <label for="">ANCHO</label>
-      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO" />
+      <input v-model="newProducto.medidas.ancho" placeholder="Ej: 3" />
       <label for="">LARGO</label>
-      <input v-model="newProducto.medidas.largo" placeholder="LARGO" />
+      <input v-model="newProducto.medidas.largo" placeholder="Ej: 4" />
       <label for="">PROVEEDOR</label>
       <select v-model="newProducto.proveedor">
-        <option disabled selected>PROVEEDOR</option>
+        <option disabled selected>PROVEEDORES</option>
         <option
           v-for="item in proveedores"
           :key="item._key"
@@ -89,7 +87,7 @@
       </select>
       <label for="">SUBCATEGORIA</label>
       <select v-model="newProducto.subCategoria">
-        <option disabled selected>SUBCATEGORIA</option>
+        <option disabled selected>SUBCATEGORIAS</option>
         <option
           v-for="item in subCategorias"
           :key="item._key"

@@ -46,6 +46,7 @@
       <!-- <input v-model="newParte.margen" placeholder="MARGEN" /> -->
       <label for="">PROVEEDOR</label>
       <select v-model="newParte.proveedor">
+        <option disabled selected>PROVEEDORES</option>
         <option
           v-for="item in proveedores"
           :key="item._key"

@@ -21,9 +21,9 @@
   <ModalAdd ref="add">
     <template v-slot:body>
       <label for="">NOMBRE</label>
-      <input v-model="newCategoria.nombre" placeholder="NOMBRE" />
+      <input v-model="newCategoria.nombre" placeholder="Ej: Mesas" />
       <label for="">DESCRIPCION</label>
-      <input v-model="newCategoria.descripcion" placeholder="DESCRIPCION" />
+      <input v-model="newCategoria.descripcion" placeholder="Ej: Madera roble" />
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">

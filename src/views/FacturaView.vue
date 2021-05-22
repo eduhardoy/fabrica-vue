@@ -116,7 +116,7 @@ export default {
       window.print()
     },
     dateFormat: function(date){
-      return moment(date).format("L");
+      return moment(date).locale("es-mx").format("L");
     },
     timeFormat: function(date){
       return moment(date).format("LT");
