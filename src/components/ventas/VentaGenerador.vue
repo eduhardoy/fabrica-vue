@@ -201,15 +201,15 @@ export default {
     clientes: function() {
       return this.$store.getters.allClientes;
     },
-    // proveedores: function() {
-    //   return this.$store.getters.allProveedores;
-    // },
-    // subCategorias: function() {
-    //   return this.$store.getters.allSubCategorias;
-    // },
-    // partes: function() {
-    //   return this.$store.getters.allPartes;
-    // },
+    proveedores: function() {
+      return this.$store.getters.allProveedores;
+    },
+    subCategorias: function() {
+      return this.$store.getters.allSubCategorias;
+    },
+    partes: function() {
+      return this.$store.getters.allPartes;
+    },
   },
 
   methods: {
