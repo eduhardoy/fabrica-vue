@@ -64,11 +64,11 @@
       </button>
       <label for="">MONTO PAGADO</label>
       <input v-model="newVenta.montoPagado" placeholder="MONTO PAGADO" />
-      <!-- <label for="">ESTADO</label>
+      <label for="">ESTADO</label>
       <select v-model="newVenta.estado">
         <option value="pendiente">Pendiente</option>
         <option value="finalizado">Finalizado</option>
-      </select> -->
+      </select>
       <router-link to="/presupuestof" class="button-factura">
         <p>VER MODELO FACTURA</p>
       </router-link>

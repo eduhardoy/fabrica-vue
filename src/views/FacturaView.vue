@@ -71,6 +71,10 @@
             <div>TOTAL</div>
             <div>$ -</div>
           </div>
+          <div class="a4__total">
+            <div>PAGADO</div>
+            <div>$ {{venta.montoPagado}}</div>
+          </div>
           <div class="a4__detalles">
             <div>
               <p>
@@ -116,7 +120,7 @@ export default {
       window.print()
     },
     dateFormat: function(date){
-      return moment(date).format("L");
+      return moment(date).locale("es-mx").format("L");
     },
     timeFormat: function(date){
       return moment(date).format("LT");
