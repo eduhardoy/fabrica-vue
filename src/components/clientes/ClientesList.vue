@@ -3,6 +3,12 @@
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+    </div>
+
     <div class="clientes__head">
       <div class="clientes_head_title">
         <h2>CLIENTES</h2>
@@ -15,15 +21,15 @@
   <ModalAdd ref="add">
     <template v-slot:body>
       <label for="">NOMBRE</label>
-      <input v-model="newCliente.nombre" placeholder="NOMBRE" />
+      <input v-model="newCliente.nombre" placeholder="Ej: Juan Perez" />
       <label for="">DNI O CUIT</label>
-      <input v-model="newCliente.cuitOrDni" placeholder="DNI o CUIT" />
+      <input v-model="newCliente.cuitOrDni" placeholder="N° DNI o CUIT" />
       <label for="">DIRECCION</label>
-      <input v-model="newCliente.direccion" placeholder="DIRECCION" />
+      <input v-model="newCliente.direccion" placeholder="Ej: Laprida 1874" />
       <label for="">TELEFONO</label>
-      <input v-model="newCliente.telefono" placeholder="TELEFONO" />
+      <input v-model="newCliente.telefono" placeholder="Ej: 543794452586" />
       <label for="">EMAIL</label>
-      <input v-model="newCliente.email" placeholder="EMAIL" />
+      <input v-model="newCliente.email" placeholder="Ej: juan34@gmail.com" />
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">

@@ -1,27 +1,44 @@
 <template>
-  <div class="vendedores">
+  <div class="users">
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
-    <div class="vendedores__head">
-      <div class="vendedores_head_title">
-        <h2>VENDEDORES</h2>
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+
+      <select>
+        <option>ROL</option>
+      </select>
+    </div>
+
+    <div class="users__head">
+      <div class="users_head_title">
+        <h2>USUARIOS</h2>
       </div>
     </div>
-    <div class="vendedores_accordion_wrapper">
+    <div class="users_accordion_wrapper">
       <slot></slot>
     </div>
   </div>
   <ModalAdd ref="add">
     <template v-slot:body>
-      <input placeholder="NOMBRE" />
-      <input placeholder="DNI" />
+      <label for="">NOMBRE</label>
+      <input v-model="newUser.nombre" placeholder="NOMBRE" />
+      <label for="">DNI</label>
+      <input v-model="newUser.dni" placeholder="DNI o CUIT" />
+      <label for="">Rol</label>
+      <select>
+        <option>Administracion</option>
+        <option>Vendedor</option>
+      </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">
         CANCELAR
       </button>
-      <button class="add_button" @click="postVendedor()">AGREGAR</button>
+      <button class="add_button" @click="postUser()">AGREGAR</button>
     </template>
   </ModalAdd>
 </template>
@@ -30,11 +47,11 @@
 import ModalAdd from "../Modals/ModalAdd.vue";
 
 export default {
-  name: "VendedoresList",
+  name: "UsersList",
   components: { ModalAdd },
   data() {
     return {
-      newVendedor: {},
+      newUser: {},
     };
   },
   
@@ -42,8 +59,8 @@ export default {
     openAddModal: function () {
       this.$refs.add.openModal();
     },
-    postVendedor: function () {
-      this.$store.dispatch("postCliente", this.newVendedor);
+    postUser: function () {
+      this.$store.dispatch("postUser", this.newUser);
       this.$refs.add.closeModal();
     },
   },
@@ -51,7 +68,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.vendedores {
+.users {
   height: 100%;
   width: 100%;
   display: flex;
@@ -98,20 +115,20 @@ export default {
     height: 100%;
   }
 }
-.vendedores__head {
+.users__head {
   height: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  .vendedores_head_title {
+  .users_head_title {
     height: 100%;
     color: black;
   }
 }
 
-.vendedores_accordion_wrapper {
+.users_accordion_wrapper {
   height: 85%;
   width: 100%;
   display: flex;

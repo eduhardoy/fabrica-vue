@@ -3,6 +3,12 @@
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+    </div>
+
     <div class="categorias__head">
       <div class="categorias_head_title">
         <h2>CATEGORIAS</h2>
@@ -15,9 +21,9 @@
   <ModalAdd ref="add">
     <template v-slot:body>
       <label for="">NOMBRE</label>
-      <input v-model="newCategoria.nombre" placeholder="NOMBRE" />
+      <input v-model="newCategoria.nombre" placeholder="Ej: Mesas" />
       <label for="">DESCRIPCION</label>
-      <input v-model="newCategoria.descripcion" placeholder="DESCRIPCION" />
+      <input v-model="newCategoria.descripcion" placeholder="Ej: Madera roble" />
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.add.closeModal()">

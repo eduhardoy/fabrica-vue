@@ -2,12 +2,12 @@
   <div class="accordion__container">
     <details
       class="accordion__box"
-      v-for="item in presupuestos"
+      v-for="item in users"
       v-bind:key="item._key"
     >
       <summary>
         <div class="summary__title">
-          <h3>#{{ item._key }} - {{ item.cliente.nombre }} - {{dateFormat(item.modifiedDate)}}</h3>
+          <h3>{{ item.nombre }}</h3>
         </div>
         <div class="summary__buttons">
           <button @click="openEditModal(item)">
@@ -20,17 +20,8 @@
       </summary>
       <ul class="details_list">
         <div>
-          <li><strong>Emitido: </strong>{{dateFormat(item.modifiedDate)}} - {{timeFormat(item.modifiedDate)}}</li>
-          <li><strong>Vencimiento: </strong>{{ dateFormat(item.fechaVencimiento) }}</li>
-          <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li>
-          <ul>
-            <strong>PRODUCTOS</strong>
-            <li v-for="producto in item.productos" :key="producto._key">
-              {{ producto.nombre }} ({{ producto.cantidad }} Unidades)
-            </li>
-            <strong>MONTO TOTAL</strong>
-            <li>{{ item.montoTotal }}</li>
-          </ul>
+          <li><strong>DNI: </strong>{{ item.dni }}</li>
+          <li><strong>Rol: </strong>{{ item.rol }}</li>
         </div>
       </ul>
     </details>
@@ -43,93 +34,69 @@
       <button class="black_button" @click="$refs.del.closeModal()">
         CANCELAR
       </button>
-      <button class="cancel_button" @click="deletePresupuesto">ELIMINAR</button>
+      <button class="cancel_button" @click="deleteUser">ELIMINAR</button>
     </template>
   </ModalDelete>
-  <!-- <ModalEdit ref="edit">
+  <ModalEdit ref="edit">
     <template v-slot:body>
-      <input v-model="selectedPresupuesto.nombre" placeholder="NOMBRE" />
-      <select v-model="selectedPresupuesto.categoria">
-        <option
-          v-for="item in categorias"
-          :key="item._key"
-          v-bind:value="item"
-        >
-          {{ item.nombre }}
-        </option>
+      <label for="">NOMBRE</label>
+      <input v-model="selectedUser.nombre" placeholder="NOMBRE" />
+      <label for="">DNI</label>
+      <input v-model="selectedUser.dni" placeholder="DNI" />
+      <label for="">ROL</label>
+      <select>
+        <option>Administracion</option>
+        <option>Vendedor</option>
       </select>
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.edit.closeModal()">
         CANCELAR
       </button>
-      <button
-        class="add_button"
-        @click="putPresupuesto(this.selectedPresupuesto)"
-      >
-        MODIFICAR
-      </button>
+      <button class="add_button" @click="putUser()">MODIFICAR</button>
     </template>
-  </ModalEdit> -->
+  </ModalEdit>
 </template>
 
 <script>
 import ModalDelete from "../Modals/ModalDelete.vue";
-// import ModalEdit from "../Modals/ModalChange.vue";
-import moment from "moment";
+import ModalEdit from "../Modals/ModalChange.vue";
 
 export default {
-  name: "PresupuestosAccordion",
-  components: { ModalDelete },
+  name: "UsersAccordion",
+  components: { ModalDelete, ModalEdit },
   data() {
     return {
-      selectedPresupuesto: {},
+      selectedUser: {},
     };
   },
   computed: {
-    presupuestos: function () {
-      return this.$store.getters.allPresupuestos;
-    },
-    clientes: function () {
-      return this.$store.getters.allClientes;
-    },
-    productos: function () {
-      return this.$store.getters.allProductos;
+    users: function() {
+      return this.$store.getters.allUsers;
     },
   },
   methods: {
-    dateFormat: function(date){
-      return moment(date).locale("es-mx").format("L");
+    openDelModal: function(user) {
+      Object.assign(this.selectedUser, user);
+      this.selectedUser = user;
+      this.$ref.del.openDelModal();
     },
-    timeFormat: function(date){
-      return moment(date).format('LT');
+    openEditModal: function(user) {
+      Object.assign(this.selectedUser, user);
+      this.$ref.edit.openDelModal();
     },
-    openDelModal: function (presupuesto) {
-      Object.assign(this.selectedPresupuesto, presupuesto);
-      this.selectedPresupuesto = presupuesto;
-      this.$refs.del.openModal();
+    putUser: function() {
+      console.log(this.selectedUser);
+      this.$store.dispatch("putUser", this.selectedUser);
+      this.$ref.edit.closeModal();
     },
-    // openEditModal: function(presupuesto) {
-    //   Object.assign(this.selectedPresupuesto, presupuesto);
-    //   this.selectedPresupuesto = presupuesto;
-    //   this.$refs.edit.openModal();
-    // },
-    // putPresupuesto: function() {
-    //   console.log("PUT");
-    //   console.log(this.selectedPresupuesto);
-    //   this.$store.dispatch("putPresupuesto", this.selectedPresupuesto);
-    //   this.$refs.edit.closeModal();
-    // },
-    deletePresupuesto: function () {
-      this.$store.dispatch("deletePresupuesto", this.selectedPresupuesto);
-      this.$refs.del.closeModal();
+    deleteUser: function() {
+      this.$store.dispatch("deleteUser", this.selectedUser);
+      this.$ref.del.closeModal();
     },
   },
-
-  created() {
-    this.$store.dispatch("getPresupuestos");
-    this.$store.dispatch("getClientes");
-    this.$store.dispatch("getProductos");
+  created(){
+    this.$store.dispatch("getUsers");
   },
 };
 </script>

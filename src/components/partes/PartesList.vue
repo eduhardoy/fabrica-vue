@@ -3,6 +3,16 @@
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+
+      <select>
+        <option>PROVEEDOR</option>
+      </select>
+    </div>
+
     <div class="partes__head">
       <div class="partes_head_title">
         <h2>PARTES</h2>
@@ -36,6 +46,7 @@
       <!-- <input v-model="newParte.margen" placeholder="MARGEN" /> -->
       <label for="">PROVEEDOR</label>
       <select v-model="newParte.proveedor">
+        <option disabled selected>PROVEEDORES</option>
         <option
           v-for="item in proveedores"
           :key="item._key"

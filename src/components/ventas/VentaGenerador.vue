@@ -6,9 +6,6 @@
       </div>
     </div>
     <div class="venta_wrapper">
-      <select hidden>
-        <option>presupuesto</option>
-      </select>
       <div class="new">
         <button @click="openAddModalProducto">
           Nuevo producto
@@ -23,12 +20,21 @@
         v-model="newVenta.fechaEntrega"
         placeholder="FECHA DE ENTREGA"
       />
+      <!-- CLIENTES -->
       <label for="">CLIENTE</label>
       <select v-model="newVenta.cliente">
         <option v-for="item in clientes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
+      <!-- PRESUPUESTOS -->
+      <label for="">PRESUPUESTOS</label>
+      <select v-model="newVenta.presupuesto">
+        <option v-for="item in presupuestos" :key="item._key" v-bind:value="item">
+          #{{ item._key }} - {{ item.cliente.nombre }}
+        </option>
+      </select>
+      <!-- PRODUCTOS -->
       <label for="">PRODUCTOS</label>
       <div
         class="productos"
@@ -47,6 +53,7 @@
               {{ producto.nombre }}
             </option>
           </select>
+          <input disabled class="price" placeholder="precioPRODxCant"/>
         </div>
 
         <div class="productos__buttons">
@@ -59,6 +66,10 @@
           </button>
         </div>
       </div>
+      <div class="productos" align="center">
+        <input class="total-venta" disabled type="text" placeholder="SUMt-venta" />
+      </div>
+
       <button class="button-addProducto" @click="addProducto(newVenta)">
         AGREGAR PRODUCTO
       </button>
@@ -82,15 +93,15 @@
   <ModalAdd ref="addCliente">
     <template v-slot:body>
       <label for="">NOMBRE</label>
-      <input v-model="newCliente.nombre" placeholder="NOMBRE" />
+      <input v-model="newCliente.nombre" placeholder="Ej: Juan Perez" />
       <label for="">DNI O CUIT</label>
-      <input v-model="newCliente.cuitOrDni" placeholder="DNI o CUIT" />
+      <input v-model="newCliente.cuitOrDni" placeholder="N° DNI o CUIT" />
       <label for="">DIRECCION</label>
-      <input v-model="newCliente.direccion" placeholder="DIRECCION" />
+      <input v-model="newCliente.direccion" placeholder="Ej: Laprida 1874" />
       <label for="">TELEFONO</label>
-      <input v-model="newCliente.telefono" placeholder="TELEFONO" />
+      <input v-model="newCliente.telefono" placeholder="Ej: 543794452586" />
       <label for="">EMAIL</label>
-      <input v-model="newCliente.email" placeholder="EMAIL" />
+      <input v-model="newCliente.email" placeholder="Ej: juan34@gmail.com" />
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.addCliente.closeModal()">
@@ -102,30 +113,30 @@
   <ModalAdd ref="addProducto">
     <template v-slot:body>
       <label for="">NOMBRE</label>
-      <input v-model="newProducto.nombre" placeholder="NOMBRE" />
-      <label for="">COSTO</label>
-      <input v-model="newProducto.costo" placeholder="COSTO" />
-      <label for="">PRECIO DE VENTA</label>
-      <input v-model="newProducto.precioVenta" placeholder="PRECIO DE VENTA" />
+      <input v-model="newProducto.nombre" placeholder="Ej: Juan Perez" />
+      <label for="">COSTO $</label>
+      <input v-model="newProducto.costo" placeholder="Ej: 500" />
       <label for="">STOCK</label>
-      <input v-model="newProducto.stock" placeholder="STOCK" />
+      <input v-model="newProducto.stock" placeholder="Ej: 10" />
       <label for="">TIEMPO DE PRODUCCION</label>
       <input
         v-model="newProducto.tiempoProduccion"
-        placeholder="TIEMPO DE PRODUCCION"
+        placeholder="2 meses"
       />
-      <label for="">COSTO DE FLETE</label>
-      <input v-model="newProducto.costoFlete" placeholder="COSTO DE FLETE" />
-      <label for="">MARGEN DE GANANCIA</label>
-      <input v-model="newProducto.margen" placeholder="MARGEN DE GANANCIA" />
+      <label for="">COSTO DE FLETE $</label>
+      <input v-model="newProducto.costoFlete" placeholder="Ej: 500" />
+      <label for="">MARGEN DE GANANCIA $</label>
+      <input v-model="newProducto.margen" placeholder="Ej: 500" />
+      <!-- Medidas -->
       <label for="">ALTO</label>
-      <input v-model="newProducto.medidas.alto" placeholder="ALTO" />
+      <input v-model="newProducto.medidas.alto" placeholder="Ej: 2" />
       <label for="">ANCHO</label>
-      <input v-model="newProducto.medidas.ancho" placeholder="ANCHO" />
+      <input v-model="newProducto.medidas.ancho" placeholder="Ej: 3" />
       <label for="">LARGO</label>
-      <input v-model="newProducto.medidas.largo" placeholder="LARGO" />
+      <input v-model="newProducto.medidas.largo" placeholder="Ej: 4" />
       <label for="">PROVEEDOR</label>
       <select v-model="newProducto.proveedor">
+        <option disabled selected>PROVEEDORES</option>
         <option
           v-for="item in proveedores"
           :key="item._key"
@@ -136,6 +147,7 @@
       </select>
       <label for="">SUBCATEGORIA</label>
       <select v-model="newProducto.subCategoria">
+        <option disabled selected>SUBCATEGORIAS</option>
         <option
           v-for="item in subCategorias"
           :key="item._key"
@@ -144,12 +156,13 @@
           {{ item.categoria.nombre }} - {{ item.nombre }}
         </option>
       </select>
-      <label for="">PARTES</label>
+      <label for="">PARTES (CTRL + CLICK)</label>
       <select class="big_select" size="5" v-model="newProducto.partes" multiple>
         <option v-for="item in partes" :key="item._key" v-bind:value="item">
           {{ item.nombre }}
         </option>
       </select>
+      <!-- </form> -->
     </template>
     <template v-slot:footer>
       <button class="cancel_button" @click="$refs.addProducto.closeModal()">
@@ -175,6 +188,7 @@ export default {
         medidas: {},
       },
       newCliente: {},
+      newPresupuesto: {},
     };
   },
   computed: {
@@ -187,15 +201,15 @@ export default {
     clientes: function() {
       return this.$store.getters.allClientes;
     },
-    proveedores: function() {
-      return this.$store.getters.allProveedores;
-    },
-    subCategorias: function() {
-      return this.$store.getters.allSubCategorias;
-    },
-    partes: function() {
-      return this.$store.getters.allPartes;
-    },
+    // proveedores: function() {
+    //   return this.$store.getters.allProveedores;
+    // },
+    // subCategorias: function() {
+    //   return this.$store.getters.allSubCategorias;
+    // },
+    // partes: function() {
+    //   return this.$store.getters.allPartes;
+    // },
   },
 
   methods: {
@@ -229,7 +243,7 @@ export default {
     },
     postVenta: function() {
       this.$store.dispatch("postVenta", this.newVenta);
-      //this.$refs.add.closeModal();
+      // this.$refs.add.closeModal();
       console.log(this.newVenta);
     },
     postCliente: function() {
@@ -353,12 +367,27 @@ export default {
           margin: 5px 0px;
           margin-right: 5px;
         }
+        .price{
+        width: 70px;
+        height: 21px;
+        margin: 5px 0px;
+        margin-right: 5px;
+        margin-left: 5px;
+        text-align-last: right;
+        }
         select {
           border: 1px black solid;
           width: 95%;
           margin: 5px 0px;
           padding: 5px;
         }
+      }
+      .total-venta{
+        width: 130px;
+        height: 21px;
+        margin: 5px 0px;
+        padding: 5px;
+        text-align-last: right;
       }
 
       .productos__buttons {

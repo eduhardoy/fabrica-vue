@@ -3,6 +3,12 @@
     <button class="add__button" @click="openAddModal">
       <img src="./images/plus.svg" alt="" />
     </button>
+
+    <!-- MAQUETADO PARA FILTROS -->
+    <div display: flex flex-direction: row>
+      <input placeholder="SEARCH" />
+    </div>
+
     <div class="proveedores__head">
       <div class="proveedores_head_title">
         <h2>PROVEEDORES</h2>
@@ -15,28 +21,28 @@
   <ModalAdd ref="add">
     <template v-slot:body>
       <label for="">NOMBRE</label>
+      <input v-model="newProveedor.nombre" placeholder="Ej: Juan Perez" />
 
-      <input v-model="newProveedor.nombre" placeholder="NOMBRE" />
       <label for="">DIRECCION</label>
+      <input v-model="newProveedor.direccion" placeholder="Ej: Laprida 1874" />
 
-      <input v-model="newProveedor.direccion" placeholder="DIRECCION" />
       <label for="">TELEFONO</label>
-
-      <input v-model="newProveedor.telefono" placeholder="TELEFONO" />
+      <input v-model="newProveedor.telefono" placeholder="Ej: 543794452586" />
+      
       <label for="">EMAIL</label>
+      <input v-model="newProveedor.email" placeholder="Ej: juan34@gmail.com" />
 
-      <input v-model="newProveedor.email" placeholder="EMAIL" />
       <label for="">CUIT</label>
+      <input v-model="newProveedor.cuit" placeholder="N° CUIT" />
 
-      <input v-model="newProveedor.cuit" placeholder="CUIT" />
       <label for="">CUENTAS BANCARIAS</label>
       <div
         v-for="item in newProveedor.cuentasBanco"
         :key="item.value"
         class="cbu"
       >
-        <input v-model.lazy="item.cbu" placeholder="CBU" />
-        <input v-model.lazy="item.banco" placeholder="BANCO" />
+        <input v-model.lazy="item.cbu" placeholder="N° CBU" />
+        <input v-model.lazy="item.banco" placeholder="HSBC" />
       </div>
       <div>
         <button @click="addCBU(newProveedor)">ADD CBU</button>
