@@ -4,16 +4,13 @@
       class="accordion__box"
       v-for="item in ventas"
       v-bind:key="item._key"
+      v-bind:class="[item.estado]"
     >
       <summary>
         <div class="summary__title">
-          <h3>#{{ item._key }} - {{dateFormat(item.modifiedDate)}} - {{ item.cliente.nombre }} ${{ item.montoTotal }}</h3>
-          <!-- <h3>{{dateFormat(item.modifiedDate)}} - {{ item.cliente.nombre }} ${{ item.montoTotal }}</h3> -->
+          <h3 class="title-ventas">#{{ item._key }} - {{dateFormat(item.modifiedDate)}} - {{ item.cliente.nombre }} ${{ item.montoTotal }}</h3>
         </div>
         <div class="summary__buttons">
-          <!-- <button @click="openEditModal(item)">
-            <img src="./images/pencil.svg" alt="" />EDITAR
-          </button> -->
           <button
             v-show="$store.state.token === undefined"
             @click="openDelModal(item)"
@@ -25,13 +22,12 @@
       <div class="venta__wrapper__button">
         <button @click="verFactura(item)">VER FACTURA</button>
         <button>VER FACTURA 2</button>
-        <!-- <button>VER PRESUPUESTO</button> -->
-        <button>FINALIZAR VENTA</button>
+        <button @click="finalizarVenta(item)">FINALIZAR VENTA</button>
       </div>
       <ul class="details_list">
         <li><strong>Emitida: </strong>{{dateFormat(item.modifiedDate)}} - {{timeFormat(item.modifiedDate)}}</li>
         <li><strong>Cliente: </strong>{{ item.cliente.nombre }}</li>
-        <li><strong>Estado: </strong>{{ item.estado }} (DEFINIR SI VA CON COLORES)</li>
+        <li><strong>Estado: </strong>{{ item.estado }}</li>
         <ul>
           <strong>PRODUCTOS</strong>
           <li v-for="producto in item.productos" :key="producto._key">
@@ -97,9 +93,10 @@ export default {
       this.selectedVenta = venta;
       this.$refs.del.openModal();
     },
-    putVenta: function () {
+    putVenta: function (venta) {
+      this.selectedVenta = venta;
+      console.log("finalizar esta venta:", this.selectedVenta);
       this.$store.dispatch("putVenta", this.selectedVenta);
-      this.$refs.edit.closeModal();
     },
     deleteVenta: function (venta) {
       this.$store.dispatch("deleteVenta", venta);
@@ -122,7 +119,12 @@ export default {
         query: { data: this.selectedVenta._key },
       });
       window.open(routeData.href, "_blank");
-    }
+    },
+    finalizarVenta: function (venta){
+      this.selectedVenta = venta;
+      console.log("finalizar esta venta:", this.selectedVenta)
+      this.$store.dispatch("putVenta", this.selectedVenta);
+    },
   },
 
   created() {
@@ -135,6 +137,23 @@ export default {
 </script>
 
 <style lang="scss">
+/* .accordion__box{ //DEFAULT
+  background-color: white;
+} */
+.accordion__container{
+  font-family: sans-serif;
+  .title-ventas{
+    font-size: 18px !important;
+  }
+}
+
+.Pendiente{
+  background-color: rgb(255, 197, 207);
+}
+.Finalizado{
+  background-color: rgb(205, 255, 180);
+}
+
 .venta__wrapper__button {
   display: flex;
   justify-content: center;
